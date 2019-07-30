@@ -1,5 +1,6 @@
 package objects;
 
+import objects.calculator.Workplace;
 import objects.factory.Factory;
 import objects.school.School;
 
@@ -11,9 +12,23 @@ public class ApplicationRunner {
 
     };
 
-    public static void run() {
+    public static void run(Mode mode) {
+        switch (mode) {
+            case OBJECT:
+                startObjectHomeWork();
+                break;
+            case CALCULATOR:
+                startCalculatorHomeWork();
+        }
+    }
+
+    private static void startObjectHomeWork() {
         for (Organization organization : organizations) {
             organization.start();
         }
+    }
+
+    private static void startCalculatorHomeWork() {
+        Workplace.start();
     }
 }
