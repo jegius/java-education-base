@@ -1,6 +1,7 @@
 package objects;
 
 import objects.calculator.Workplace;
+import objects.dns.Dns;
 import objects.factory.Factory;
 import objects.school.School;
 
@@ -8,7 +9,8 @@ public class ApplicationRunner {
 
     private static Organization[] organizations = {
             new Factory(),
-            new School()
+            new School(),
+            new Dns()
 
     };
 
