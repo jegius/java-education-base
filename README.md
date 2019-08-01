@@ -30,7 +30,7 @@
 
 Пример:
 
-`ivan-objects`
+`ivan-menu.commands.tasks.objects`
 
 ![Третий шаг](images/step-three.jpg)
 ## Четвертый шаг
