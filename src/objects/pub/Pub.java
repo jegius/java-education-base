@@ -30,7 +30,7 @@ public class Pub extends Organization {
                 secondWaiter
         };
 
-        Barmen barmen = new Barmen("Леонард", waiters, 45);
+        Barmen barmen = new Barmen(8, waiters, 60000);
 
         barmen.doWork();
     }

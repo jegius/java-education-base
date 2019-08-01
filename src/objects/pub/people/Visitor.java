@@ -7,7 +7,7 @@ public class Visitor extends Human {
     public Visitor(String name,
                    String seniority,
                    int age) {
-        super(name, age);
+        super(name, seniority, age);
         this.seniority = seniority;
     }
 
