@@ -4,21 +4,15 @@ abstract class Employee extends Human {
     private int experience;
     private int salary;
 
-
-    public Employee(String name, int age) {
-        super(name, age);
+    Employee(int experience, int salary) {
         this.experience = experience;
         this.salary = salary;
-    }
-
-    public Employee(int experience, int salary) {
-        super();
     }
 
     abstract void doWork();
 
     @Override
-    void introduceYourself (){
+    void introduceYourself() {
         System.out.println("Я работаю " + this.experience + " лет и получаю " + this.salary);
     }
 }

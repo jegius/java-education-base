@@ -1,20 +1,20 @@
 package objects.pub.people;
 
-public class Barmen extends Employee  {
+public class Barmen extends Employee {
 
-     private Waiter[] waiters;
+    private Waiter[] waiters;
 
-     public Barmen(String Name,
-                   Waiter[] waiters,
-                   int age) {
-         super(Name, age);
-         this.waiters = waiters;
+    public Barmen(int experience,
+                  Waiter[] waiters,
+                  int salary) {
+        super(experience, salary);
+        this.waiters = waiters;
     }
 
-    public void doWork () {
-         introduceYourself();
+    public void doWork() {
+        this.introduceYourself();
 
-        System.out.println("Бармен налил пива");
+        System.out.println("Бармен налил пива и отдал официанту");
 
         for (Waiter waiter : waiters) {
             waiter.doWork();
