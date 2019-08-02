@@ -18,10 +18,6 @@ public class Visitor extends Human {
         System.out.println("Посетитель забирает стакан");
     }
 
-    public String getSeniority() {
-        return seniority;
-    }
-
     public void setSeniority(String seniority) {
         this.seniority = seniority;
     }

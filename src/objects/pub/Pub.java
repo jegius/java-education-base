@@ -22,15 +22,15 @@ public class Pub extends Organization {
                 visitorThree
         };
 
-        Waiter firstWaiter = new Waiter(2, firstGroup, 20000);
-        Waiter secondWaiter = new Waiter(5, secondGroup, 30000);
+        Waiter firstWaiter = new Waiter("Джордж", 22, 2,firstGroup, 20000);
+        Waiter secondWaiter = new Waiter("Майкл", 23, 3,secondGroup, 30000);
 
         Waiter[] waiters = {
                 firstWaiter,
                 secondWaiter
         };
 
-        Barmen barmen = new Barmen(8, waiters, 60000);
+        Barmen barmen = new Barmen("Питер", 35, 8, waiters, 60000);
 
         barmen.doWork();
     }

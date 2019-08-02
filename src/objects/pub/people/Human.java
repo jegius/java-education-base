@@ -11,8 +11,7 @@ abstract class Human {
         this.age = age;
     }
 
-    Human() {
-
+    public Human() {
     }
 
     abstract void doWork();

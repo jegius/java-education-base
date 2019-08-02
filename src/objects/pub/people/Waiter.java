@@ -4,10 +4,12 @@ public class Waiter extends Employee {
 
     private Visitor[] subordinates;
 
-    public Waiter(int experience,
+    public Waiter(String name,
+                  int age,
+                  int experience,
                   Visitor[] subordinates,
                   int salary) {
-        super(experience, salary);
+        super(name, age, experience, salary);
         this.subordinates = subordinates;
     }
 

@@ -1,10 +1,14 @@
 package objects.pub.people;
 
 abstract class Employee extends Human {
+    private String name;
+    private int age;
     private int experience;
     private int salary;
 
-    Employee(int experience, int salary) {
+    Employee(String name, int age, int experience, int salary) {
+        this.name = name;
+        this.age = age;
         this.experience = experience;
         this.salary = salary;
     }
@@ -13,6 +17,6 @@ abstract class Employee extends Human {
 
     @Override
     void introduceYourself() {
-        System.out.println("Я работаю " + this.experience + " лет и получаю " + this.salary);
+        System.out.println("Привет, меня зовут " + this.name + ", мне " + this.age + " лет. " + "Я работаю " + this.experience + " лет и получаю " + this.salary);
     }
 }
