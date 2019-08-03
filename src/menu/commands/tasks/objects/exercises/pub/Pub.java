@@ -1,9 +1,9 @@
-package objects.pub;
+package menu.commands.tasks.objects.exercises.pub;
 
-import objects.Organization;
-import objects.pub.people.Barmen;
-import objects.pub.people.Visitor;
-import objects.pub.people.Waiter;
+import menu.commands.tasks.objects.exercises.Organization;
+import menu.commands.tasks.objects.exercises.pub.people.Barmen;
+import menu.commands.tasks.objects.exercises.pub.people.Visitor;
+import menu.commands.tasks.objects.exercises.pub.people.Waiter;
 
 public class Pub extends Organization {
 

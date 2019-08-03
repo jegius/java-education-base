@@ -1,4 +1,4 @@
-package objects.pub.people;
+package menu.commands.tasks.objects.exercises.pub.people;
 
 abstract class Employee extends Human {
     private String name;
