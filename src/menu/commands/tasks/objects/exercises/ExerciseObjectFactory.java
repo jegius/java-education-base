@@ -26,6 +26,7 @@ public class ExerciseObjectFactory {
             case SCHOOL:
                 return new School();
                 default:
+                    System.out.println("Unexpected Exercise!");
                     return null;
         }
     }
