@@ -27,7 +27,6 @@ public class ObjectsTaskCommand implements Command {
         MenuUtils.printOption("1", "Run DNS example");
         MenuUtils.printOption("2", "Run Factory Example");
         MenuUtils.printOption("3", "Run School Example");
-        MenuUtils.printOption("4", "Run Pub Example");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -54,12 +53,6 @@ public class ObjectsTaskCommand implements Command {
                 ExerciseObjectFactory
                         .getInstance()
                         .createOrganization(Exercise.SCHOOL)
-                        .start();
-                return this;
-            case 4:
-                ExerciseObjectFactory
-                        .getInstance()
-                        .createOrganization(Exercise.PUB)
                         .start();
                 return this;
             default:
