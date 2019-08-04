@@ -23,8 +23,8 @@ public class MainMenuCommand implements Command{
     public Command execute() {
 
         MenuUtils.printSeparator();
-        MenuUtils.printOption("0", "Exit");
         MenuUtils.printOption("1", "Show tasks");
+        MenuUtils.printOption("0", "Exit");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
 

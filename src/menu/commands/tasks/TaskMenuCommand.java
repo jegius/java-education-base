@@ -3,6 +3,7 @@ package menu.commands.tasks;
 import menu.Command;
 import menu.MainMenuCommand;
 import menu.commands.tasks.calculator.CalculatorTaskCommand;
+import menu.commands.tasks.calculatormode.CalculatorModeCommand;
 import menu.commands.tasks.objects.ObjectsTaskCommand;
 import menu.utils.MenuUtils;
 
@@ -26,6 +27,7 @@ public class TaskMenuCommand implements Command {
         MenuUtils.printSeparator();
         MenuUtils.printOption("1", "Show object theme task");
         MenuUtils.printOption("2", "Show simple calculator");
+        MenuUtils.printOption("3", "Show calculator mode");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -40,6 +42,8 @@ public class TaskMenuCommand implements Command {
                 return ObjectsTaskCommand.getInstance();
             case 2:
                 return CalculatorTaskCommand.getInstance();
+            case 3:
+                return CalculatorModeCommand.getInstance();
             default:
                 System.out.println("Unexpected command!");
                 return this;
