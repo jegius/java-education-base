@@ -23,7 +23,8 @@ public class CalculatorTaskCommand implements Command {
     @Override
     public Command execute() {
         MenuUtils.printSeparator();
-        MenuUtils.printOption("1", "Run example calculator");
+        MenuUtils.printOption("1", "Run Alex calculator");
+        MenuUtils.printOption("2", "Run example calculator");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -37,9 +38,17 @@ public class CalculatorTaskCommand implements Command {
             case 1:
                 WorkplaceFactory
                         .getInstance()
+                        .createWorkplace(Executor.ALEX)
+                        .start();
+                return this;
+            case 2:
+                WorkplaceFactory
+                        .getInstance()
                         .createWorkplace(Executor.IVAN)
                         .start();
                 return this;
+
+
             default:
                 System.out.println("Unexpected Task!");
                 return this;
