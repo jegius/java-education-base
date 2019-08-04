@@ -19,7 +19,7 @@ class Calculator {
 
     long pow(long number, long degree) {
         long initial = number;
-        for (int i = 1; i < degree; i++) {
+        for (int index = 1; index < degree; index++) {
             number = number * initial;
         }
         return number;
@@ -38,16 +38,16 @@ class Calculator {
 
     long triangle(long number) {
         long result = 0;
-        for (int i = 0; i < number; i++) {
-            result += (number - i);
+        for (int index = 0; index < number; index++) {
+            result += (number - index);
         }
         return result;
     }
 
     long factorial(long number) {
         long result = 1;
-        for (long i = 1; i <= number; i++) {
-            result = result * i;
+        for (long index = 1; index <= number; index++) {
+            result = result * index;
         }
         return result;
     }
