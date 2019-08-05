@@ -8,7 +8,6 @@ public class MaxWorkplace implements Workplace {
     public void start() {
 
         Calculator calculator = new Calculator();
-
-        System.out.println(calculator.sum(233, 33));
+        System.out.println(calculator.sum(40, 10));
     }
 }
