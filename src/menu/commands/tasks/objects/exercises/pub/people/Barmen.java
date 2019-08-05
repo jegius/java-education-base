@@ -8,8 +8,9 @@ public class Barmen extends Employee {
                   int age,
                   int experience,
                   Waiter[] waiters,
-                  int salary) {
-        super(name, age, experience, salary);
+                  int salary,
+                  String seniority) {
+        super(name, age, experience, salary, seniority);
         this.waiters = waiters;
     }
 

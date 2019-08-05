@@ -25,6 +25,7 @@ public class CalculatorTaskCommand implements Command {
         MenuUtils.printSeparator();
         MenuUtils.printOption("1", "Run Alex calculator");
         MenuUtils.printOption("2", "Run example calculator");
+        MenuUtils.printOption("3", "Run Max calculator");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -47,7 +48,12 @@ public class CalculatorTaskCommand implements Command {
                         .createWorkplace(Executor.IVAN)
                         .start();
                 return this;
-
+            case 3:
+                WorkplaceFactory
+                        .getInstance()
+                        .createWorkplace(Executor.MAX)
+                        .start();
+                return this;
 
             default:
                 System.out.println("Unexpected Task!");

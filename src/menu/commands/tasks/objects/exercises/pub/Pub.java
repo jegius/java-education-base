@@ -9,9 +9,9 @@ public class Pub extends Organization {
 
 
     public void start() {
-        Visitor visitorOne = new Visitor("Винсент", "Алкоголик", 32);
-        Visitor visitorTwo = new Visitor("Билли", "Машинист", 52);
-        Visitor visitorThree = new Visitor("Ральф", "Президент", 49);
+        Visitor visitorOne = new Visitor("Винсент", 32);
+        Visitor visitorTwo = new Visitor("Билли", 52);
+        Visitor visitorThree = new Visitor("Ральф", 49);
 
         Visitor[] firstGroup = {
                 visitorOne,
@@ -22,15 +22,15 @@ public class Pub extends Organization {
                 visitorThree
         };
 
-        Waiter firstWaiter = new Waiter("Джордж", 22, 2,firstGroup, 20000);
-        Waiter secondWaiter = new Waiter("Майкл", 23, 3,secondGroup, 30000);
+        Waiter firstWaiter = new Waiter("Джордж", 22, 2, firstGroup, 20000, "официант");
+        Waiter secondWaiter = new Waiter("Майкл", 23, 3, secondGroup, 30000, "официант");
 
         Waiter[] waiters = {
                 firstWaiter,
                 secondWaiter
         };
 
-        Barmen barmen = new Barmen("Питер", 35, 8, waiters, 60000);
+        Barmen barmen = new Barmen("Питер", 35, 8, waiters, 60000, "бармен");
 
         barmen.doWork();
     }
