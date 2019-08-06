@@ -5,7 +5,11 @@ abstract class Employee extends Human {
     private int salary;
     private String seniority;
 
-    Employee(String name, int age, int experience, int salary, String seniority) {
+    Employee(String name,
+             int age,
+             int experience,
+             int salary,
+             String seniority) {
         super(name, age);
         this.experience = experience;
         this.salary = salary;
