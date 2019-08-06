@@ -6,7 +6,7 @@
 
 1. Сумму двух переданных в метод чисел `sum(firstOperand, secondOperand)`
 1. Разность двух переданных в метод чисел `difference(firstOperand, secondOperand)`
-1. Результат деления одного переданного в метод числа на другое `division(firstOperand, secondOperand)`
+1. Реультат деления одного переданного в метод числа на другое `division(firstOperand, secondOperand)`
 1. Произведение одного переданного в метод числа на другое `multiplication(firstOperand, secondOperand)`
 1. Возведение первого аргумента в степень указанную вторым аргументом `pow(firstOperand, secondOperand)`
 1. Нахождение квадратного корня числа переданного в метод `sqrt(number`
