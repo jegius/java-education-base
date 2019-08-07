@@ -2,11 +2,8 @@ package menu.commands.tasks.calculator;
 
 import menu.commands.tasks.calculator.alex.AlexWorkPlace;
 import menu.commands.tasks.calculator.ivan.IvanWorkplace;
-import menu.commands.tasks.objects.exercises.Exercise;
-import menu.commands.tasks.objects.exercises.Organization;
-import menu.commands.tasks.objects.exercises.dns.Dns;
-import menu.commands.tasks.objects.exercises.factory.Factory;
-import menu.commands.tasks.objects.exercises.school.School;
+import menu.commands.tasks.calculator.max.MaxWorkplace;
+
 
 public class WorkplaceFactory {
     private static WorkplaceFactory instance;
@@ -21,13 +18,17 @@ public class WorkplaceFactory {
         return instance;
     }
 
-    public Workplace createWorkplace(Executor executor) {
+    Workplace createWorkplace(Executor executor) {
         switch (executor) {
             case IVAN:
                 return new IvanWorkplace();
 
             case ALEX:
                 return new AlexWorkPlace();
+
+            case MAX:
+                return new MaxWorkplace();
+
             default:
                 return null;
         }
