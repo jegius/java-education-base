@@ -19,19 +19,19 @@ class Calculator {
     }
 
     long pow(long firstOperand, long secondOperand) {
-        long number = 1;
+        long degree = 1;
         for (long index = 1; index <= secondOperand; index++) {
-            number *= firstOperand;
+            degree *= firstOperand;
         }
-        return number;
+        return degree;
     }
 
     long sqrt(long number) {
-        long index = 0;
-        while (index*index < number) {
-            index++;
+        long multiply = 0;
+        while (multiply*multiply < number) {
+            multiply++;
         }
-        return index;
+        return multiply;
     }
 
     long triangle(long number) {
@@ -43,10 +43,10 @@ class Calculator {
     }
 
     long factorial(long number) {
-        long fac = 1;
+        long factorial = 1;
         for (long index = 1; index <= number; index++) {
-            fac *= index;
+            factorial *= index;
         }
-        return fac;
+        return factorial;
     }
 }
