@@ -29,6 +29,13 @@ public class MaxCalculatorCommand implements Command {
             MenuUtils.printSeparator();
             MenuUtils.printOption("1", "Вычислить корень");
             MenuUtils.printOption("2", "Вычислить сумму");
+            MenuUtils.printOption("3", "Вычислить разность");
+            MenuUtils.printOption("4", "Операция умножения");
+            MenuUtils.printOption("5", "Операция деления");
+            MenuUtils.printOption("6", "Возведение в степень");
+            MenuUtils.printOption("7", "Определение наибольшего значения из двух чисел");
+            MenuUtils.printOption("8", "Определение наименьшего значения из двух чисел");
+            MenuUtils.printOption("9", "Вычислить кубический корень");
             MenuUtils.printOption("0", "Назад");
             MenuUtils.printSeparator();
             MenuUtils.printPrompt();
@@ -43,6 +50,20 @@ public class MaxCalculatorCommand implements Command {
                     return calculator.sqrt();
                 case 2:
                     return calculator.sum();
+                case 3:
+                    return calculator.difference();
+                case 4:
+                    return calculator.multiplication();
+                case 5:
+                    return calculator.division();
+                case 6:
+                    return calculator.pow();
+                case 7:
+                    return calculator.max();
+                case 8:
+                    return calculator.min();
+                case 9:
+                    return calculator.cbrt();
 
                 default:
                     System.out.println("Unexpected Task!");
