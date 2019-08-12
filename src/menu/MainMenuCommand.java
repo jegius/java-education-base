@@ -1,6 +1,7 @@
 package menu;
 
 import menu.commands.ExitCommand;
+import menu.commands.littletasks.LittleTaskCommand;
 import menu.commands.tasks.TaskMenuCommand;
 import menu.utils.MenuUtils;
 
@@ -24,6 +25,7 @@ public class MainMenuCommand implements Command{
 
         MenuUtils.printSeparator();
         MenuUtils.printOption("1", "Show tasks");
+        MenuUtils.printOption("2", "Show little tasks");
         MenuUtils.printOption("0", "Exit");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -36,6 +38,8 @@ public class MainMenuCommand implements Command{
                 return ExitCommand.getInstance();
             case 1:
                 return TaskMenuCommand.getInstance();
+            case 2:
+                return LittleTaskCommand.getInstance();
             default:
                 System.out.println("Unexpected command!");
                 return this;
