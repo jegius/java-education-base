@@ -1,9 +1,20 @@
 package menu.commands.tasks.calculatormode.max;
 
+import menu.commands.tasks.calculatormode.max.exceptions.IncorrectNumberFormatException;
+import menu.commands.tasks.calculatormode.max.exceptions.ZeroException;
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Calculator {
 
+    private static final String POSITIVE_NUMBER = "positiveNumber";
+    private static final String NUMBER = "number";
+
+    private static final String MINUS = "-";
+    private static final String ZERO = "0.0";
     private MaxCalculatorCommand calculatorCommand;
     private static Scanner scanner;
 
@@ -11,214 +22,156 @@ public class Calculator {
         scanner = new Scanner(System.in);
         this.calculatorCommand = instance;
     }
-
-    MaxCalculatorCommand sqrt() {
-        System.out.println("Введите число для вычисления корня: ");
-        System.out.print(">: ");
-
+    public static String getData(Scanner scanner, String parameter) {
         try {
-            int number = scanner.nextInt();
-            double result = getSqrt(number);
+            if(parameter.equals(POSITIVE_NUMBER)) {
+                double input = scanner.nextDouble();
+                String inputPositiveNumber = Double.toString(input);
 
-            System.out.println("[" + result + "] корень для [" + number + "]");
-        } catch (ArithmeticException exception) {
-            System.out.println("Извлечь корень из отрицательного числа нельзя!");
-            scanner.next();
-            sqrt();
-        } catch (Exception exception) {
+                if (inputPositiveNumber.contains(MINUS)) {
+                    throw new IncorrectNumberFormatException("Введеное число должно быть положительным!");
+                }
+                return Double.toString(input);
+            } else if (parameter.equals(NUMBER)) {
+                double inputNumber = scanner.nextDouble();
+                return Double.toString(inputNumber);
+            } else if (parameter.equals(ZERO)) {
+                double inputNumber = scanner.nextDouble();
+                String inputZero = Double.toString(inputNumber);
+                if(inputZero.equals(ZERO)) {
+                    throw new ZeroException("Нельзя вводить ноль!");
+                }
+                return inputZero;
+            }
+
+        } catch (IncorrectNumberFormatException e) {
+            System.out.println(e.getMessage());
+            return getData(scanner, parameter);
+        } catch (InputMismatchException exception) {
             System.out.println("Пожалуйста, введите только цифры!");
             scanner.next();
-            sqrt();
+            return getData(scanner, parameter);
+        } catch (ZeroException e) {
+            System.out.println(e.getMessage());
+            return getData(scanner, parameter);
         }
+        return null;
+    }
+
+    public static List getDataNumber(String [] messages, String param) {
+        List<String> Numbers = new ArrayList<>(); {
+            for (String i : messages) {
+                System.out.println(i);
+                Numbers.add(getData(scanner, param));
+            }
+        }
+        return Numbers;
+    }
+
+    MaxCalculatorCommand sqrt() {
+        String [] sqrtMessage = {"Введите число: "};
+        List <String> value = getDataNumber(sqrtMessage, POSITIVE_NUMBER);
+        double number = Double.parseDouble(value.get(0));
+        double result = getSqrt(number);
+        System.out.println("[" + result + "] результат вычисления корня числа [" + number + "]");
+
+        return calculatorCommand;
+    }
+
+    MaxCalculatorCommand pow() {
+        String [] powMessage = {"Введите число: ", "Введите степень: "};
+        List <String> value = getDataNumber(powMessage, NUMBER);
+        double number = Double.parseDouble(value.get(0));
+        double degree = Double.parseDouble(value.get(1));
+        double result = getPow(number, degree);
+        System.out.println("[" + result + "] результат возведения числа [" + number + "] в степень [" + degree + "]");
+
+        return calculatorCommand;
+    }
+
+    MaxCalculatorCommand division() {
+        String [] divisionMessage = {"Введите делимое: ", "Введите делитель: "};
+        List <String> value = getDataNumber(divisionMessage, ZERO);
+        double firstOperand = Double.parseDouble(value.get(0));
+        double secondOperand = Double.parseDouble(value.get(1));
+        double result = getDivision(firstOperand, secondOperand);
+        System.out.println("[" + result + "] результат деления числа [" + firstOperand + "] на [" + secondOperand + "]");
 
         return calculatorCommand;
     }
 
     MaxCalculatorCommand sum() {
-        System.out.println("Введите 1-ое число: ");
-        System.out.print(">: ");
-        long firstOperand = scanner.nextInt();
-        System.out.println("Введите 2-ое число: ");
-        System.out.print(">: ");
-        long secondOperand = scanner.nextInt();
-
-
-        try {
-            double result = getSum(firstOperand, secondOperand);
-
-            System.out.println("[" + result + "] сумма чисел [" + firstOperand + "] и [" + secondOperand + "]" );
-        } catch (Exception exception) {
-            System.out.println("Пожалуйста, введите только цифры!");
-            scanner.next();
-            sum();
-        }
+        String [] sumMessage = {"Введите первое число: ", "Введите второе число: "};
+        List <String> value = getDataNumber(sumMessage, NUMBER);
+        double firstOperand = Double.parseDouble(value.get(0));
+        double secondOperand = Double.parseDouble(value.get(1));
+        double result = getSum(firstOperand, secondOperand);
+        System.out.println("[" + result + "] результат суммы числа [" + firstOperand + "] и числа [" + secondOperand + "]");
 
         return calculatorCommand;
-
     }
 
     MaxCalculatorCommand difference() {
-        System.out.println("Введите 1-ое число: ");
-        System.out.print(">: ");
-        long firstOperand = scanner.nextInt();
-        System.out.println("Введите 2-ое число: ");
-        System.out.print(">: ");
-        long secondOperand = scanner.nextInt();
-
-        try {
-            double result = getDifference(firstOperand, secondOperand);
-
-            System.out.println("[" + result + "] разность чисел [" + firstOperand + "] и [" + secondOperand + "]");
-        } catch (Exception exception) {
-            System.out.println("Пожалуйста, введите только цифры!");
-            scanner.next();
-            difference();
-        }
+        String [] differenceMessage = {"Введите первое число: ", "Введите второе число: "};
+        List <String> value = getDataNumber(differenceMessage, NUMBER);
+        double firstOperand = Double.parseDouble(value.get(0));
+        double secondOperand = Double.parseDouble(value.get(1));
+        double result = getDifference(firstOperand, secondOperand);
+        System.out.println("[" + result + "] результат разности числа [" + firstOperand + "] и числа [" + secondOperand + "]");
 
         return calculatorCommand;
-
     }
 
     MaxCalculatorCommand multiplication() {
-        System.out.println("Введите 1-ое число: ");
-        System.out.print(">: ");
-        long firstOperand = scanner.nextInt();
-        System.out.println("Введите 2-ое число: ");
-        System.out.print(">: ");
-        long secondOperand = scanner.nextInt();
-
-        try {
-            double result = getMultiplication(firstOperand, secondOperand);
-
-            System.out.println("[" + result + "] результат умножения чисел [" + firstOperand + "] и [" + secondOperand + "]");
-        } catch (Exception exception) {
-            System.out.println("Пожалуйста, введите только цифры!");
-            scanner.next();
-            multiplication();
-        }
+        String [] multiplicationMessage = {"Введите первое число: ", "Введите второе число: "};
+        List <String> value = getDataNumber(multiplicationMessage, NUMBER);
+        double firstOperand = Double.parseDouble(value.get(0));
+        double secondOperand = Double.parseDouble(value.get(1));
+        double result = getMultiplication(firstOperand, secondOperand);
+        System.out.println("[" + result + "] результат умножения числа [" + firstOperand + "] и числа [" + secondOperand + "]");
 
         return calculatorCommand;
-
-    }
-
-    MaxCalculatorCommand division() {
-        System.out.println("Введите делимое число: ");
-        System.out.print(">: ");
-        long numerator = scanner.nextInt();
-        System.out.println("Введите делитель: ");
-        System.out.print(">: ");
-        long denominator = scanner.nextInt();
-
-        try {
-            double result = getDivision(numerator, denominator);
-
-            System.out.println("[" + result + "] результат деления чисел [" + numerator + "] и [" + denominator + "]");
-        } catch (ArithmeticException exception) {
-            System.out.println("Делить на ноль нельзя");
-            scanner.next();
-            division();
-        } catch (Exception exception) {
-            System.out.println("Пожалуйста, введите только цифры!");
-            scanner.next();
-            division();
-        }
-
-        return calculatorCommand;
-
-    }
-
-    MaxCalculatorCommand pow() {
-        System.out.println("Введите число: ");
-        System.out.print(">: ");
-        double number = scanner.nextInt();
-        System.out.println("Введите степень: ");
-        System.out.print(">: ");
-        double degree = scanner.nextInt();
-
-        try {
-            double result = getPow(number, degree);
-
-            System.out.println("[" + result + "] результат возведения числа [" + number + "] в степень [" + degree + "]");
-        } catch (Exception exception) {
-            System.out.println("Пожалуйста, введите только цифры!");
-            scanner.next();
-            division();
-        }
-
-        return calculatorCommand;
-
     }
 
     MaxCalculatorCommand max() {
-        System.out.println("Введите 1ое число: ");
-        System.out.print(">: ");
-        double firstOperand = scanner.nextInt();
-        System.out.println("Введите 2ое число: ");
-        System.out.print(">: ");
-        double secondOperand = scanner.nextInt();
-
-        try {
-            double result = getMax(firstOperand, secondOperand);
-
-            System.out.println("[" + result + "] наибольшее значение");
-        } catch (Exception exception) {
-            System.out.println("Пожалуйста, введите только цифры!");
-            scanner.next();
-            max();
-        }
+        String [] maxMessage = {"Введите первое число: ", "Введите второе число: "};
+        List <String> value = getDataNumber(maxMessage, NUMBER);
+        double firstOperand = Double.parseDouble(value.get(0));
+        double secondOperand = Double.parseDouble(value.get(1));
+        double result = getMax(firstOperand, secondOperand);
+        System.out.println("[" + result + "] - максимальное число");
 
         return calculatorCommand;
-
     }
 
     MaxCalculatorCommand min() {
-        System.out.println("Введите 1ое число: ");
-        System.out.print(">: ");
-        double firstOperand = scanner.nextInt();
-        System.out.println("Введите 2ое число: ");
-        System.out.print(">: ");
-        double secondOperand = scanner.nextInt();
-
-        try {
-            double result = getMin(firstOperand, secondOperand);
-
-            System.out.println("[" + result + "] наименьшее значение");
-        } catch (Exception exception) {
-            System.out.println("Пожалуйста, введите только цифры!");
-            scanner.next();
-            min();
-        }
+        String [] minMessage = {"Введите первое число: ", "Введите второе число: "};
+        List <String> value = getDataNumber(minMessage, NUMBER);
+        double firstOperand = Double.parseDouble(value.get(0));
+        double secondOperand = Double.parseDouble(value.get(1));
+        double result = getMin(firstOperand, secondOperand);
+        System.out.println("[" + result + "] - минимальное число");
 
         return calculatorCommand;
-
     }
 
     MaxCalculatorCommand cbrt() {
-        System.out.println("Введите число для вычисления кубического корня: ");
-        System.out.print(">: ");
-        double number = scanner.nextInt();
-
-        try {
-            double result = getCbrt(number);
-
-            System.out.println("[" + result + "] кубический корень для [" + number + "]");
-        } catch (Exception exception) {
-            System.out.println("Пожалуйста, введите только цифры!");
-            scanner.next();
-            cbrt();
-        }
+        String [] cbrtMessage = {"Введите число: "};
+        List <String> value = getDataNumber(cbrtMessage, NUMBER);
+        double number = Double.parseDouble(value.get(0));
+        double result = getCbrt(number);
+        System.out.println("[" + result + "] результат вычисления кубического корня числа [" + number + "]");
 
         return calculatorCommand;
-
     }
 
-    private double getSqrt(long number) { return  Math.sqrt(number); }
-    private double getSum(long firstOperand, long secondOperand) { return firstOperand + secondOperand; }
-    private double getDifference(long firstOperand, long secondOperand) { return firstOperand - secondOperand; }
-    private double getMultiplication(long firstOperand, long secondOperand) { return  firstOperand * secondOperand; }
-    private double getDivision(double numerator, double denominator) { return  numerator / denominator; }
+    private double getSqrt(double number) { return Math.sqrt(number); }
     private double getPow(double number, double degree) { return Math.pow(number, degree); }
-    private double getMax(double firstOperand, double secondOperand) { return Math.max(firstOperand, secondOperand); }
-    private double getMin(double firstOperand, double secondOperand) { return Math.min(firstOperand, secondOperand); }
+    private double getDivision (double firstOperand, double secondOperand) { return (firstOperand / secondOperand); }
+    private double getSum(double firstOperand, double secondOperand) { return (firstOperand + secondOperand); }
+    private double getDifference (double firstOperand, double secondOperand) { return (firstOperand - secondOperand);}
+    private double getMultiplication (double firstOperand, double secondOperand) { return (firstOperand * secondOperand);}
+    private double getMax(double firstOperand, double secondOperand) { return Math.max(firstOperand, secondOperand);}
+    private double getMin(double firstOperand, double secondOperand) { return Math.min(firstOperand, secondOperand);}
     private double getCbrt(double number) { return Math.cbrt(number); }
 }
