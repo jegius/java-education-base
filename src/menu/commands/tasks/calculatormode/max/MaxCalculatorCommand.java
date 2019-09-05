@@ -64,7 +64,6 @@ public class MaxCalculatorCommand implements Command {
                     return calculator.min();
                 case 9:
                     return calculator.cbrt();
-
                 default:
                     System.out.println("Unexpected Task!");
                     return this;
