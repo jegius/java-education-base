@@ -19,26 +19,27 @@ public class CatGenerator {
             "Grey"
     };
 
-    public static String getCatName(){
+    public static String getCatName() {
         int min = 0;
         int max = 5;
         int index = min + (int) (max * Math.random());
         return catNames[index];
     }
 
-    public static String getCatColor(){
+    public static String getCatColor() {
         int min = 0;
         int max = 5;
         int index = min + (int) (max * Math.random());
         return catColors[index];
     }
 
-    public static int getCatAge(){
+    public static int getCatAge() {
         int min = 1;
         int max = 15;
         int age = min + (int) (max * Math.random());
         return age;
     }
+
     public static List fillCats() {
         List<Object> cats = new ArrayList<>();
         for (int index = 0; index < 3; index++) {
@@ -46,7 +47,4 @@ public class CatGenerator {
         }
         return cats;
     }
-
-
-
 }
