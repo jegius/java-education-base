@@ -22,7 +22,6 @@ public class AlexNinetyNineBottles {
         }
     }
 
-
     public static void run() {
         String[] bottleString = {"бутылок", "бутылки", "бутылка"};
         StringBuilder stringBuilder = new StringBuilder();
@@ -32,10 +31,10 @@ public class AlexNinetyNineBottles {
             if (bottles == 1) {
 
                 stringBuilder
-                        .append("Только 1 бутылка пива\n" +
-                                "Осталась на столе, всего одна\n" +
-                                "Выпьем ее и останется 0 бутылок пиива\n" +
-                                "Вечер окончен. ")
+                        .append("Только 1 бутылка пива\n")
+                        .append("Осталась на столе, всего одна\n")
+                        .append("Выпьем ее и останется 0 бутылок пиива\n")
+                        .append("Вечер окончен. ")
                         .append("%n");
             } else {
 
@@ -43,14 +42,12 @@ public class AlexNinetyNineBottles {
                         .append(bottles)
                         .append(" ")
                         .append(bottleString[chooseTheWord(checkValue(bottles))])
-                        .append(" пива на столе,\n" +
-                                "Взял одну, распили,\n" +
-                                "теперь на столе осталось ")
+                        .append(" пива на столе,\n")
+                        .append("Взял одну, распили,\n")
+                        .append("теперь на столе осталось ")
                         .append(--bottles)
                         .append("%n");
                 bottles++;
-
-
             }
         }
         System.out.printf(stringBuilder.toString());
