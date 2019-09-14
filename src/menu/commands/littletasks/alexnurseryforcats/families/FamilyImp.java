@@ -5,20 +5,20 @@ import menu.commands.littletasks.alexnurseryforcats.CatShelter;
 
 import java.util.List;
 
-public class Pidrs implements Family {
+public class FamilyImp implements Family {
     private List cats;
     CatGenerator catGenerator = new CatGenerator();
 
-    public Pidrs (){
-        cats = catGenerator.fillCats();
+    public FamilyImp() {
+        this.cats = catGenerator.fillCats();
     }
-
 
     @Override
     public void giveCatsToShelter() {
         CatShelter.getInstance().addCatsToShelter(cats);
         deleteCatsFromCats();
     }
+
     private void deleteCatsFromCats() {
         cats.clear();
     }
