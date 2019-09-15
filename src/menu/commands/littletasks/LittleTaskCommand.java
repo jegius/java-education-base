@@ -3,6 +3,7 @@ package menu.commands.littletasks;
 import menu.Command;
 import menu.MainMenuCommand;
 import menu.commands.littletasks.ninetyninebottles.NinetyNineBottles;
+import menu.commands.littletasks.ninetyninebottlesmax.NinetyNineBottlesMax;
 import menu.commands.littletasks.nurserycatsmax.NurseryForCatsMax;
 import menu.commands.littletasks.nurseryforcats.NurseryForCats;
 import menu.utils.MenuUtils;
@@ -28,6 +29,7 @@ public class LittleTaskCommand implements Command {
         MenuUtils.printOption("1", "Run ninety nine bottles.");
         MenuUtils.printOption("2", "Run cat service.");
         MenuUtils.printOption("3", "Run Max Cats");
+        MenuUtils.printOption("4", "Run Max Bottles");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -46,6 +48,9 @@ public class LittleTaskCommand implements Command {
                 return this;
             case 3:
                 NurseryForCatsMax.run();
+                return this;
+            case 4:
+                NinetyNineBottlesMax.run();
                 return this;
             default:
                 System.out.println("Unexpected command!");
