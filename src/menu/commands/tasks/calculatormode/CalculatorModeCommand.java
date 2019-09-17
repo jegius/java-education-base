@@ -2,6 +2,7 @@ package menu.commands.tasks.calculatormode;
 
 import menu.Command;
 import menu.commands.tasks.TaskMenuCommand;
+import menu.commands.tasks.calculatormode.alex.AlexCalculatorCommand;
 import menu.commands.tasks.calculatormode.ivan.IvanCalculatorCommand;
 import menu.utils.MenuUtils;
 
@@ -24,6 +25,7 @@ public class CalculatorModeCommand implements Command {
     @Override
     public Command execute() {
         MenuUtils.printSeparator();
+        MenuUtils.printOption("2", "Run Alex calculator mode");
         MenuUtils.printOption("1", "Run example calculator mode");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
@@ -37,6 +39,8 @@ public class CalculatorModeCommand implements Command {
                 return TaskMenuCommand.getInstance();
             case 1:
                 return IvanCalculatorCommand.getInstance();
+            case 2:
+                return AlexCalculatorCommand.getInstance();
 
             default:
                 System.out.println("Unexpected Task!");
