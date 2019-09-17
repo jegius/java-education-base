@@ -19,24 +19,21 @@ public class NinetyNineBottlesMax {
     }
 
     public static void run() {
-
         StringBuilder stringBuilder = new StringBuilder();
         String[] bottleCase = {" бутылок", " бутылки", " бутылка"};
-        for (int bottles = 99; bottles >= 1; --bottles) {
-
+        for (int bottles = 120; bottles >= 1; --bottles) {
             if (bottles != 1) {
                 stringBuilder
                         .append(bottles)
-                        .append(bottleCase[checkBottleNumber(bottles)]).append(" на столе,\n")
+                        .append(bottleCase[checkBottleNumber(bottles)])
+                        .append(" на столе,\n")
                         .append("Взял одну, распили,\n")
                         .append("Теперь осталось на столе\n")
-                        .append(--bottles)
-                        .append(bottleCase[checkBottleNumber(bottles)]).append(" пива\n")
+                        .append(bottles - 1)
+                        .append(bottleCase[checkBottleNumber(bottles)])
+                        .append(" пива\n")
                         .append("----------------------------\n");
-                ++bottles;
-            }
-
-            else {
+            } else {
                 stringBuilder
                         .append("Только 1 бутылка пива,\n")
                         .append("Осталась на столе, всего одна,\n")
