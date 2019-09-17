@@ -2,17 +2,14 @@ package menu.commands.tasks.calculatormode.max;
 
 import menu.commands.tasks.calculatormode.max.exceptions.IncorrectNumberFormatException;
 import menu.commands.tasks.calculatormode.max.exceptions.ZeroException;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Calculator {
-
     private static final String POSITIVE_NUMBER = "positiveNumber";
     private static final String NUMBER = "number";
-
     private static final String MINUS = "-";
     private static final String ZERO = "0.0";
     private MaxCalculatorCommand calculatorCommand;
@@ -60,8 +57,8 @@ public class Calculator {
 
     public static List getDataNumber(String [] messages, String param) {
         List<String> Numbers = new ArrayList<>(); {
-            for (String i : messages) {
-                System.out.println(i);
+            for (String indexForMessage : messages) {
+                System.out.println(indexForMessage);
                 Numbers.add(getData(scanner, param));
             }
         }
