@@ -2,6 +2,7 @@ package menu.commands.littletasks;
 
 import menu.Command;
 import menu.MainMenuCommand;
+import menu.commands.littletasks.alexninetyninebottles.AlexNinetyNineBottles;
 import menu.commands.littletasks.ninetyninebottles.NinetyNineBottles;
 import menu.commands.littletasks.nurseryforcats.NurseryForCats;
 import menu.commands.littletasks.simpleenum.Executor;
@@ -14,7 +15,8 @@ public class LittleTaskCommand implements Command {
 
     private static LittleTaskCommand instance;
 
-    private LittleTaskCommand() {}
+    private LittleTaskCommand() {
+    }
 
     public static synchronized LittleTaskCommand getInstance() {
         if (instance == null) {
@@ -28,6 +30,7 @@ public class LittleTaskCommand implements Command {
         MenuUtils.printSeparator();
         MenuUtils.printOption("1", "Run ninety nine bottles.");
         MenuUtils.printOption("2", "Run cat service.");
+        MenuUtils.printOption("3", "Run Alex bottles");
         MenuUtils.printOption("9", "Run Ivan simple enum.");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
@@ -44,6 +47,9 @@ public class LittleTaskCommand implements Command {
                 return this;
             case 2:
                 NurseryForCats.run();
+                return this;
+            case 3:
+                AlexNinetyNineBottles.run();
                 return this;
             case 9:
                 TaskStore
