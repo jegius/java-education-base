@@ -1,31 +1,37 @@
 package menu.commands.littletasks.ninetyninebottlesmax;
 
-import java.util.Arrays;
-
 public class NinetyNineBottlesMax {
-    private static void checkLastNumberString() {
-        int [] numbers = new int [99];
-        for (int index = 1; index < 99; index++) {
-            numbers[index] = index;
-        }
-        Arrays.toString(numbers);
 
+    private static int checkBottleNumber(int value) {
+        if (value > 10 && value < 20) {
+            return 0;
+        }
+        switch (value % 10) {
+            case 1:
+                return 2;
+            case 2:
+            case 3:
+            case 4:
+                return 1;
+            default:
+                return 0;
+        }
     }
 
     public static void run() {
 
         StringBuilder stringBuilder = new StringBuilder();
-        String[] bottleCase = {"бутылок", "бутылки", "бутылка"};
+        String[] bottleCase = {" бутылок", " бутылки", " бутылка"};
         for (int bottles = 99; bottles >= 1; --bottles) {
 
             if (bottles != 1) {
                 stringBuilder
                         .append(bottles)
-                        .append("бутылок на столе,\n")
+                        .append(bottleCase[checkBottleNumber(bottles)]).append(" на столе,\n")
                         .append("Взял одну, распили,\n")
                         .append("Теперь осталось на столе\n")
                         .append(--bottles)
-                        .append(" бутылок пива\n")
+                        .append(bottleCase[checkBottleNumber(bottles)]).append(" пива\n")
                         .append("----------------------------\n");
                 ++bottles;
             }
