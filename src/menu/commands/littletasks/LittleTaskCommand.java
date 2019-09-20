@@ -37,6 +37,7 @@ public class LittleTaskCommand implements Command {
         MenuUtils.printOption("5", "Run Max Cats");
         MenuUtils.printOption("9", "Run Ivan simple enum.");
         MenuUtils.printOption("10", "Run regexp exercise.");
+        MenuUtils.printOption("11", "Run ALEX simple enum.");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -70,6 +71,12 @@ public class LittleTaskCommand implements Command {
                 return this;
             case 10:
                 return RegExpTaskCommand.getInstance();
+            case 11:
+                TaskStore
+                        .getInstance()
+                        .getTaskByExecutor(Executor.ALEX)
+                        .runTask();
+                return this;
             default:
                 System.out.println("Unexpected command!");
                 return this;
