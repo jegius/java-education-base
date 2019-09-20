@@ -65,6 +65,7 @@ public class LittleTaskCommand implements Command {
                         .getInstance()
                         .getTaskByExecutor(Executor.IVAN)
                         .runTask();
+                return this;
             default:
                 System.out.println("Unexpected command!");
                 return this;
