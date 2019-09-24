@@ -1,10 +1,8 @@
 package menu.commands.tasks.calculatormode.max;
 
 import menu.Command;
-import menu.commands.tasks.TaskMenuCommand;
 import menu.commands.tasks.calculatormode.CalculatorModeCommand;
 import menu.utils.MenuUtils;
-
 import javax.swing.*;
 import java.util.Scanner;
 
