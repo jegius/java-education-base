@@ -19,9 +19,10 @@ public class Calculator {
         scanner = new Scanner(System.in);
         this.calculatorCommand = instance;
     }
-    public static String getData(Scanner scanner, String parameter) {
-        try {
-            if(parameter.equals(POSITIVE_NUMBER)) {
+
+    private static String validation(String parameter) throws IncorrectNumberFormatException, ZeroException {
+        switch (parameter) {
+            case POSITIVE_NUMBER: {
                 double input = scanner.nextDouble();
                 String inputPositiveNumber = Double.toString(input);
 
@@ -29,37 +30,44 @@ public class Calculator {
                     throw new IncorrectNumberFormatException("Введеное число должно быть положительным!");
                 }
                 return Double.toString(input);
-            } else if (parameter.equals(NUMBER)) {
+            }
+            case NUMBER: {
                 double inputNumber = scanner.nextDouble();
                 return Double.toString(inputNumber);
-            } else if (parameter.equals(ZERO)) {
+            }
+            case ZERO: {
                 double inputNumber = scanner.nextDouble();
                 String inputZero = Double.toString(inputNumber);
-                if(inputZero.equals(ZERO)) {
+                if (inputZero.equals(ZERO)) {
                     throw new ZeroException("Нельзя вводить ноль!");
                 }
                 return inputZero;
             }
+        }
+        throw new IllegalStateException("Unexpected value: " + parameter);
+    }
 
+    private static String getData(String parameter) {
+        try {
+           return validation(parameter);
         } catch (IncorrectNumberFormatException e) {
             System.out.println(e.getMessage());
-            return getData(scanner, parameter);
+            return getData(parameter);
         } catch (InputMismatchException exception) {
             System.out.println("Пожалуйста, введите только цифры!");
             scanner.next();
-            return getData(scanner, parameter);
+            return getData(parameter);
         } catch (ZeroException e) {
             System.out.println(e.getMessage());
-            return getData(scanner, parameter);
+            return getData(parameter);
         }
-        return null;
     }
 
-    public static List getDataNumber(String [] messages, String param) {
+    private static List getDataNumber(String[] messages, String param) {
         List<String> Numbers = new ArrayList<>(); {
             for (String indexForMessage : messages) {
                 System.out.println(indexForMessage);
-                Numbers.add(getData(scanner, param));
+                Numbers.add(getData(param));
             }
         }
         return Numbers;
