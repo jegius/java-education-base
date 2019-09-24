@@ -18,6 +18,7 @@ public class TaskStore {
     private TaskStore() {
         tasks = new HashMap<>();
         tasks.put(Executor.IVAN, new IvanTask());
+        tasks.put(Executor.MAX, new IvanTask());
     }
 
     public Task getTaskByExecutor(Executor executor) {

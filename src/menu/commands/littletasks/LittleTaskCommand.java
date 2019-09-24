@@ -35,6 +35,7 @@ public class LittleTaskCommand implements Command {
         MenuUtils.printOption("4", "Run Alex cat service.");
         MenuUtils.printOption("5", "Run Max Cats");
         MenuUtils.printOption("9", "Run Ivan simple enum.");
+        MenuUtils.printOption("11", "Run Max simple enum.");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -64,6 +65,12 @@ public class LittleTaskCommand implements Command {
                 TaskStore
                         .getInstance()
                         .getTaskByExecutor(Executor.IVAN)
+                        .runTask();
+                return this;
+            case 11:
+                TaskStore
+                        .getInstance()
+                        .getTaskByExecutor(Executor.MAX)
                         .runTask();
                 return this;
             default:
