@@ -180,4 +180,3 @@ public class Calculator {
     private double getMin(double firstOperand, double secondOperand) { return Math.min(firstOperand, secondOperand);}
     private double getCbrt(double number) { return Math.cbrt(number); }
 }
-
