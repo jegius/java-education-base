@@ -5,13 +5,13 @@ import menu.commands.tasks.collections.iterator.StubIterator;
 public interface List {
     void add(long data) throws Exception;
 
-    boolean remove(long id) throws Exception;
+    boolean remove(int id) throws Exception;
 
     long find(long value) throws Exception;
 
-    long get(long index) throws Exception;
+    long get(int index) throws Exception;
 
-    void update(long index, long data) throws Exception;
+    void update(int index, long data) throws Exception;
 
     long size() throws Exception;
 
