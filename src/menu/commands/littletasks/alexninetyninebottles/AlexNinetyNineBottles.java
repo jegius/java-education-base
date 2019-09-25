@@ -45,9 +45,8 @@ public class AlexNinetyNineBottles {
                         .append(" пива на столе,\n")
                         .append("Взял одну, распили,\n")
                         .append("теперь на столе осталось ")
-                        .append(--bottles)
+                        .append(bottles - 1)
                         .append("%n");
-                bottles++;
             }
         }
         System.out.printf(stringBuilder.toString());
