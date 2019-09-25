@@ -26,7 +26,7 @@ public class CalculatorModeCommand implements Command {
     public Command execute() {
         MenuUtils.printSeparator();
         MenuUtils.printOption("1", "Run example calculator mode");
-        MenuUtils.printOption("3", "Run example Max calculator mode");
+        MenuUtils.printOption("2", "Run example Max calculator mode");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -39,7 +39,7 @@ public class CalculatorModeCommand implements Command {
                 return TaskMenuCommand.getInstance();
             case 1:
                 return IvanCalculatorCommand.getInstance();
-            case 3:
+            case 2:
                 return MaxCalculatorCommand.getInstance();
 
             default:
