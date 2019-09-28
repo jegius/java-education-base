@@ -7,6 +7,7 @@ import menu.commands.littletasks.alexnurseryforcats.AlexNurseryForCats;
 import menu.commands.littletasks.ninetyninebottles.NinetyNineBottles;
 import menu.commands.littletasks.nurserycatsmax.NurseryForCatsMax;
 import menu.commands.littletasks.nurseryforcats.NurseryForCats;
+import menu.commands.littletasks.regexp.RegExpTaskCommand;
 import menu.commands.littletasks.simpleenum.Executor;
 import menu.commands.littletasks.simpleenum.TaskStore;
 import menu.utils.MenuUtils;
@@ -35,6 +36,7 @@ public class LittleTaskCommand implements Command {
         MenuUtils.printOption("4", "Run Alex cat service.");
         MenuUtils.printOption("5", "Run Max Cats");
         MenuUtils.printOption("9", "Run Ivan simple enum.");
+        MenuUtils.printOption("10", "Run regexp exercise.");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -66,6 +68,8 @@ public class LittleTaskCommand implements Command {
                         .getTaskByExecutor(Executor.IVAN)
                         .runTask();
                 return this;
+            case 10:
+                return RegExpTaskCommand.getInstance();
             default:
                 System.out.println("Unexpected command!");
                 return this;

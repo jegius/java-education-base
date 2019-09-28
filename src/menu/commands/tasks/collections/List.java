@@ -13,7 +13,7 @@ public interface List {
 
     void update(int index, long data) throws Exception;
 
-    long size() throws Exception;
+    int size() throws Exception;
 
     void bubbleSort() throws Exception;
 

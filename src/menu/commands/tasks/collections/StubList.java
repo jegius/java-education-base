@@ -11,7 +11,7 @@ public class StubList implements List {
         throw new Exception("No realization for this method!");
     }
 
-    public boolean remove(long id) throws Exception {
+    public boolean remove(int id) throws Exception {
         throw new Exception("No realization for this method!");
     }
 
@@ -19,15 +19,15 @@ public class StubList implements List {
         throw new Exception("No realization for this method!");
     }
 
-    public long get(long index) throws Exception {
+    public long get(int index) throws Exception {
         throw new Exception("No realization for this method!");
     }
 
-    public void update(long index, long data) throws Exception {
+    public void update(int index, long data) throws Exception {
         throw new Exception("No realization for this method!");
     }
 
-    public long size() throws Exception {
+    public int size() throws Exception {
         throw new Exception("No realization for this method!");
     }
 
