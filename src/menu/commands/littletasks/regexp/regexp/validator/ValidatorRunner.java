@@ -38,6 +38,9 @@ public class ValidatorRunner implements Command {
         MenuUtils.printSeparator();
         MenuUtils.printOption("1", "Change executor.");
         MenuUtils.printOption("2", "Email address validation.");
+        MenuUtils.printOption("3", "Phone validation.");
+        MenuUtils.printOption("4", "Car number validation.");
+        MenuUtils.printOption("5", "IP address validation.");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -49,7 +52,19 @@ public class ValidatorRunner implements Command {
                 return this;
             }
             case 2: {
-                validateEmail();
+                validateByType(currentValidator.getValidatorTypes(Validator.EMAIL_INDEX));
+                return this;
+            }
+            case 3: {
+                validateByType(currentValidator.getValidatorTypes(Validator.PHONE_INDEX));
+                return this;
+            }
+            case 4: {
+                validateByType(currentValidator.getValidatorTypes(Validator.CAR_NUMBER_INDEX));
+                return this;
+            }
+            case 5: {
+                validateByType(currentValidator.getValidatorTypes(Validator.IP_ADDRESS_INDEX));
                 return this;
             }
             case 0: {
@@ -74,17 +89,22 @@ public class ValidatorRunner implements Command {
         return executors.get(Executor.values()[choose]);
     }
 
-    private void validateEmail() {
+    private void validateByType(Enum validator) {
         MenuUtils.printSeparator();
-        System.out.println("Enter email for validation");
+
+        String message = "Enter " +
+                validator.name().toLowerCase() +
+                " for validation";
+
+        System.out.println(message);
         MenuUtils.printPrompt();
 
         String email = scanner.next();
 
         if (currentValidator.isEmailValid(email)) {
-            System.out.println("Email is valid.");
+            System.out.println(validator.name().toLowerCase() + " is valid.");
         } else {
-            System.out.println("Email invalid!");
+            System.out.println(validator.name().toLowerCase() + " is invalid!");
         }
     }
 }
