@@ -2,6 +2,7 @@ package menu.commands.tasks.collections;
 
 import menu.Command;
 import menu.commands.tasks.TaskMenuCommand;
+import menu.commands.tasks.collections.arraylist.AlexArrayList;
 import menu.commands.tasks.collections.arraylist.StubArrayList;
 import menu.commands.tasks.collections.fillingoututil.FillingOutUtil;
 import menu.commands.tasks.collections.linkedlist.StubLinkedList;
@@ -64,7 +65,7 @@ public class CollectionTaskCommand implements Command {
                         .getInstance()
                         .checkTask(
                                 new List[]{
-                                        new StubArrayList(),
+                                        new AlexArrayList(),
                                         new StubLinkedList()
                                 },
                                 new FillingOutUtil()
