@@ -185,7 +185,7 @@ public class CollectionChecker {
 
             listForChecking.update(2, changeDataER);
 
-            if (listForChecking.get(1) != changeDataER) {
+            if (listForChecking.get(2) != changeDataER) {
                 throw new Exception();
             }
 
@@ -196,11 +196,21 @@ public class CollectionChecker {
                 throw new Exception();
             }
 
-            isRemove = listForChecking.remove(300);
+            boolean isNoException = false;
+            try {
+                listForChecking.remove(300);
+                System.out.println("No exception with trying to remove invalid index!");
 
-            if (isRemove) {
+                isNoException = true;
+
+            } catch (Exception e) {
+                System.out.println("Exception successful catched!");
+            }
+
+            if (isNoException) {
                 throw new Exception();
             }
+
 
             long findER = 126;
 
