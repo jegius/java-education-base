@@ -212,9 +212,10 @@ public class CollectionChecker {
             }
 
 
-            long findER = 126;
+            long findER = 13;
+            int expectedPosition = 1;
 
-            if (listForChecking.find(findER) != findER) {
+            if (listForChecking.find(findER) != expectedPosition) {
                 throw new Exception();
             }
 
