@@ -2,6 +2,7 @@ package menu.commands.tasks.collections.arraylist;
 
 import menu.commands.tasks.collections.List;
 import menu.commands.tasks.collections.iterator.StubIterator;
+import menu.commands.tasks.exceptions.OutOfArrayLength;
 
 
 public class AlexArrayList implements List {
@@ -22,10 +23,15 @@ public class AlexArrayList implements List {
 
     @Override
     public boolean remove(int id) throws Exception {
-        long[] temp = values;
-        values = new long[values.length - 1];
-        System.arraycopy(temp, id + 1, values, id, temp.length - id - 1);
-        return true;
+        if (id > 0 && id < values.length) {
+            long[] temp = values;
+            values = new long[values.length - 1];
+            System.arraycopy(temp, 0, values, 0, id);
+            System.arraycopy(temp, id + 1, values, id, temp.length - id - 1);
+            return true;
+        } else {
+            throw new OutOfArrayLength();
+        }
     }
 
     @Override
