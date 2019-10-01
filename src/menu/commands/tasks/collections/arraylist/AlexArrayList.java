@@ -4,14 +4,12 @@ import menu.commands.tasks.collections.List;
 import menu.commands.tasks.collections.iterator.StubIterator;
 import menu.commands.tasks.exceptions.OutOfArrayLength;
 
-
 public class AlexArrayList implements List {
     private long[] values;
 
     public AlexArrayList() {
         values = new long[0];
     }
-
 
     @Override
     public void add(long data) throws Exception {
@@ -66,13 +64,11 @@ public class AlexArrayList implements List {
     @Override
     public void bubbleSort() throws Exception {
         throw new Exception("No realization for this method!");
-
     }
 
     @Override
     public void quickSort() throws Exception {
         throw new Exception("No realization for this method!");
-
     }
 
     @Override
@@ -106,6 +102,5 @@ public class AlexArrayList implements List {
     @Override
     public StubIterator getIterator() throws Exception {
         throw new Exception("No realization for this method!");
-
     }
 }
