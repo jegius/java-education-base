@@ -6,26 +6,34 @@ import menu.commands.tasks.exceptions.OutOfArrayLength;
 
 public class AlexArrayList implements List {
     private long[] values;
+    private int size;
 
     public AlexArrayList() {
-        values = new long[0];
+        values = new long[16];
+        size = 0;
     }
 
     @Override
     public void add(long data) throws Exception {
-        long[] temp = values;
-        values = new long[values.length + 1];
-        System.arraycopy(temp, 0, values, 0, temp.length);
-        values[values.length - 1] = data;
+        if (size == values.length) {
+            long[] temp = values;
+            values = new long[values.length + 16];
+            System.arraycopy(temp, 0, values, 0, temp.length);
+            values[size] = data;
+        } else {
+            values[size] = data;
+        }
+        size++;
     }
 
     @Override
     public boolean remove(int id) throws Exception {
         if (id > 0 && id < values.length) {
-            long[] temp = values;
-            values = new long[values.length - 1];
-            System.arraycopy(temp, 0, values, 0, id);
-            System.arraycopy(temp, id + 1, values, id, temp.length - id - 1);
+            for (int index = id; index < values.length; index++) {
+                values[index] = values[index + 1];
+            }
+            values[values.length - 1] = 0;
+            size--;
             return true;
         } else {
             throw new OutOfArrayLength();
@@ -48,7 +56,11 @@ public class AlexArrayList implements List {
 
     @Override
     public long get(int index) throws Exception {
-        return values[index];
+        if (index >= 0 && index < size) {
+            return values[index];
+        } else {
+            throw new OutOfArrayLength();
+        }
     }
 
     @Override
@@ -58,7 +70,7 @@ public class AlexArrayList implements List {
 
     @Override
     public int size() throws Exception {
-        return values.length;
+        return size;
     }
 
     @Override
@@ -73,7 +85,7 @@ public class AlexArrayList implements List {
 
     @Override
     public boolean removeAll() throws Exception {
-        values  = new long[0];
+        values = new long[0];
         return true;
     }
 
