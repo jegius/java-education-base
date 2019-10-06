@@ -14,3 +14,4 @@
 
 1. [Удобный ресус по проверке RegExp](https://regexr.com/)
 1. [Статья JavaRush про RegExp](https://javarush.ru/groups/posts/regulyarnye-vyrazheniya-v-java)
+1. В книге Шилта Java полное руководство есть целая глава (глава 30, стр. 1153) про использование RegExp в Java
