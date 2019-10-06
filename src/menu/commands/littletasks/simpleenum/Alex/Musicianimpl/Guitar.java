@@ -15,6 +15,7 @@ public class Guitar implements Musician {
         System.out.println(this);
     }
 
+    @Override
     public String toString() {
         return "I can play " + musicianType.getMusicianTypeName() + ". I have 6 strings.";
     }

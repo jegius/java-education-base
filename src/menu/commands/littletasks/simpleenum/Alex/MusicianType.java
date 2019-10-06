@@ -7,11 +7,12 @@ public enum MusicianType {
     KEYS("keys");
 
     private String name;
-    MusicianType(String name){
+
+    MusicianType(String name) {
         this.name = name;
     }
-    public String getMusicianTypeName(){
-        return name;
 
+    public String getMusicianTypeName() {
+        return name;
     }
 }
