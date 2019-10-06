@@ -26,5 +26,4 @@ public class Nicksons implements Family {
             System.out.println(cat);
         }
     }
-
 }

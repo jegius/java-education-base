@@ -7,7 +7,7 @@ import java.util.List;
 
 public class FamilyImp implements Family {
     private List cats;
-    CatGenerator catGenerator = new CatGenerator();
+    private CatGenerator catGenerator = new CatGenerator();
 
     public FamilyImp() {
         this.cats = catGenerator.fillCats();
