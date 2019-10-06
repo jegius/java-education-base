@@ -1,26 +1,6 @@
 package menu.commands.littletasks.alexninetyninebottles;
 
 public class AlexNinetyNineBottles {
-    private static double checkValue(int value) {
-        double initialNumber = value;
-        if (value > 15) {
-            double compareNumber = initialNumber / 10;
-            compareNumber = Math.floor(compareNumber);
-            compareNumber *= 10;
-            return initialNumber - compareNumber;
-        }
-        return initialNumber;
-    }
-
-    private static int chooseTheWord(double check) {
-        if (check < 5 && check > 1) {
-            return 1;
-        } else if (check == 1) {
-            return 2;
-        } else {
-            return 0;
-        }
-    }
 
     public static void run() {
         String[] bottleString = {"бутылок", "бутылки", "бутылка"};
@@ -50,5 +30,26 @@ public class AlexNinetyNineBottles {
             }
         }
         System.out.printf(stringBuilder.toString());
+    }
+
+    private static double checkValue(int value) {
+        double initialNumber = value;
+        if (value > 15) {
+            double compareNumber = initialNumber / 10;
+            compareNumber = Math.floor(compareNumber);
+            compareNumber *= 10;
+            return initialNumber - compareNumber;
+        }
+        return initialNumber;
+    }
+
+    private static int chooseTheWord(double check) {
+        if (check < 5 && check > 1) {
+            return 1;
+        } else if (check == 1) {
+            return 2;
+        } else {
+            return 0;
+        }
     }
 }

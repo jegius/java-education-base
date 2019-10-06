@@ -6,7 +6,6 @@ import menu.commands.littletasks.alexnurseryforcats.families.FamilyImp;
 public class AlexNurseryForCats {
     private static Family[] families = new Family[10];
 
-
     public static void run() {
         AlexNurseryForCats.createFamilies();
         for (Family family : families) {

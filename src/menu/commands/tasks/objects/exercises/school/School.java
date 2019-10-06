@@ -10,7 +10,6 @@ public class School extends Organization {
 
     public void start() {
 
-
         Student studentOne = new Student("Bruce", "Lee", "5a", 10);
         Student studentTwo = new Student("Brandon", "Lee", "5a", 10);
         Student studentThree = new Student("Jessica", "Alba", "5a", 11);
@@ -30,7 +29,6 @@ public class School extends Organization {
                 studentSix
         };
 
-
         Staff staffOne = new Staff("Ariana", "Grande", "Janitor", 25);
         Staff staffTwo = new Staff("Bruce", "Willis", "Accountant", 45);
         Staff staffThree = new Staff("Taylor", "Swift", "Cook", 27);
@@ -45,7 +43,6 @@ public class School extends Organization {
                 staffFive
         };
 
-
         Teacher teacherOne = new Teacher("Rick", "Sanchez", "History", 43, "teacher", groupOne);
         Teacher teacherTwo = new Teacher("Konstantin", "Kadavr", "Science", 29, "teacher", groupTwo);
 
@@ -57,7 +54,5 @@ public class School extends Organization {
         Headmaster headmaster = new Headmaster("Donald", "Duck", "headmaster", teachersStaff, staffGroupOne, 23);
 
         headmaster.doWork();
-
-
     }
 }

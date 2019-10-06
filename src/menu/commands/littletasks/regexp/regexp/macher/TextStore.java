@@ -27,7 +27,6 @@ public class TextStore {
                 "в шаблонах <\\span> которых использу 99.99.9999 ется Lorem Ipsum.<\\p> Lrem";
     }
 
-
     public String getText() {
         return text;
     }

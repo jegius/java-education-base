@@ -12,7 +12,7 @@ abstract class Human {
 
     abstract void doWork();
 
-    void introduceYourself (){
+    void introduceYourself() {
         System.out.println("Я " + this.name + ", мне " + this.age + " лет!");
     }
 }

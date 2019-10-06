@@ -13,21 +13,37 @@ public class Cat {
         this.temperament = temperament;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public void setName() { this.name = name; }
+    public void setName() {
+        this.name = name;
+    }
 
-    public String getAge() { return age; }
+    public String getAge() {
+        return age;
+    }
 
-    public void setAge() { this.age = age; }
+    public void setAge() {
+        this.age = age;
+    }
 
-    public int getWeight() { return weight; }
+    public int getWeight() {
+        return weight;
+    }
 
-    public void setWeight() { this.weight = weight; }
+    public void setWeight() {
+        this.weight = weight;
+    }
 
-    public String getTemperament() { return temperament; }
+    public String getTemperament() {
+        return temperament;
+    }
 
-    public void setTemperament() { this.temperament = temperament; }
+    public void setTemperament() {
+        this.temperament = temperament;
+    }
 
     @Override
     public String toString() {
