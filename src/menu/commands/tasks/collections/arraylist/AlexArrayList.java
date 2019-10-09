@@ -28,11 +28,11 @@ public class AlexArrayList implements List {
 
     @Override
     public boolean remove(int id) throws Exception {
-        if (id > 0 && id < values.length) {
-            for (int index = id; index < values.length; index++) {
+        if (id >= 0 && id < values.length) {
+            for (int index = id; index < values.length - 1; index++) {
                 values[index] = values[index + 1];
             }
-            values[values.length - 1] = 0;
+            values[size - 1] = 0;
             size--;
             return true;
         } else {
@@ -89,31 +89,31 @@ public class AlexArrayList implements List {
 
     @Override
     public boolean removeAll() throws Exception {
-        values = new long[0];
+        values = new long[16];
         size = 0;
         return true;
     }
 
     @Override
     public long getMin() throws Exception {
-        long comparable = values[0];
-        for (long valueFromValues : values) {
-            if (valueFromValues < comparable) {
-                comparable = valueFromValues;
+        long min = values[0];
+        for (int index = 1; index < size; index++) {
+            if (values[index] < min) {
+                min = values[index];
             }
         }
-        return comparable;
+        return min;
     }
 
     @Override
     public long getMax() throws Exception {
-        long comparable = values[0];
-        for (long valueFromValues : values) {
-            if (valueFromValues > comparable) {
-                comparable = valueFromValues;
+        long max = values[0];
+        for(int index = 1; index < size; index++){
+            if(values[index] > max){
+                max = values[index];
             }
         }
-        return comparable;
+       return max;
     }
 
     @Override
