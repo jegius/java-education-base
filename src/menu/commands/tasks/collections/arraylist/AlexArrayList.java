@@ -9,8 +9,8 @@ public class AlexArrayList implements List {
     private int size;
 
     public AlexArrayList() {
-        values = new long[16];
-        size = 0;
+        this.values = new long[16];
+        this.size = 0;
     }
 
     @Override
@@ -65,7 +65,11 @@ public class AlexArrayList implements List {
 
     @Override
     public void update(int index, long data) throws Exception {
-        values[index] = data;
+        if (index >= 0 && index < size) {
+            values[index] = data;
+        } else {
+            throw new OutOfArrayLength();
+        }
     }
 
     @Override
@@ -86,6 +90,7 @@ public class AlexArrayList implements List {
     @Override
     public boolean removeAll() throws Exception {
         values = new long[0];
+        size = 0;
         return true;
     }
 
