@@ -8,7 +8,6 @@ public class NurseryForCats {
             new Nicksons()
     };
 
-
     public static void run() {
         for (Family family : families) {
             family.giveCatsToShelter();

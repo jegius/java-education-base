@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CatGenerator {
+    
     private static String[] catNames = new String[]{
             "Alex",
             "Barsic",
@@ -11,6 +12,7 @@ public class CatGenerator {
             "Max",
             "Vika"
     };
+
     private static String[] catColors = new String[]{
             "White",
             "Black",

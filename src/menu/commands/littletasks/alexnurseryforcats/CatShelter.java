@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CatShelter {
-    public List<Cat> catInTheShelter;
     private static CatShelter instance;
+    public List<Cat> catInTheShelter;
 
     private CatShelter() {
         this.catInTheShelter = new ArrayList<>();

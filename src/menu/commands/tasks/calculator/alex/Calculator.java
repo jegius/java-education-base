@@ -51,5 +51,4 @@ class Calculator {
         }
         return result;
     }
-
 }

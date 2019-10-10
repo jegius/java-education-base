@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class ValidatorRunner implements Command {
     private static ValidatorRunner instance;
 
-    public static  ValidatorRunner getInstance() {
+    public static ValidatorRunner getInstance() {
         if (instance == null) {
             instance = new ValidatorRunner();
         }
@@ -31,7 +31,7 @@ public class ValidatorRunner implements Command {
 
     @Override
     public Command execute() {
-        if(currentValidator == null) {
+        if (currentValidator == null) {
             currentValidator = selectValidatorByExecutor();
         }
 

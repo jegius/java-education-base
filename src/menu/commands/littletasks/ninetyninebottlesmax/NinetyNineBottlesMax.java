@@ -2,22 +2,6 @@ package menu.commands.littletasks.ninetyninebottlesmax;
 
 public class NinetyNineBottlesMax {
 
-    private static int checkBottleNumber(int value) {
-        if (value > 10 && value < 20) {
-            return 0;
-        }
-        switch (value % 10) {
-            case 1:
-                return 2;
-            case 2:
-            case 3:
-            case 4:
-                return 1;
-            default:
-                return 0;
-        }
-    }
-
     public static void run() {
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -34,9 +18,7 @@ public class NinetyNineBottlesMax {
                         .append(bottleCase[checkBottleNumber(bottles)]).append(" пива\n")
                         .append("----------------------------\n");
                 ++bottles;
-            }
-
-            else {
+            } else {
                 stringBuilder
                         .append("Только 1 бутылка пива,\n")
                         .append("Осталась на столе, всего одна,\n")
@@ -46,5 +28,21 @@ public class NinetyNineBottlesMax {
             }
         }
         System.out.printf(stringBuilder.toString());
+    }
+
+    private static int checkBottleNumber(int value) {
+        if (value > 10 && value < 20) {
+            return 0;
+        }
+        switch (value % 10) {
+            case 1:
+                return 2;
+            case 2:
+            case 3:
+            case 4:
+                return 1;
+            default:
+                return 0;
+        }
     }
 }

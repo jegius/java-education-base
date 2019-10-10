@@ -8,15 +8,15 @@ public class CatShelterSingleton {
 
     private List<Cat> houseOfCats;
 
+    private CatShelterSingleton() {
+        this.houseOfCats = new ArrayList<>();
+    }
+
     public static CatShelterSingleton getInstance() {
         if (instance == null) {
             instance = new CatShelterSingleton();
         }
         return instance;
-    }
-
-    private CatShelterSingleton() {
-        this.houseOfCats = new ArrayList<>();
     }
 
     public void fillCatsToTheHouse(List<Cat> cats) {
