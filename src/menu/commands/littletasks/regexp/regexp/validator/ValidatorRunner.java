@@ -99,12 +99,32 @@ public class ValidatorRunner implements Command {
         System.out.println(message);
         MenuUtils.printPrompt();
 
-        String email = scanner.next();
+        String userInput = scanner.next();
 
-        if (currentValidator.isEmailValid(email)) {
+        if (isUserInputValid(validator, userInput)) {
             System.out.println(validator.name().toLowerCase() + " is valid.");
         } else {
             System.out.println(validator.name().toLowerCase() + " is invalid!");
+        }
+    }
+
+    private boolean isUserInputValid(Enum validator, String userInput) {
+        switch (validator.ordinal()) {
+            case Validator.EMAIL_INDEX: {
+                return currentValidator.isEmailValid(userInput);
+            }
+            case Validator.PHONE_INDEX: {
+                return currentValidator.isPhoneValid(userInput);
+            }
+            case Validator.IP_ADDRESS_INDEX: {
+                return currentValidator.isIpAddressValid(userInput);
+            }
+            case Validator.CAR_NUMBER_INDEX: {
+                return currentValidator.isCarNumberValid(userInput);
+            }
+            default: {
+                return false;
+            }
         }
     }
 }
