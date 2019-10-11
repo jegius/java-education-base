@@ -7,7 +7,7 @@ import menu.commands.littletasks.simpleenum.Alex.Musicianimpl.Keys;
 
 public class MusicianFactory {
     static Musician createMusicianByType(MusicianType musicianType) {
-        switch( musicianType) {
+        switch(musicianType) {
             case BASS:
                 return new Bass();
             case DRUMS:
