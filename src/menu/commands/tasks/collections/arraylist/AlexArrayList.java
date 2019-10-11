@@ -4,12 +4,14 @@ import menu.commands.tasks.collections.List;
 import menu.commands.tasks.collections.iterator.StubIterator;
 import menu.commands.tasks.exceptions.OutOfArrayLength;
 
+import static menu.commands.tasks.collections.arraylist.NumbersForAlexArray.*;
+
 public class AlexArrayList implements List {
     private long[] values;
     private int size;
 
     public AlexArrayList() {
-        this.values = new long[16];
+        this.values = new long[INITIAL_ARRAY_SIZE.getValue()];
         this.size = 0;
     }
 
@@ -17,8 +19,12 @@ public class AlexArrayList implements List {
     public void add(long data) throws Exception {
         if (size == values.length) {
             long[] temp = values;
-            values = new long[values.length + 16];
-            System.arraycopy(temp, 0, values, 0, temp.length);
+            values = new long[values.length + ADDED_AMOUNT_FOR_ARRAY.getValue()];
+            System.arraycopy(temp,
+                    INITIAL_ELEMENT_OF_COPY.getValue(),
+                    values,
+                    INITIAL_ELEMENT_OF_PASTE.getValue(),
+                    temp.length);
             values[size] = data;
         } else {
             values[size] = data;
@@ -28,16 +34,17 @@ public class AlexArrayList implements List {
 
     @Override
     public boolean remove(int id) throws Exception {
-        if (id >= 0 && id < values.length) {
-            for (int index = id; index < values.length - 1; index++) {
-                values[index] = values[index + 1];
-            }
-            values[size - 1] = 0;
-            size--;
-            return true;
-        } else {
+        if (id < 0 || id >= size) {
             throw new OutOfArrayLength();
         }
+        for (int index = id; index < size; index++) {
+            if (index + 1 == size) {
+                values[index + 1] = 0;
+            } else {
+                values[index] = values[index + 1];
+            }
+        }
+        return true;
     }
 
     @Override
@@ -89,14 +96,14 @@ public class AlexArrayList implements List {
 
     @Override
     public boolean removeAll() throws Exception {
-        values = new long[16];
+        values = new long[INITIAL_ARRAY_SIZE.getValue()];
         size = 0;
         return true;
     }
 
     @Override
     public long getMin() throws Exception {
-        long min = values[0];
+        long min = values[FIRST_ELEMENT_OF_ARRAY.getValue()];
         for (int index = 1; index < size; index++) {
             if (values[index] < min) {
                 min = values[index];
@@ -107,13 +114,13 @@ public class AlexArrayList implements List {
 
     @Override
     public long getMax() throws Exception {
-        long max = values[0];
-        for(int index = 1; index < size; index++){
-            if(values[index] > max){
+        long max = values[FIRST_ELEMENT_OF_ARRAY.getValue()];
+        for (int index = 1; index < size; index++) {
+            if (values[index] > max) {
                 max = values[index];
             }
         }
-       return max;
+        return max;
     }
 
     @Override
