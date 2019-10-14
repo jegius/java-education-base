@@ -28,6 +28,7 @@ public class CollectionChecker {
 
     Command checkTask(List[] lists, FillingOutUtil fillingOutUtil) {
         this.fillingOutUtil = fillingOutUtil;
+        this.assessment = 0;
 
         try {
             checkFirstStage(lists[ARRAY_LIST_INDEX]);
