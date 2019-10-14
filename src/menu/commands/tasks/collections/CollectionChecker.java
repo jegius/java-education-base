@@ -144,13 +144,17 @@ public class CollectionChecker {
                 throw new Exception();
             }
 
+            iterator = list.getIterator();
+
             while (iterator.hasNext()) {
                 long nextValue = iterator.next();
                 if (nextValue == 22) {
                     iterator.remove();
                 }
             }
+
             expectedResult = new StringBuilder();
+            iterator = list.getIterator();
 
             while (iterator.hasNext()) {
                 expectedResult.append(iterator.next());

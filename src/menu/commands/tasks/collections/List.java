@@ -1,6 +1,6 @@
 package menu.commands.tasks.collections;
 
-import menu.commands.tasks.collections.iterator.StubIterator;
+import menu.commands.tasks.collections.iterator.Iterator;
 
 public interface List {
     void add(long data) throws Exception;
@@ -28,5 +28,5 @@ public interface List {
     /* *
      *  Этап 2
      * */
-    StubIterator getIterator() throws Exception;
+    Iterator getIterator() throws Exception;
 }

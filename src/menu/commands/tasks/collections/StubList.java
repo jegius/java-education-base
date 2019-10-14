@@ -1,6 +1,6 @@
 package menu.commands.tasks.collections;
 
-import menu.commands.tasks.collections.iterator.StubIterator;
+import menu.commands.tasks.collections.iterator.Iterator;
 
 public class StubList implements List {
 
@@ -54,7 +54,7 @@ public class StubList implements List {
     /* *
      *  Этап 2
      * */
-    public StubIterator getIterator() throws Exception {
+    public Iterator getIterator() throws Exception {
         throw new Exception("No realization for this method!");
     }
 
