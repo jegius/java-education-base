@@ -25,10 +25,9 @@ public class AlexArrayList implements List {
                     values,
                     INITIAL_ELEMENT_OF_PASTE.getValue(),
                     temp.length);
-            values[size] = data;
         } else {
-            values[size] = data;
         }
+        values[size] = data;
         size++;
     }
 
@@ -58,7 +57,7 @@ public class AlexArrayList implements List {
             }
             foundIndex++;
         }
-        return isFound ? foundIndex : -1;
+        return isFound ? foundIndex : NOT_FOUND.getValue();
     }
 
     @Override
