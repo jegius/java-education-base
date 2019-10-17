@@ -25,7 +25,6 @@ public class AlexArrayList implements List {
                     values,
                     INITIAL_ELEMENT_OF_PASTE.getValue(),
                     temp.length);
-        } else {
         }
         values[size] = data;
         size++;
