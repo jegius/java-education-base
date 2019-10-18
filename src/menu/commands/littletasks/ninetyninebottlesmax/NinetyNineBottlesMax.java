@@ -2,20 +2,57 @@ package menu.commands.littletasks.ninetyninebottlesmax;
 
 public class NinetyNineBottlesMax {
 
+    private static final int QUANTITY = 122;
+    private static final int NUMBER_STRING_LENGTH = 2;
+    private static final int FROM_NUMBER_CHECK = 10;
+    private static final int TO_NUMBER_CHECK = 20;
+    private static final int OPERAND_FOR_CHECK_REMAINDER = 10;
+    private static final int SINGLE_BOTTLE = 1;
+
+    private static int checkQuantity(int quantityBottles) {
+        String stringBottle = Integer.toString(quantityBottles);
+        int number = quantityBottles;
+
+        if (stringBottle.length() > NUMBER_STRING_LENGTH) {
+            String twoLastNumbers = stringBottle.substring(stringBottle.length() - NUMBER_STRING_LENGTH);
+            number = Integer.parseInt(twoLastNumbers);
+        }
+        return checkBottleNumber(number);
+    }
+
+    private static int checkBottleNumber(int value) {
+        if (value > FROM_NUMBER_CHECK && value < TO_NUMBER_CHECK) {
+            return 0;
+        }
+        switch (value % OPERAND_FOR_CHECK_REMAINDER) {
+            case 1:
+                return 2;
+            case 2:
+            case 3:
+            case 4:
+                return 1;
+            default:
+                return 0;
+        }
+    }
+
     public static void run() {
 
         StringBuilder stringBuilder = new StringBuilder();
         String[] bottleCase = {" бутылок", " бутылки", " бутылка"};
-        for (int bottles = 99; bottles >= 1; --bottles) {
+        for (int bottles = QUANTITY; bottles >= 1; --bottles) {
+            int messageIndex = checkQuantity(bottles);
 
-            if (bottles != 1) {
+            if (bottles != SINGLE_BOTTLE) {
                 stringBuilder
                         .append(bottles)
-                        .append(bottleCase[checkBottleNumber(bottles)]).append(" на столе,\n")
+                        .append(bottleCase[messageIndex])
+                        .append(" на столе,\n")
                         .append("Взял одну, распили,\n")
                         .append("Теперь осталось на столе\n")
                         .append(--bottles)
-                        .append(bottleCase[checkBottleNumber(bottles)]).append(" пива\n")
+                        .append(bottleCase[checkQuantity(bottles - SINGLE_BOTTLE)])
+                        .append(" пива\n")
                         .append("----------------------------\n");
                 ++bottles;
             } else {
@@ -28,21 +65,5 @@ public class NinetyNineBottlesMax {
             }
         }
         System.out.printf(stringBuilder.toString());
-    }
-
-    private static int checkBottleNumber(int value) {
-        if (value > 10 && value < 20) {
-            return 0;
-        }
-        switch (value % 10) {
-            case 1:
-                return 2;
-            case 2:
-            case 3:
-            case 4:
-                return 1;
-            default:
-                return 0;
-        }
     }
 }

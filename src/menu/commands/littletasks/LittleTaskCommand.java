@@ -5,6 +5,7 @@ import menu.MainMenuCommand;
 import menu.commands.littletasks.alexninetyninebottles.AlexNinetyNineBottles;
 import menu.commands.littletasks.alexnurseryforcats.AlexNurseryForCats;
 import menu.commands.littletasks.ninetyninebottles.NinetyNineBottles;
+import menu.commands.littletasks.ninetyninebottlesmax.NinetyNineBottlesMax;
 import menu.commands.littletasks.nurserycatsmax.NurseryForCatsMax;
 import menu.commands.littletasks.nurseryforcats.NurseryForCats;
 import menu.commands.littletasks.regexp.RegExpTaskCommand;
@@ -35,6 +36,7 @@ public class LittleTaskCommand implements Command {
         MenuUtils.printOption("3", "Run Alex bottles");
         MenuUtils.printOption("4", "Run Alex cat service.");
         MenuUtils.printOption("5", "Run Max Cats");
+        MenuUtils.printOption("6", "Run Max bottles");
         MenuUtils.printOption("9", "Run Ivan simple enum.");
         MenuUtils.printOption("10", "Run regexp exercise.");
         MenuUtils.printOption("11", "Run ALEX simple enum.");
@@ -62,6 +64,9 @@ public class LittleTaskCommand implements Command {
                 return this;
             case 5:
                 NurseryForCatsMax.run();
+                return this;
+            case 6:
+                NinetyNineBottlesMax.run();
                 return this;
             case 9:
                 TaskStore
