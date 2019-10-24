@@ -9,8 +9,6 @@ public class MaxArrayList implements List {
     private long[] values;
     private int size;
 
-    private static final int INVALID_INDEX = -1;
-
     public MaxArrayList() {
         this.values = new long[INITIAL_AMOUNT.getValue()];
         this.size = INITIAL_AMOUNT.getValue();
@@ -58,7 +56,7 @@ public class MaxArrayList implements List {
                 break;
             }
         }
-        return isFound ? findValue : INVALID_INDEX;
+        return isFound ? findValue : INVALID_INDEX.getValue();
     }
 
 
