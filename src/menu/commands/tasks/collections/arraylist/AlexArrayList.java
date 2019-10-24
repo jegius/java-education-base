@@ -1,12 +1,12 @@
 package menu.commands.tasks.collections.arraylist;
 
 import menu.commands.tasks.collections.List;
-import menu.commands.tasks.collections.iterator.StubIterator;
+import menu.commands.tasks.collections.iterator.AlexIterator;
 import menu.commands.tasks.exceptions.OutOfArrayLength;
 
 import static menu.commands.tasks.collections.arraylist.NumbersForAlexArray.*;
 
-public class AlexArrayList implements List {
+public class AlexArrayList implements List{
     private long[] values;
     private int size;
 
@@ -42,6 +42,7 @@ public class AlexArrayList implements List {
                 values[index] = values[index + 1];
             }
         }
+        size--;
         return true;
     }
 
@@ -122,7 +123,7 @@ public class AlexArrayList implements List {
     }
 
     @Override
-    public StubIterator getIterator() throws Exception {
-        throw new Exception("No realization for this method!");
+    public AlexIterator getIterator() throws Exception {
+        return new AlexIterator(this);
     }
 }
