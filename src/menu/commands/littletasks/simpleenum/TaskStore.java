@@ -2,6 +2,7 @@ package menu.commands.littletasks.simpleenum;
 
 import menu.commands.littletasks.simpleenum.Alex.AlexTask;
 import menu.commands.littletasks.simpleenum.ivan.IvanTask;
+import menu.commands.littletasks.simpleenum.max.MaxTask;
 
 import java.util.HashMap;
 
@@ -20,6 +21,7 @@ public class TaskStore {
         tasks = new HashMap<>();
         tasks.put(Executor.IVAN, new IvanTask());
         tasks.put(Executor.ALEX, new AlexTask());
+        tasks.put(Executor.MAX, new MaxTask());
     }
 
     public Task getTaskByExecutor(Executor executor) {
