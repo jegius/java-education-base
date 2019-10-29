@@ -56,9 +56,10 @@ public class MaxArrayList implements List {
                 break;
             }
         }
-        return isFound ? findValue : INVALID_INDEX.getValue();
+        return isFound ?
+                findValue :
+                INVALID_INDEX.getValue();
     }
-
 
     @Override
     public long get(int index) throws Exception {
