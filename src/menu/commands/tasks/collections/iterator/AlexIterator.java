@@ -12,7 +12,6 @@ public class AlexIterator implements Iterator {
         this.list = list;
     }
 
-
     @Override
     public boolean hasNext() throws Exception {
         return index < list.size();
