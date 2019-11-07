@@ -6,7 +6,7 @@ import menu.commands.tasks.exceptions.OutOfArrayLength;
 
 import static menu.commands.tasks.collections.arraylist.NumbersForAlexArray.*;
 
-public class AlexArrayList implements List{
+public class AlexArrayList implements List {
     private long[] values;
     private int size;
 
