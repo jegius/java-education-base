@@ -1,7 +1,9 @@
 package menu.commands.tasks.collections.iterator;
 
 import menu.commands.tasks.collections.List;
-import menu.commands.tasks.collections.arraylist.AlexArrayList;
+
+import static menu.commands.tasks.collections.iterator.NumbersForAlexIterator.INITIAL_SIZE_OF_LIST;
+import static menu.commands.tasks.collections.iterator.NumbersForAlexIterator.NOT_FOUND;
 
 public class AlexIterator implements Iterator {
     private int index;
@@ -19,16 +21,16 @@ public class AlexIterator implements Iterator {
 
     @Override
     public long next() throws Exception {
-        if(list.size() !=0) {
+        if (list.size() != INITIAL_SIZE_OF_LIST.getValue()) {
             return list.get(index++);
         } else {
-            return -1;
+            return NOT_FOUND.getValue();
         }
     }
 
     @Override
     public void remove() throws Exception {
-        if (list.size() != 0)
-        list.remove(index - 1);
+        if (list.size() != INITIAL_SIZE_OF_LIST.getValue())
+            list.remove(index - 1);
     }
 }
