@@ -1,7 +1,5 @@
 package menu.commands.tasks.calculatormode.alex;
 
-import menu.commands.tasks.calculatormode.CalculatorModeCommand;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
@@ -25,20 +23,19 @@ class Calculator {
             int numberOfOptionalElement,
             String optionalParameter
     ) {
-
-        List<String> Numbers = new ArrayList<>();
+        List<String> NumbersFromScanner = new ArrayList<>();
         for (int index = 0; index < messages.length; index++) {
             System.out.println(messages[index]);
             if (index == (numberOfOptionalElement - 1) && numberOfOptionalElement != 0) {
-                Numbers.add(getString(scanner, optionalParameter));
+                NumbersFromScanner.add(GetTransferToStringAndValidateData(scanner, optionalParameter));
             } else {
-                Numbers.add(getString(scanner, parameter));
+                NumbersFromScanner.add(GetTransferToStringAndValidateData(scanner, parameter));
             }
         }
-        return Numbers;
+        return NumbersFromScanner;
     }
 
-    public static String getString(Scanner scanner, String parameter) {
+    public static String GetTransferToStringAndValidateData(Scanner scanner, String parameter) {
         try {
             if (parameter.equals(POSITIVE_NUMBER)) {
                 double value = scanner.nextDouble();
@@ -60,17 +57,13 @@ class Calculator {
                 return noZeroNumber;
             }
 
-        } catch (IncorrectNumberFormatException exception) {
+        } catch (IncorrectNumberFormatException | ZeroNumberFormatException exception) {
             System.out.println(exception.getMessage());
-            return getString(scanner, parameter);
-        } catch (ZeroNumberFormatException exception) {
-            System.out.println(exception.getMessage());
-            return getString(scanner, parameter);
-
+            return GetTransferToStringAndValidateData(scanner, parameter);
         } catch (Exception exception) {
             System.out.println("Insert only NUMBER");
             scanner.next();
-            return getString(scanner, parameter);
+            return GetTransferToStringAndValidateData(scanner, parameter);
         }
         return null;
     }
