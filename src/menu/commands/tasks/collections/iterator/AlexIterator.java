@@ -30,7 +30,8 @@ public class AlexIterator implements Iterator {
 
     @Override
     public void remove() throws Exception {
-        if (list.size() != INITIAL_SIZE_OF_LIST.getValue())
+        if (list.size() != INITIAL_SIZE_OF_LIST.getValue()) {
             list.remove(index - 1);
+        }
     }
 }
