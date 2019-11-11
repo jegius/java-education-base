@@ -82,6 +82,7 @@ public class LittleTaskCommand implements Command {
                         .getInstance()
                         .getTaskByExecutor(Executor.ALEX)
                         .runTask();
+                return this;
             case 12:
                 TaskStore
                         .getInstance()
