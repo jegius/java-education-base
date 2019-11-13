@@ -85,12 +85,20 @@ public class AlexArrayList implements List {
 
     @Override
     public void bubbleSort() throws Exception {
-        throw new Exception("No realization for this method!");
+        int outerCircle;
+        int innerCircle;
+        for (outerCircle = 0; outerCircle < (size - 1); outerCircle++) {
+            for (innerCircle = 0; innerCircle < (size - 1 - outerCircle); innerCircle++) {
+                if (values[innerCircle] > values[innerCircle + 1]) {
+                    swap(innerCircle, innerCircle + 1);
+                }
+            }
+        }
     }
 
     @Override
     public void quickSort() throws Exception {
-        throw new Exception("No realization for this method!");
+        recQuickSort(0, size - 1);
     }
 
     @Override
@@ -126,4 +134,39 @@ public class AlexArrayList implements List {
     public AlexIterator getIterator() throws Exception {
         return new AlexIterator(this);
     }
+
+    private void swap(int left, int right) {
+        long temp = values[left];
+        values[left] = values[right];
+        values[right] = temp;
+    }
+
+    private int dividerIndex(int left, int right, long pivot) {
+        int leftPointer = left - 1;
+        int rightPointer = right;
+        while (true) {
+            while (leftPointer < right && values[++leftPointer] < pivot) ;
+            while (rightPointer > left && values[--rightPointer] > pivot) ;
+            if (leftPointer >= rightPointer) {
+                break;
+            } else {
+                swap(leftPointer, rightPointer);
+            }
+        }
+        swap(leftPointer, right);
+        return leftPointer;
+    }
+
+    private void recQuickSort(int left, int right) {
+        if (left >= right) {
+            return;
+        } else {
+            long pivot = values[right];
+            int devidedPivot = dividerIndex(left, right, pivot);
+            recQuickSort(left, devidedPivot - 1);
+            recQuickSort(devidedPivot + 1, right);
+        }
+    }
 }
+
+
