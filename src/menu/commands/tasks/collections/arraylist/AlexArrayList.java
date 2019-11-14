@@ -85,10 +85,8 @@ public class AlexArrayList implements List {
 
     @Override
     public void bubbleSort() throws Exception {
-        int outerCircle;
-        int innerCircle;
-        for (outerCircle = 0; outerCircle < (size - 1); outerCircle++) {
-            for (innerCircle = 0; innerCircle < (size - 1 - outerCircle); innerCircle++) {
+        for (int outerCircle = 0; outerCircle < (size - 1); outerCircle++) {
+            for (int innerCircle = 0; innerCircle < (size - 1 - outerCircle); innerCircle++) {
                 if (values[innerCircle] > values[innerCircle + 1]) {
                     swap(innerCircle, innerCircle + 1);
                 }
