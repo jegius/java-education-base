@@ -1,7 +1,8 @@
 package menu.commands.littletasks.regexp.regexp;
 
 public enum Executor {
-    IVAN("Ivan");
+    IVAN("Ivan"),
+    ALEX("Alex");
 
     private String name;
 
