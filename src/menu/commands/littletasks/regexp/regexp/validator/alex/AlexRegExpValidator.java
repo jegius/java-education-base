@@ -27,6 +27,6 @@ public class AlexRegExpValidator implements Validator {
 
     @Override
     public boolean isIpAddressValid(String ip) {
-        return Pattern.matches(AlexValidatorType.PHONE.getRegExp(), ip);
+        return Pattern.matches(AlexValidatorType.IP_ADDRESS.getRegExp(), ip);
     }
 }
