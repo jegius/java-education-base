@@ -3,6 +3,7 @@ package menu.commands.littletasks.regexp.regexp.validator;
 import menu.Command;
 import menu.commands.littletasks.regexp.RegExpTaskCommand;
 import menu.commands.littletasks.regexp.regexp.Executor;
+import menu.commands.littletasks.regexp.regexp.validator.alex.AlexRegExpValidator;
 import menu.commands.littletasks.regexp.regexp.validator.ivan.IvanRegExpValidator;
 import menu.utils.MenuUtils;
 
@@ -27,6 +28,7 @@ public class ValidatorRunner implements Command {
         this.scanner = new Scanner(System.in);
         this.executors = new HashMap<>();
         this.executors.put(Executor.IVAN, new IvanRegExpValidator());
+        this.executors.put(Executor.ALEX, new AlexRegExpValidator());
     }
 
     @Override

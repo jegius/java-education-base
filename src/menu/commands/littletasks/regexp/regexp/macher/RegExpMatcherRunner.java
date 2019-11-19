@@ -2,6 +2,7 @@ package menu.commands.littletasks.regexp.regexp.macher;
 
 import menu.Command;
 import menu.commands.littletasks.regexp.RegExpTaskCommand;
+import menu.commands.littletasks.regexp.regexp.macher.alex.AlexRegExp;
 import menu.commands.littletasks.regexp.regexp.macher.ivan.IvanRegExp;
 import menu.utils.MenuUtils;
 
@@ -33,6 +34,8 @@ public class RegExpMatcherRunner implements Command {
         MenuUtils.printSeparator();
         MenuUtils.printOption("1", "Ivan matcher find.");
         MenuUtils.printOption("2", "Ivan matcher replace.");
+        MenuUtils.printOption("3", "Alex matcher find.");
+        MenuUtils.printOption("4", "Alex matcher replace.");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -47,6 +50,15 @@ public class RegExpMatcherRunner implements Command {
             case 2: {
                 action = Action.REPLACE;
                 currentMatcher = IvanRegExp.values();
+                return chooseAndRunRegExp();
+            } case 3: {
+                action = Action.FIND;
+                currentMatcher = AlexRegExp.values();
+                return chooseAndRunRegExp();
+            }
+            case 4: {
+                action = Action.REPLACE;
+                currentMatcher = AlexRegExp.values();
                 return chooseAndRunRegExp();
             }
             case 0: {
