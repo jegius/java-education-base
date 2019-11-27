@@ -5,6 +5,7 @@ import menu.MainMenuCommand;
 import menu.commands.tasks.calculator.CalculatorTaskCommand;
 import menu.commands.tasks.calculatormode.CalculatorModeCommand;
 import menu.commands.tasks.collections.CollectionTaskCommand;
+import menu.commands.tasks.generics.alex.AlexGenericsTaskCommand;
 import menu.commands.tasks.objects.ObjectsTaskCommand;
 import menu.utils.MenuUtils;
 
@@ -30,6 +31,7 @@ public class TaskMenuCommand implements Command {
         MenuUtils.printOption("2", "Show simple calculator");
         MenuUtils.printOption("3", "Show calculator mode");
         MenuUtils.printOption("4", "Show collection task mode");
+        MenuUtils.printOption("5","Alex generics");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -48,6 +50,8 @@ public class TaskMenuCommand implements Command {
                 return CalculatorModeCommand.getInstance();
             case 4:
                 return CollectionTaskCommand.getInstance();
+            case 5:
+                return AlexGenericsTaskCommand.getInstance();
             default:
                 System.out.println("Unexpected command!");
                 return this;

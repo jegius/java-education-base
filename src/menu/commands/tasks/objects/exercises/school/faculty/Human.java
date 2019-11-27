@@ -1,6 +1,6 @@
 package menu.commands.tasks.objects.exercises.school.faculty;
 
-abstract class Human {
+public abstract class Human {
     private String firstName;
     private String lastName;
     private int age;
@@ -13,9 +13,24 @@ abstract class Human {
 
     abstract void doWork();
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
     void introduceYourself() {
         System.out.println("I'm " + this.firstName + " " + this.lastName + "! I'm " + age + " years old");
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

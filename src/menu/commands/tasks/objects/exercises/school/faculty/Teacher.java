@@ -24,7 +24,15 @@ public class Teacher extends Staff {
         for (Student teacher : schoolClasses) {
             teacher.doWork();
         }
+    }
 
+    @Override
+    public String toString() {
+        return "Teacher: " + super.getFirstName() + " " + super.getLastName();
+    }
+
+    public Student[] getSchoolClasses() {
+        return schoolClasses;
     }
 
     public String getSubject() {
@@ -33,5 +41,18 @@ public class Teacher extends Staff {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!this.getClass().getName().equals(obj.getClass().getName())) {
+            return false;
+        }
+        Teacher teacher = (Teacher) obj;
+        return this.getFirstName().equals(teacher.getFirstName()) &&
+                this.getLastName().equals(teacher.getLastName()) &&
+                this.getAge() == teacher.getAge() &&
+                this.getSubject().equals(teacher.getSubject()) &&
+                this.getSchoolClasses().length == teacher.getSchoolClasses().length;
     }
 }

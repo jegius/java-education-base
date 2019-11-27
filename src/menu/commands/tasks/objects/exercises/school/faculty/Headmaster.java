@@ -13,7 +13,6 @@ public class Headmaster extends Staff {
         super(firstName, lastName, position, age);
         this.teachers = teachers;
         this.staffMembers = staffMembers;
-
     }
 
     public void doWork() {
@@ -26,6 +25,22 @@ public class Headmaster extends Staff {
         for (Staff staff : staffMembers) {
             staff.doWork();
         }
+    }
 
+    @Override
+    public String toString() {
+        return "Headmaster: " + super.getFirstName() + " " + super.getLastName();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!this.getClass().getName().equals(obj.getClass().getName())) {
+            return false;
+        }
+        Headmaster headmaster = (Headmaster) obj;
+        return this.getFirstName().equals(headmaster.getFirstName()) &&
+                this.getLastName().equals(headmaster.getLastName()) &&
+                this.getAge() == headmaster.getAge() &&
+                this.getPosition().equals(headmaster.getPosition());
     }
 }
