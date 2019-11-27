@@ -1,7 +1,7 @@
 package menu.commands.tasks.collections.linkedlist;
 
 import menu.commands.tasks.collections.List;
-import menu.commands.tasks.collections.arraylist.MaxNode;
+import menu.commands.tasks.collections.arraylist.ExceptionsOutOfArraySize;
 import menu.commands.tasks.collections.iterator.MaxIterator;
 import static menu.commands.tasks.collections.linkedlist.EnumMaxList.*;
 
@@ -31,8 +31,8 @@ public class MaxLinkedList implements List {
 
     @Override
     public boolean remove(int id) throws Exception {
-        if (isEmpty() && id < 0 && id > size) {
-            throw new Exception();
+        if (isEmpty() || id < 0 || id > size) {
+            throw new ExceptionsOutOfArraySize();
         }
         if (id == 0) {
             maxNode = maxNode.getNext();
@@ -60,8 +60,8 @@ public class MaxLinkedList implements List {
 
     @Override
     public long get(int index) throws Exception {
-        if (index < 0 && index > size) {
-            throw new Exception();
+        if (index < 0 || index > size) {
+            throw new ExceptionsOutOfArraySize();
         }
         MaxNode currentNode = maxNode;
         while (currentNode.getNext() != null && currentNode.getIndex() != index) {
@@ -72,8 +72,8 @@ public class MaxLinkedList implements List {
 
     @Override
     public void update(int index, long data) throws Exception {
-        if (index < 0 && index > size) {
-            throw new Exception();
+        if (index < 0 || index > size) {
+            throw new ExceptionsOutOfArraySize();
         } else {
             getNodeByID(index).
                     setValue(data);
@@ -105,6 +105,9 @@ public class MaxLinkedList implements List {
 
     @Override
     public long getMin() throws Exception {
+        if (isEmpty()) {
+            throw new ExceptionEmptyArray();
+        }
         MaxNode currentNode = maxNode;
         long minValue = currentNode.getValue();
         while (currentNode != null) {
@@ -118,6 +121,9 @@ public class MaxLinkedList implements List {
 
     @Override
     public long getMax() throws Exception {
+        if (isEmpty()) {
+            throw new ExceptionEmptyArray();
+        }
         MaxNode currentNode = maxNode;
         long maxValue = currentNode.getValue();
         while (currentNode != null) {
