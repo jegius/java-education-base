@@ -4,6 +4,7 @@ import menu.Command;
 import menu.commands.littletasks.regexp.RegExpTaskCommand;
 import menu.commands.littletasks.regexp.regexp.macher.alex.AlexRegExp;
 import menu.commands.littletasks.regexp.regexp.macher.ivan.IvanRegExp;
+import menu.commands.littletasks.regexp.regexp.macher.max.MaxRegExp;
 import menu.utils.MenuUtils;
 
 import java.util.Scanner;
@@ -36,6 +37,8 @@ public class RegExpMatcherRunner implements Command {
         MenuUtils.printOption("2", "Ivan matcher replace.");
         MenuUtils.printOption("3", "Alex matcher find.");
         MenuUtils.printOption("4", "Alex matcher replace.");
+        MenuUtils.printOption("5", "Max matcher find.");
+        MenuUtils.printOption("6", "Max matcher replace.");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -59,6 +62,16 @@ public class RegExpMatcherRunner implements Command {
             case 4: {
                 action = Action.REPLACE;
                 currentMatcher = AlexRegExp.values();
+                return chooseAndRunRegExp();
+            }
+            case 5: {
+                action = Action.FIND;
+                currentMatcher = MaxRegExp.values();
+                return chooseAndRunRegExp();
+            }
+            case 6: {
+                action = Action.REPLACE;
+                currentMatcher = MaxRegExp.values();
                 return chooseAndRunRegExp();
             }
             case 0: {
