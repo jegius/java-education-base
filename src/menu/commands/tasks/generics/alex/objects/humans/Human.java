@@ -1,6 +1,6 @@
-package menu.commands.tasks.generics.objects.humans;
+package menu.commands.tasks.generics.alex.objects.humans;
 
-abstract class Human {
+public abstract class Human {
 
     private String name;
     private int age;
@@ -17,6 +17,11 @@ abstract class Human {
 
     public int getAge() {
         return age;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + " " + this.age;
     }
 }
 
