@@ -86,12 +86,20 @@ public class MaxArrayList implements List {
 
     @Override
     public void bubbleSort() throws Exception {
-        throw new Exception("No realization for this method!");
+        for (int firstPairIndex = 0; firstPairIndex < values.length - 1; firstPairIndex++) {
+            for (int secondPairIndex = 0; secondPairIndex < values.length - firstPairIndex - 1; secondPairIndex++) {
+                if (values[secondPairIndex] > values[secondPairIndex + 1]) {
+                    swapValues(secondPairIndex, secondPairIndex + 1);
+                }
+            }
+        }
     }
 
     @Override
     public void quickSort() throws Exception {
-        throw new Exception("No realization for this method!");
+        int lowIndex = 0;
+        int highIndex = size - 1;
+        getSort(lowIndex, highIndex);
     }
 
     @Override
@@ -126,5 +134,36 @@ public class MaxArrayList implements List {
     @Override
     public MaxIterator getIterator() {
         return new MaxIterator(this);
+    }
+
+    private void swapValues(int leftIndex, int rightIndex) {
+        long temp = values[leftIndex];
+        values[leftIndex] = values[rightIndex];
+        values[rightIndex] = temp;
+    }
+
+    private void getSort (int startIndex, int endIndex) {
+        int left = startIndex;
+        int right = endIndex;
+        long pivot = values[startIndex + (endIndex - startIndex) / 2];
+        while (left <= right) {
+            while (values[left] < pivot) {
+                left++;
+            }
+            while (values[right] > pivot) {
+                right--;
+            }
+            if (left <= right) {
+                swapValues(left, right);
+                left++;
+                right--;
+            }
+        }
+        if (startIndex < right) {
+            getSort(startIndex, right);
+        }
+        if (endIndex > left) {
+            getSort(left, endIndex);
+        }
     }
 }
