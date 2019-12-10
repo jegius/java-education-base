@@ -1,7 +1,7 @@
 package menu.commands.tasks.collections.arraylist;
 
 import menu.commands.tasks.collections.List;
-import menu.commands.tasks.collections.iterator.StubIterator;
+import menu.commands.tasks.collections.iterator.MaxIterator;
 
 import static menu.commands.tasks.collections.arraylist.EnumMax.*;
 
@@ -124,7 +124,7 @@ public class MaxArrayList implements List {
     }
 
     @Override
-    public StubIterator getIterator() throws Exception {
-        throw new Exception("No realization for this method!");
+    public MaxIterator getIterator() {
+        return new MaxIterator(this);
     }
 }
