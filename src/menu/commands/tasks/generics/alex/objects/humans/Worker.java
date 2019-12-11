@@ -1,6 +1,31 @@
-šj*Æl:Œ Fžê3…rjÞp{y¾È¹–(
-4—*ÇGˆIÔ`\õ%È¦-2Ù(Xß Æ ›¼†Ä'éÃ“
-ºéì'Fº2¶Á9î0cUã-"HfOLøîvÔÏÏ-ŒAªœÆÙUXx»ðaÚ¸ˆíÀä_‚îá%höÛ5ýàb˜±\kbŸ™iÔ®sâÐ¢†}¨ì;ÜPÎvÚ¨lç³H®•«ž!×Øùº¥mÎÎ	F?²3%¤h´Å³ôÞÂŸÚrýï1ã®.Q>ßÊ¸0mlï—aÌÁui­€s_k×B½—¿ë‹HÛN%f÷!ý,!`ÀpìÐA…æy7Sj‹ZÛaùÒñõœþ˜ÙQß(Jôº^ª;&HÖÀÍ‰LÜeö]€Tì¯pZ ªtém3&CÔÇÜ¬WKÑãº¸pÆ!(\„­$&y%Õû|ü²5aŠ[OßÜU6q¬p½Ûµe¶V@ð©ÊQ¦ö:ŒU¼9b¨”i¶ÝàîüÑähŒ‹x6}EÌŽíswSÌÑãÂ´ë¬Í¯{›Néèä„ÙÓhKFµé¨_¯’ŠC_]kÓ6ÅµÄ¾þÛ€½Žcj^]ÿg`	¥%›ß:w)u
-móp«~_F½* (ÖªÃœWj©øF
-”Sò_IÛ>?ù±è<ÈÔîÝ*ýôn	’bÃgUÙÌÀòún¸k_ñYLJ­$
-=P³„ÝgÀíÇ–öÈ°Æ^Èí–G«¹ú{NžÏÜÎƒˆDà‘‰ÛNð(|FNG¸m¹dh½µ]ë[á¦I™##à¡˜Æa¦îßx²ü&Á@]î„Ž2™{ãìg‘Ñv[R¶›«¶Ív­ò¨7[Ø…E™J	45ª5“­ðpi}.“Q˜|	Ž¤6Ú‹Ss1hU½šfÞŠTÂ°ŽßgSH•%Ž…,WÕXžè8¯Ä(°p“i·‡_ÁU7êq¨`µL½Î‹*àÐûw`
+package menu.commands.tasks.generics.alex.objects.humans;
+
+public class Worker extends Human {
+
+    private String job;
+
+    public Worker(String name, int age, String job){
+        super(name,age);
+        this.job = job;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!this.getClass().getName().equals(obj.getClass().getName())) {
+            return false;
+        }
+        Worker worker = (Worker) obj;
+        return this.getName() == worker.getName() &&
+                this.getAge() == worker.getAge() &&
+                this.getJob() == worker.getJob();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " " + this.job;
+    }
+}
