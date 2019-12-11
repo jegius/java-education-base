@@ -31,17 +31,11 @@ public class CollectionChecker {
         this.assessment = 0;
 
         try {
-            checkFirstStage(lists[ARRAY_LIST_INDEX]);
-            checkSecondStage(lists[ARRAY_LIST_INDEX]);
-            checkThirdStage(lists[ARRAY_LIST_INDEX]);
             checkFourthStage(lists[LINKED_LIST_INDEX]);
             checkFifthStage(lists[ARRAY_LIST_INDEX]);
 
         } catch (
-                FirstStageException
-                        | SecondStageException
-                        | ThirdStageException
-                        | FourthStageException
+                FourthStageException
                         | FifthStageException exception
         ) {
             System.out.println(exception.getMessage());
@@ -71,7 +65,7 @@ public class CollectionChecker {
     private void checkFifthStage(List list) throws FifthStageException {
         try {
             long min = 13;
-            long max = 123;
+            long max = 12345;
 
             list.add(max);
             list.add(min);
@@ -94,7 +88,7 @@ public class CollectionChecker {
 
             list = fillingOutUtil.fillList(list, 100000);
             list.quickSort();
-
+            assessment++;
         } catch (Exception exception) {
             throw new FifthStageException("Error with completing fifth task!");
         }
