@@ -19,3 +19,4 @@ public enum MaxRegExp {
         return regExp;
     }
 }
+
