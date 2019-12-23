@@ -1,27 +1,22 @@
 package menu.commands.tasks.generics.alex.objects.humans;
 
-public abstract class Human {
+import menu.commands.tasks.generics.alex.objects.Creature;
+
+public abstract class Human extends Creature {
 
     private String name;
-    private int age;
 
-    public Human(String name, int age) {
+    public Human(String name) {
         this.name = name;
-
-        this.age = age;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getAge() {
-        return age;
-    }
-
     @Override
     public String toString() {
-        return this.name + " " + this.age;
+        return this.name + " ";
     }
 }
 

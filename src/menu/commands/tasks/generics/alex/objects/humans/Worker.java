@@ -1,12 +1,14 @@
 package menu.commands.tasks.generics.alex.objects.humans;
 
+import java.util.List;
+
 public class Worker extends Human {
 
     private String job;
 
-    public Worker(String name, int age, String job){
-        super(name,age);
-        this.job = job;
+    public Worker(List <String> values) {
+        super(values.get(1));
+        this.job = values.get(0);
     }
 
     public String getJob() {
@@ -20,7 +22,6 @@ public class Worker extends Human {
         }
         Worker worker = (Worker) obj;
         return this.getName() == worker.getName() &&
-                this.getAge() == worker.getAge() &&
                 this.getJob() == worker.getJob();
     }
 

@@ -1,6 +1,8 @@
 package menu.commands.tasks.generics.alex.objects.dogs;
 
-public class Dog {
+import menu.commands.tasks.generics.alex.objects.Creature;
+
+public class Dog extends Creature {
 
     private String nickName;
 

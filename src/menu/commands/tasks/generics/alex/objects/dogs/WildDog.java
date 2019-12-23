@@ -1,12 +1,14 @@
 package menu.commands.tasks.generics.alex.objects.dogs;
 
+import java.util.List;
+
 public class WildDog extends Dog {
 
     private String area;
 
-    public WildDog(String nickName, String area) {
-        super(nickName);
-        this.area = area;
+    public WildDog(List <String> values) {
+        super(values.get(1));
+        this.area = values.get(0);
     }
 
     public String getArea() {
