@@ -9,8 +9,8 @@ public class DogShelter {
 
     private static DogShelter instance;
 
-    private AlexGenArrayList<? super Dog> dogShelter = new AlexGenArrayList<>();
-    private ObjectGenerator objectGenerator = new ObjectGenerator();
+    private AlexGenArrayList<? super Dog> dogShelter;
+    private ObjectGenerator objectGenerator;
 
     public static synchronized DogShelter getInstance() {
         if (instance == null) {
@@ -20,7 +20,10 @@ public class DogShelter {
     }
 
     public DogShelter() {
-        objectGenerator.generateObjects(dogShelter, 2, PetDog.class).generateObjects(dogShelter, 2, WildDog.class);
+        objectGenerator = new ObjectGenerator();
+        dogShelter = objectGenerator.generateObjects(2, PetDog.class)
+                .generateObjects(2, WildDog.class)
+                .build();
     }
 
     public void showDogShelter() {

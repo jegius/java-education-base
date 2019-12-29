@@ -1,14 +1,15 @@
 package menu.commands.tasks.generics.alex.objects.humans;
 
 import java.util.List;
+import java.util.Map;
 
 public class Pupil extends Human {
 
     private String subject;
 
-    public Pupil(List<String> values) {
-        super(values.get(1));
-        this.subject = values.get(0);
+    public Pupil(Map <String, String> values) {
+        super(values.get("name"));
+        this.subject = values.get("subject");
     }
 
     public String getSubject() {

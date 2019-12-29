@@ -8,10 +8,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ObjectGenerator {
 
-    HashMap<String, String[]> valuesForObjects = new HashMap<>();
+    private HashMap<String, String[]> valuesForObjects = new HashMap<>();
+    private static AlexGenArrayList objects = null;
 
     private void completeMap() {
         valuesForObjects.put("name",
@@ -71,7 +73,7 @@ public class ObjectGenerator {
     }
 
     private int getRandomNumber() {
-        int max = 5;
+        int max = valuesForObjects.get("name").length;
         return (int) (Math.random() * max);
     }
 
@@ -93,22 +95,25 @@ public class ObjectGenerator {
         return allFields;
     }
 
-    private List fillFields(List<String> fields) {
-        List<String> values = new ArrayList();
+    private Map fillFields(List<String> fields) {
+        Map<String, String> values = new HashMap<>();
         for (String field : fields) {
-            values.add(valuesForObjects.get(field)[getRandomNumber()]);
+            values.put(field, valuesForObjects.get(field)[getRandomNumber()]);
         }
         return values;
     }
 
-    public ObjectGenerator generateObjects(AlexGenArrayList list, int amount, Class<? extends Creature> cls) {
-        List allFields = getAllFields(cls);
+    public ObjectGenerator generateObjects(int amount, Class<? extends Creature> classToCreate) {
+        if (objects == null) {
+            objects = new AlexGenArrayList();
+        }
+        List allFields = getAllFields(classToCreate);
         try {
-            Constructor ctor = cls.getDeclaredConstructor(List.class);
+            Constructor ctor = classToCreate.getDeclaredConstructor(Map.class);
             ctor.setAccessible(true);
             for (int index = 0; index < amount; index++) {
-                List values = fillFields(allFields);
-                list.add(ctor.newInstance(values));
+                Map values = fillFields(allFields);
+                objects.add(ctor.newInstance(values));
             }
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
@@ -120,5 +125,11 @@ public class ObjectGenerator {
             e.printStackTrace();
         }
         return this;
+    }
+
+    public AlexGenArrayList build() {
+        AlexGenArrayList currentObjects = objects;
+        objects = null;
+        return currentObjects;
     }
 }

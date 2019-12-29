@@ -1,14 +1,14 @@
 package menu.commands.tasks.generics.alex.objects.dogs;
 
-import java.util.List;
+import java.util.Map;
 
 public class PetDog extends Dog {
 
     private String familyName;
 
-    public PetDog(List<String> values) {
-        super(values.get(1));
-        this.familyName = values.get(0);
+    public PetDog(Map<String, String> values) {
+        super(values.get("nickName"));
+        this.familyName = values.get("FamilyName");
     }
 
     public String getFamilyName() {
