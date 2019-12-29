@@ -13,7 +13,7 @@ public class Cinema {
 
     private ObjectGenerator objectGenerator;
 
-    private AlexGenArrayList<Human> cinema = new AlexGenArrayList<Human>();
+    private AlexGenArrayList<Human> cinema;
 
     public static synchronized Cinema getInstance() {
         if (instance == null) {
@@ -24,8 +24,8 @@ public class Cinema {
 
     public Cinema() {
         objectGenerator = new ObjectGenerator();
-        objectGenerator.generateObjects(cinema, 2, Worker.class)
-                .generateObjects(cinema, 2, Pupil.class);
+        cinema = objectGenerator.generateObjects(2, Worker.class).
+                generateObjects(2, Pupil.class).build();
     }
 
     public void showCinema() {

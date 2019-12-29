@@ -1,14 +1,15 @@
 package menu.commands.tasks.generics.alex.objects.humans;
 
 import java.util.List;
+import java.util.Map;
 
 public class Worker extends Human {
 
     private String job;
 
-    public Worker(List <String> values) {
-        super(values.get(1));
-        this.job = values.get(0);
+    public Worker(Map<String, String> values) {
+        super(values.get("name"));
+        this.job = values.get("job");
     }
 
     public String getJob() {
