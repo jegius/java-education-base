@@ -10,13 +10,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static menu.commands.tasks.generics.alex.objects.FieldsNames.*;
+
 public class ObjectGenerator {
 
-    private HashMap<String, String[]> valuesForObjects = new HashMap<>();
-    private static AlexGenArrayList objects = null;
+    private static HashMap<String, String[]> valuesForObjects = completeMap();
 
-    private void completeMap() {
-        valuesForObjects.put("name",
+    private static HashMap<String, String[]> completeMap() {
+        HashMap<String, String[]> completedMap = new HashMap<>();
+        completedMap.put(NAME.getName(),
                 new String[]{
                         "Alex",
                         "John",
@@ -25,7 +27,7 @@ public class ObjectGenerator {
                         "Max",
                         "Pidr"
                 });
-        valuesForObjects.put("subject",
+        completedMap.put(SUBJECT.getName(),
                 new String[]{
                         "Math",
                         "English",
@@ -34,7 +36,7 @@ public class ObjectGenerator {
                         "Biology",
                         "Java"
                 });
-        valuesForObjects.put("job",
+       completedMap.put(JOB.getName(),
                 new String[]{
                         "Programmer",
                         "Teacher",
@@ -43,7 +45,7 @@ public class ObjectGenerator {
                         "Football player",
                         "Whore"
                 });
-        valuesForObjects.put("nickName",
+        completedMap.put(NICKNAME.getName(),
                 new String[]{
                         "Barky",
                         "Luci",
@@ -52,7 +54,7 @@ public class ObjectGenerator {
                         "Spark",
                         "Sharky"
                 });
-        valuesForObjects.put("area",
+        completedMap.put(AREA.getName(),
                 new String[]{
                         "City",
                         "Forest",
@@ -61,7 +63,7 @@ public class ObjectGenerator {
                         "Shore",
                         "Near trash"
                 });
-        valuesForObjects.put("familyName",
+        completedMap.put(FAMILY_NAME.getName(),
                 new String[]{
                         "Jacksons",
                         "Nicksons",
@@ -70,20 +72,17 @@ public class ObjectGenerator {
                         "Andersons",
                         "Jolies"
                 });
+        return completedMap;
     }
 
-    private int getRandomNumber() {
-        int max = valuesForObjects.get("name").length;
+    private static int getRandomNumber(String field) {
+        int max = valuesForObjects.get(field).length;
         return (int) (Math.random() * max);
     }
 
-    public ObjectGenerator() {
-        completeMap();
-    }
-
-    private List<String> getAllFields(Class cls) {
+    private static List<String> getAllFields(Class providedClass) {
         List<String> allFields = new ArrayList<>();
-        Class currentClass = cls;
+        Class currentClass = providedClass;
         do {
             Field[] fields = currentClass.getDeclaredFields();
             for (Field field : fields) {
@@ -95,41 +94,49 @@ public class ObjectGenerator {
         return allFields;
     }
 
-    private Map fillFields(List<String> fields) {
+    private static Map fillFields(List<String> fields) {
         Map<String, String> values = new HashMap<>();
         for (String field : fields) {
-            values.put(field, valuesForObjects.get(field)[getRandomNumber()]);
+            values.put(field, valuesForObjects.get(field)[getRandomNumber(field)]);
         }
         return values;
     }
 
-    public ObjectGenerator generateObjects(int amount, Class<? extends Creature> classToCreate) {
-        if (objects == null) {
-            objects = new AlexGenArrayList();
-        }
-        List allFields = getAllFields(classToCreate);
-        try {
-            Constructor ctor = classToCreate.getDeclaredConstructor(Map.class);
-            ctor.setAccessible(true);
-            for (int index = 0; index < amount; index++) {
-                Map values = fillFields(allFields);
-                objects.add(ctor.newInstance(values));
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        return this;
+    public static <T> ArrayBuilder<T> newArrayBuilder() {
+        return new ArrayBuilder<T>();
     }
 
-    public AlexGenArrayList build() {
-        AlexGenArrayList currentObjects = objects;
-        objects = null;
-        return currentObjects;
+    public static class ArrayBuilder<T> {
+        private AlexGenArrayList objects = null;
+
+        private ArrayBuilder() {
+        }
+
+        public ArrayBuilder<T> generateObjects(int amount, Class<? extends Creature> classToCreate) {
+            if (objects == null) {
+                objects = new AlexGenArrayList<>();
+            }
+            List allFields = getAllFields(classToCreate);
+            try {
+                Constructor providedConstructor = classToCreate.getDeclaredConstructor(Map.class);
+                providedConstructor.setAccessible(true);
+                for (int index = 0; index < amount; index++) {
+                    Map values = fillFields(allFields);
+                    objects.add(providedConstructor.newInstance(values));
+                }
+            } catch (NoSuchMethodException
+                    | IllegalAccessException
+                    | InstantiationException
+                    | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            return this;
+        }
+
+        public AlexGenArrayList<T> build() {
+            AlexGenArrayList<T> generatedObjects = objects;
+            objects = null;
+            return generatedObjects;
+        }
     }
 }
