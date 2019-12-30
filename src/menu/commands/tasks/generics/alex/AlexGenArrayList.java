@@ -40,13 +40,16 @@ public class AlexGenArrayList <T>{
 
     public boolean compare(AlexGenArrayList listForComparison) throws OutOfArrayLength {
         if (size != listForComparison.getSize()) {
+            System.out.println("Not equal");
             return false;
         }
         for (int index = 0; index < size; index++) {
             if (!isEqual(index, listForComparison)) {
+                System.out.println("Not equal");
                 return false;
             }
         }
+        System.out.println("Equal");
         return true;
     }
 

@@ -2,13 +2,15 @@ package menu.commands.tasks.generics.alex.objects.dogs;
 
 import java.util.Map;
 
+import static menu.commands.tasks.generics.alex.objects.FieldsNames.*;
+
 public class WildDog extends Dog {
 
     private String area;
 
     public WildDog(Map<String, String> values) {
-        super(values.get("nickName"));
-        this.area = values.get("area");
+        super(values.get(NICKNAME.getName()));
+        this.area = values.get(AREA.getName());
     }
 
     public String getArea() {
@@ -16,13 +18,18 @@ public class WildDog extends Dog {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (!this.getClass().getName().equals(obj.getClass().getName())) {
+    public boolean equals(Object object) {
+        if (!this.getClass().getName().equals(object.getClass().getName())) {
             return false;
         }
-        WildDog wildDog = (WildDog) obj;
-        return this.getNickName() == wildDog.getNickName() &&
-                this.getArea() == wildDog.getArea();
+        WildDog wildDog = (WildDog) object;
+        String thisNickName = this.getNickName();
+        String objectNickName = wildDog.getNickName();
+        String thisArea = this.getArea();
+        String objectArea = wildDog.getArea();
+
+        return thisNickName == objectNickName &&
+                thisArea == objectArea;
     }
 
     @Override

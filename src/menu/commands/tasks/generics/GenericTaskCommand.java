@@ -2,6 +2,7 @@ package menu.commands.tasks.generics;
 
 import menu.Command;
 import menu.commands.tasks.TaskMenuCommand;
+import menu.commands.tasks.exceptions.OutOfArrayLength;
 import menu.commands.tasks.generics.alex.Cinema;
 import menu.commands.tasks.generics.alex.DogShelter;
 import menu.commands.tasks.generics.alex.Street;
@@ -29,6 +30,7 @@ public class GenericTaskCommand implements Command {
         MenuUtils.printOption("1", "Show Cinema");
         MenuUtils.printOption("2", "Show Dogs");
         MenuUtils.printOption("3", "Show Street");
+        MenuUtils.printOption("4", "Compare Cinema with DogShelter");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -45,6 +47,17 @@ public class GenericTaskCommand implements Command {
                 return this;
             case 3:
                 Street.getInstance().showStreet();
+                return this;
+            case 4:
+                try {
+                    Cinema.getInstance()
+                            .getCinema()
+                            .compare(DogShelter
+                                    .getInstance()
+                                    .getDogShelter());
+                } catch (OutOfArrayLength outOfArrayLength) {
+                    outOfArrayLength.printStackTrace();
+                }
                 return this;
             case 0:
                 return TaskMenuCommand.getInstance();

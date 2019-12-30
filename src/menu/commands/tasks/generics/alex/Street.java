@@ -1,14 +1,12 @@
 package menu.commands.tasks.generics.alex;
 
 import menu.commands.tasks.generics.alex.objects.ObjectGenerator;
-import menu.commands.tasks.generics.alex.objects.dogs.PetDog;
 import menu.commands.tasks.generics.alex.objects.dogs.WildDog;
 import menu.commands.tasks.generics.alex.objects.humans.Pupil;
 import menu.commands.tasks.generics.alex.objects.humans.Worker;
 
 public class Street {
     private AlexGenArrayList street;
-    private ObjectGenerator objectGenerator;
     private static Street instance;
 
     public static synchronized Street getInstance() {
@@ -19,8 +17,10 @@ public class Street {
     }
 
     public Street() {
-        objectGenerator = new ObjectGenerator();
-        street = objectGenerator.generateObjects(4, Worker.class)
+
+        street = ObjectGenerator
+                .newArrayBuilder()
+                .generateObjects(4, Worker.class)
                 .generateObjects(1, Pupil.class)
                 .generateObjects(4, WildDog.class)
                 .build();
@@ -28,6 +28,9 @@ public class Street {
 
     public void showStreet() {
         street.printElements();
+    }
+    public AlexGenArrayList getStreet(){
+        return street;
     }
 
 }

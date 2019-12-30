@@ -2,13 +2,15 @@ package menu.commands.tasks.generics.alex.objects.dogs;
 
 import java.util.Map;
 
+import static menu.commands.tasks.generics.alex.objects.FieldsNames.*;
+
 public class PetDog extends Dog {
 
     private String familyName;
 
     public PetDog(Map<String, String> values) {
-        super(values.get("nickName"));
-        this.familyName = values.get("FamilyName");
+        super(values.get(NICKNAME.getName()));
+        this.familyName = values.get(FAMILY_NAME.getName());
     }
 
     public String getFamilyName() {
@@ -16,13 +18,18 @@ public class PetDog extends Dog {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (!this.getClass().getName().equals(obj.getClass().getName())) {
+    public boolean equals(Object object) {
+        if (!this.getClass().getName().equals(object.getClass().getName())) {
             return false;
         }
-        PetDog petDog = (PetDog) obj;
-        return this.getNickName() == petDog.getNickName() &&
-                this.getFamilyName() == petDog.getFamilyName();
+        PetDog petDog = (PetDog) object;
+        String thisNickName = this.getNickName();
+        String objectNickName = petDog.getNickName();
+        String thisFamilyName = this.getFamilyName();
+        String objectFamilyName = petDog.getFamilyName();
+
+        return thisNickName == objectNickName &&
+                thisFamilyName == objectFamilyName;
     }
 
     @Override
