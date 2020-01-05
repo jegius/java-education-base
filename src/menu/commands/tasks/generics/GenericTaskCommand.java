@@ -17,8 +17,8 @@ public class GenericTaskCommand implements Command {
     public GenericTaskCommand() {
     }
 
-    public static synchronized GenericTaskCommand getInstance(){
-        if(instance == null){
+    public static synchronized GenericTaskCommand getInstance() {
+        if (instance == null) {
             instance = new GenericTaskCommand();
         }
         return instance;
@@ -30,7 +30,7 @@ public class GenericTaskCommand implements Command {
         MenuUtils.printOption("1", "Show Cinema");
         MenuUtils.printOption("2", "Show Dogs");
         MenuUtils.printOption("3", "Show Street");
-        MenuUtils.printOption("4", "Compare Cinema with DogShelter");
+        MenuUtils.printOption("4", "Compare Street with DogShelter");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -38,26 +38,26 @@ public class GenericTaskCommand implements Command {
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
 
-        switch (choice){
+        switch (choice) {
             case 1:
-                Cinema.getInstance().showCinema();
+                Cinema
+                        .getInstance()
+                        .showCinema();
                 return this;
             case 2:
-                DogShelter.getInstance().showDogShelter();
+                DogShelter
+                        .getInstance()
+                        .showDogShelter();
                 return this;
             case 3:
-                Street.getInstance().showStreet();
+                Street
+                        .getInstance()
+                        .showStreet();
                 return this;
             case 4:
-                try {
-                    Cinema.getInstance()
-                            .getCinema()
-                            .compare(DogShelter
-                                    .getInstance()
-                                    .getDogShelter());
-                } catch (OutOfArrayLength outOfArrayLength) {
-                    outOfArrayLength.printStackTrace();
-                }
+                Street
+                        .getInstance()
+                        .compareStreet();
                 return this;
             case 0:
                 return TaskMenuCommand.getInstance();

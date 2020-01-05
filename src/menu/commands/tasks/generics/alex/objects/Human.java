@@ -1,4 +1,4 @@
-package menu.commands.tasks.generics.alex.objects.humans;
+package menu.commands.tasks.generics.alex.objects;
 
 import menu.commands.tasks.generics.alex.objects.Creature;
 
