@@ -1,9 +1,9 @@
 package menu.commands.tasks.generics.alex;
 
 import menu.commands.tasks.generics.alex.objects.ObjectGenerator;
-import menu.commands.tasks.generics.alex.objects.dogs.Dog;
-import menu.commands.tasks.generics.alex.objects.dogs.PetDog;
-import menu.commands.tasks.generics.alex.objects.dogs.WildDog;
+import menu.commands.tasks.generics.alex.objects.Dog;
+import menu.commands.tasks.generics.alex.objects.PetDog;
+import menu.commands.tasks.generics.alex.objects.WildDog;
 
 public class DogShelter {
 
@@ -28,7 +28,8 @@ public class DogShelter {
     }
 
     public void showDogShelter() {
-        dogShelter.printElements();
+        dogShelter
+                .printElements();
     }
     public AlexGenArrayList getDogShelter(){
         return dogShelter;

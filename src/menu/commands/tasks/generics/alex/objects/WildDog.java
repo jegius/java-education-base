@@ -1,4 +1,4 @@
-package menu.commands.tasks.generics.alex.objects.dogs;
+package menu.commands.tasks.generics.alex.objects;
 
 import java.util.Map;
 
@@ -6,11 +6,11 @@ import static menu.commands.tasks.generics.alex.objects.FieldsNames.*;
 
 public class WildDog extends Dog {
 
-    private String area;
+    String area;
 
     public WildDog(Map<String, String> values) {
         super(values.get(NICKNAME.getName()));
-        this.area = values.get(AREA.getName());
+        fillFields(this.getClass(),this,values);
     }
 
     public String getArea() {
@@ -19,7 +19,9 @@ public class WildDog extends Dog {
 
     @Override
     public boolean equals(Object object) {
-        if (!this.getClass().getName().equals(object.getClass().getName())) {
+        String thisClassName = this.getClass().getName();
+        String objectClassName = object.getClass().getName();
+        if (!thisClassName.equals(objectClassName)) {
             return false;
         }
         WildDog wildDog = (WildDog) object;

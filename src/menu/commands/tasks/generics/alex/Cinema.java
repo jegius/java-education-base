@@ -1,9 +1,9 @@
 package menu.commands.tasks.generics.alex;
 
 import menu.commands.tasks.generics.alex.objects.ObjectGenerator;
-import menu.commands.tasks.generics.alex.objects.humans.Human;
-import menu.commands.tasks.generics.alex.objects.humans.Pupil;
-import menu.commands.tasks.generics.alex.objects.humans.Worker;
+import menu.commands.tasks.generics.alex.objects.Human;
+import menu.commands.tasks.generics.alex.objects.Pupil;
+import menu.commands.tasks.generics.alex.objects.Worker;
 
 public class Cinema {
 
@@ -28,7 +28,8 @@ public class Cinema {
     }
 
     public void showCinema() {
-        cinema.printElements();
+        cinema
+                .printElements();
     }
     public AlexGenArrayList getCinema(){
         return cinema;

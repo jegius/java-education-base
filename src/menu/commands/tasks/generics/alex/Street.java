@@ -1,9 +1,10 @@
 package menu.commands.tasks.generics.alex;
 
+import menu.commands.tasks.exceptions.OutOfArrayLength;
 import menu.commands.tasks.generics.alex.objects.ObjectGenerator;
-import menu.commands.tasks.generics.alex.objects.dogs.WildDog;
-import menu.commands.tasks.generics.alex.objects.humans.Pupil;
-import menu.commands.tasks.generics.alex.objects.humans.Worker;
+import menu.commands.tasks.generics.alex.objects.WildDog;
+import menu.commands.tasks.generics.alex.objects.Pupil;
+import menu.commands.tasks.generics.alex.objects.Worker;
 
 public class Street {
     private AlexGenArrayList street;
@@ -27,10 +28,23 @@ public class Street {
     }
 
     public void showStreet() {
-        street.printElements();
+        street
+                .printElements();
     }
     public AlexGenArrayList getStreet(){
         return street;
+    }
+    public boolean compareStreet() {
+        boolean result = false;
+        try {
+            result = street
+                    .compare(DogShelter
+                            .getInstance()
+                            .getDogShelter());
+        } catch (OutOfArrayLength outOfArrayLength) {
+            outOfArrayLength.printStackTrace();
+        }
+        return result;
     }
 
 }

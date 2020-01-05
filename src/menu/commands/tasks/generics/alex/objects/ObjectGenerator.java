@@ -1,6 +1,7 @@
 package menu.commands.tasks.generics.alex.objects;
 
 import menu.commands.tasks.generics.alex.AlexGenArrayList;
+import menu.commands.tasks.generics.alex.objects.Creature;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

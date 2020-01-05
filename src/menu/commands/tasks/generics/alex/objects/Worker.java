@@ -1,4 +1,4 @@
-package menu.commands.tasks.generics.alex.objects.humans;
+package menu.commands.tasks.generics.alex.objects;
 
 import java.util.Map;
 
@@ -6,11 +6,11 @@ import static menu.commands.tasks.generics.alex.objects.FieldsNames.*;
 
 public class Worker extends Human {
 
-    private String job;
+    String job;
 
     public Worker(Map<String, String> values) {
         super(values.get(NAME.getName()));
-        this.job = values.get(JOB.getName());
+        fillFields(this.getClass(), this, values);
     }
 
     public String getJob() {
@@ -19,7 +19,9 @@ public class Worker extends Human {
 
     @Override
     public boolean equals(Object object) {
-        if (!this.getClass().getName().equals(object.getClass().getName())) {
+        String thisClassName = this.getClass().getName();
+        String objectClassName = object.getClass().getName();
+        if (!thisClassName.equals(objectClassName)) {
             return false;
         }
         Worker worker = (Worker) object;
