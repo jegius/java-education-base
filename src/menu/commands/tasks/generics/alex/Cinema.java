@@ -9,8 +9,7 @@ public class Cinema {
 
     private static Cinema instance;
 
-
-    private AlexGenArrayList <Human> cinema;
+    private AlexGenArrayList<Human> cinema;
 
     public static synchronized Cinema getInstance() {
         if (instance == null) {
@@ -21,17 +20,17 @@ public class Cinema {
 
     public Cinema() {
         cinema = ObjectGenerator
-                .<Human> newArrayBuilder()
+                .<Human>newArrayBuilder()
                 .generateObjects(2, Worker.class)
                 .generateObjects(2, Pupil.class)
                 .build();
     }
 
     public void showCinema() {
-        cinema
-                .printElements();
+        cinema.printElements();
     }
-    public AlexGenArrayList getCinema(){
+
+    public AlexGenArrayList getCinema() {
         return cinema;
     }
 }

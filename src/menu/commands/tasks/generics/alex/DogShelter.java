@@ -11,7 +11,6 @@ public class DogShelter {
 
     private AlexGenArrayList<? super Dog> dogShelter;
 
-
     public static synchronized DogShelter getInstance() {
         if (instance == null) {
             instance = new DogShelter();
@@ -21,17 +20,17 @@ public class DogShelter {
 
     public DogShelter() {
         dogShelter = ObjectGenerator
-                .newArrayBuilder()
+                .<Dog>newArrayBuilder()
                 .generateObjects(2, PetDog.class)
                 .generateObjects(2, WildDog.class)
                 .build();
     }
 
     public void showDogShelter() {
-        dogShelter
-                .printElements();
+        dogShelter.printElements();
     }
-    public AlexGenArrayList getDogShelter(){
+
+    public AlexGenArrayList getDogShelter() {
         return dogShelter;
     }
 }
