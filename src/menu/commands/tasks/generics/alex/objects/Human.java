@@ -1,14 +1,8 @@
 package menu.commands.tasks.generics.alex.objects;
 
-import menu.commands.tasks.generics.alex.objects.Creature;
-
 public abstract class Human extends Creature {
 
-    private String name;
-
-    public Human(String name) {
-        this.name = name;
-    }
+    String name;
 
     public String getName() {
         return name;

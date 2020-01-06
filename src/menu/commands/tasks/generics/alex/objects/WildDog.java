@@ -2,15 +2,12 @@ package menu.commands.tasks.generics.alex.objects;
 
 import java.util.Map;
 
-import static menu.commands.tasks.generics.alex.objects.FieldsNames.*;
-
 public class WildDog extends Dog {
 
     String area;
 
     public WildDog(Map<String, String> values) {
-        super(values.get(NICKNAME.getName()));
-        fillFields(this.getClass(),this,values);
+        fillFields(this, values);
     }
 
     public String getArea() {
