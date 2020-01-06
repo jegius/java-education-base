@@ -2,7 +2,6 @@ package menu.commands.tasks.generics;
 
 import menu.Command;
 import menu.commands.tasks.TaskMenuCommand;
-import menu.commands.tasks.exceptions.OutOfArrayLength;
 import menu.commands.tasks.generics.alex.Cinema;
 import menu.commands.tasks.generics.alex.DogShelter;
 import menu.commands.tasks.generics.alex.Street;
