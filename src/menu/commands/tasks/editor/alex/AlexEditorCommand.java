@@ -2,13 +2,20 @@ package menu.commands.tasks.editor.alex;
 
 import menu.Command;
 import menu.MainMenuCommand;
-import menu.commands.tasks.calculator.CalculatorTaskCommand;
-import menu.commands.tasks.objects.ObjectsTaskCommand;
 import menu.utils.MenuUtils;
 
 import java.util.Scanner;
 
 public class AlexEditorCommand implements Command {
+
+    private static AlexEditorCommand instance;
+
+    public static synchronized AlexEditorCommand getInstance() {
+        if (instance == null) {
+            instance = new AlexEditorCommand();
+        }
+        return instance;
+    }
 
     @Override
     public Command execute() {
@@ -26,9 +33,17 @@ public class AlexEditorCommand implements Command {
             case 0:
                 return MainMenuCommand.getInstance();
             case 1:
-                return ObjectsTaskCommand.getInstance();
+                SelectFileService
+                        .getInstance()
+                        .getNewFile()
+                        .execute();
+                return this;
             case 2:
-                return CalculatorTaskCommand.getInstance();
+                SelectFileService
+                        .getInstance()
+                        .getSelectedFile()
+                        .execute();
+                return this;
             default:
                 System.out.println("Unexpected command!");
                 return this;
