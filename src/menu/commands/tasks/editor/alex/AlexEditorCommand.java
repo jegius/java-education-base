@@ -4,6 +4,7 @@ import menu.Command;
 import menu.MainMenuCommand;
 import menu.utils.MenuUtils;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AlexEditorCommand implements Command {
@@ -25,28 +26,30 @@ public class AlexEditorCommand implements Command {
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            int choice = scanner.nextInt();
 
-        Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
-
-        switch (choice) {
-            case 0:
-                return MainMenuCommand.getInstance();
-            case 1:
-                SelectFileService
-                        .getInstance()
-                        .getNewFile()
-                        .execute();
-                return this;
-            case 2:
-                SelectFileService
-                        .getInstance()
-                        .getSelectedFile()
-                        .execute();
-                return this;
-            default:
-                System.out.println("Unexpected command!");
-                return this;
+            switch (choice) {
+                case 0:
+                    return MainMenuCommand.getInstance();
+                case 1:
+                    return SelectFileService
+                            .getInstance()
+                            .getNewFile()
+                            .execute();
+                case 2:
+                    return SelectFileService
+                            .getInstance()
+                            .getSelectedFile()
+                            .execute();
+                default:
+                    System.out.println("Unexpected command!");
+                    return this;
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Only numbers");
         }
+        return this;
     }
 }
