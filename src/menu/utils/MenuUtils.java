@@ -1,6 +1,7 @@
 package menu.utils;
 
-import menu.commands.littletasks.regexp.regexp.Executor;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class MenuUtils {
 
@@ -18,6 +19,17 @@ public class MenuUtils {
     public static void printOption(int command, String name) {
         System.out.println(command + " - " + name);
     }
+    public static int getScannerChoice(){
+        try {
+            Scanner scanner = new Scanner(System.in);
+            int choice = scanner.nextInt();
+            return choice;
+        }catch(InputMismatchException e){
+            System.out.println("Only numbers");
+        }
+        return getScannerChoice();
+    }
+
 
     public static void printExecutors(Enum[] enums) {
         int counter = 0;
