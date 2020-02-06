@@ -32,7 +32,7 @@ public class AlexEditorCommand implements Command {
 
             switch (choice) {
                 case 0:
-                    return MainMenuCommand.getInstance();
+                    return MainMenuCommand.getInstance().execute();
                 case 1:
                     return SelectFileService
                             .getInstance()

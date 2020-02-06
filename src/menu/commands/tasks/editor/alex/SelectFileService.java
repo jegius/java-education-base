@@ -14,7 +14,8 @@ public class SelectFileService {
         return instance;
     }
 
-    public AlexEditor getNewFile() { filePath =  AlexEditorPaths.getInstance().newFile();
+    public AlexEditor getNewFile() {
+        filePath = AlexEditorPaths.getInstance().newFile();
         return new AlexEditor(filePath);
     }
 
@@ -22,5 +23,4 @@ public class SelectFileService {
         filePath = AlexEditorPaths.getInstance().selectFile();
         return new AlexEditor(filePath);
     }
-
 }

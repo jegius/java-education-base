@@ -1,7 +1,6 @@
 package menu.commands.tasks.editor.alex;
 
 import menu.Command;
-import menu.commands.tasks.editor.alex.exceptions.EmptyFileArrayException;
 import menu.utils.MenuUtils;
 
 import java.io.FileNotFoundException;
@@ -10,7 +9,6 @@ import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,25 +16,40 @@ public class AlexEditor {
 
     private Path filePath;
     private List<String> lines;
+    private Scanner scanner;
 
     public AlexEditor(Path filePath) {
         this.filePath = filePath;
+        this.scanner = new Scanner(System.in);
     }
 
     public Command execute() {
         try {
-            if (filePath == null) {
-                throw new EmptyFileArrayException();
-            }
             lines = Files.readAllLines(filePath, Charset.defaultCharset());
             MenuUtils.printSeparator();
             selectChoice();
         } catch (IOException e) {
-            System.out.println("Tobi pizda: tikai s gorodu ");
-        } catch (EmptyFileArrayException e) {
-            System.out.println(e.getMessage());
+            System.out.println("File doesn't exist");
+            createFile(filePath);
         }
         return AlexEditorCommand.getInstance().execute();
+    }
+
+    private void createFile(Path pathName) {
+        try {
+            System.out.println("Would you like to create it?");
+            MenuUtils.printOption(1, "yes");
+            MenuUtils.printOption("other", "no");
+            int choice = MenuUtils.getScannerChoice();
+            if (choice == 1) {
+                filePath = Files.createFile(pathName);
+                execute();
+            } else {
+                AlexEditorCommand.getInstance().execute();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void selectChoice() {
@@ -47,34 +60,32 @@ public class AlexEditor {
         MenuUtils.printOption("3", "Clear File");
         MenuUtils.printOption("4", "Save");
         MenuUtils.printOption("5", "Cancel Editing");
-        Scanner scanner = new Scanner(System.in);
-        try {
-            int choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
-                    addLine();
-                    selectChoice();
-                case 2:
-                    showText();
-                    selectChoice();
-                case 3:
-                    clearFile();
-                    selectChoice();
-                case 4:
-                    saveText();
-                case 5:
-                    AlexEditorCommand.getInstance().execute();
-                default:
-                    System.out.println("Unexpected command!");
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("only numbers");
+        switch (MenuUtils.getScannerChoice()) {
+            case 1:
+                addLine();
+                selectChoice();
+                break;
+            case 2:
+                showText();
+                selectChoice();
+                break;
+            case 3:
+                clearFile();
+                selectChoice();
+                break;
+            case 4:
+                saveText();
+                break;
+            case 5:
+                AlexEditorCommand.getInstance().execute();
+                break;
+            default:
+                System.out.println("Unexpected command!");
         }
     }
 
     private void addLine() {
         System.out.println("Enter text for line " + (lines.size() + 1));
-        Scanner scanner = new Scanner(System.in);
         lines.add(scanner.nextLine());
     }
 
@@ -87,8 +98,7 @@ public class AlexEditor {
         int lineNumber = 1;
         if (lines.size() > 0) {
             for (String line : lines) {
-                System.out.print(lineNumber++ + ": ");
-                System.out.println(line);
+                MenuUtils.printOption(lineNumber++, line);
             }
         } else {
             System.out.println("File is empty");
@@ -96,15 +106,12 @@ public class AlexEditor {
     }
 
     private void saveText() {
-        try {
-            PrintWriter out = new PrintWriter(filePath.toString());
+        try (PrintWriter out = new PrintWriter(filePath.toString())) {
             for (String line : lines) {
                 out.println(line);
             }
-            out.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        AlexEditorPaths.getInstance().addFile(filePath.toString());
     }
 }

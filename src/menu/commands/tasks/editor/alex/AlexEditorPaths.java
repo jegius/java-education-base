@@ -1,14 +1,21 @@
 package menu.commands.tasks.editor.alex;
 
+import menu.commands.tasks.editor.alex.exceptions.EmptyFileArrayException;
+import menu.commands.tasks.editor.alex.exceptions.FileNotFoundException;
+import menu.commands.tasks.editor.alex.exceptions.NoSuchOptionException;
+import menu.utils.MenuUtils;
+
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class AlexEditorPaths {
-    private static final String FILE_VALIDATOR = "\\w+\\.txt";
+    private static final String FILE_VALIDATOR = ".+\\.txt$";
     private List<String> files = new ArrayList();
 
     private static AlexEditorPaths instance;
@@ -34,30 +41,44 @@ public class AlexEditorPaths {
             fileName = scanner.nextLine();
         }
         Path filePath = Paths.get(fileName);
+        addFile(fileName);
         return filePath;
     }
 
     public Path selectFile() {
-        if (files.size() == 0) {
-            return null;
-        } else {
+        try {
+            if (files.size() == 0) {
+                throw new EmptyFileArrayException();
+            }
             int fileNumber = 1;
             System.out.println("Choose file");
             for (String file : files) {
-                System.out.println((fileNumber++) + " : " + file);
+                MenuUtils.printOption(fileNumber++, file);
             }
-            try {
-                Scanner scanner = new Scanner(System.in);
-                int choice = scanner.nextInt();
-                while (choice > files.size() || choice < 1) {
-                    System.out.println("no such option, try again");
-                    choice = scanner.nextInt();
-                }
-                Path filePath = Paths.get(files.get(choice - 1));
-                return filePath;
-            } catch (InputMismatchException e) {
+            int choice = MenuUtils.getScannerChoice();
+            if (choice > files.size() || choice < 0) {
+                throw new NoSuchOptionException();
             }
-            return null;
+            if (files.get(choice - 1) == null) {
+                throw new FileNotFoundException();
+            }
+            Path filePath = Paths.get(files.get(choice - 1));
+            checkPath(filePath, choice - 1);
+            return filePath;
+        } catch (EmptyFileArrayException e) {
+            System.out.println(e.getMessage());
+            return newFile();
+        } catch (FileNotFoundException | NoSuchOptionException e) {
+            System.out.println(e.getMessage());
+            return selectFile();
+        }
+    }
+
+    private void checkPath(Path path, int index) {
+        try {
+            Files.readAllLines(path);
+        } catch (IOException e) {
+            files.remove(index);
         }
     }
 }
