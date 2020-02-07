@@ -1,6 +1,7 @@
 package menu.commands.tasks.editor.alex;
 
 import menu.Command;
+import menu.commands.tasks.editor.alex.exceptions.OutOfLinesAmountException;
 import menu.utils.MenuUtils;
 
 import java.io.FileNotFoundException;
@@ -59,7 +60,8 @@ public class AlexEditor {
         MenuUtils.printOption("2", "Show text");
         MenuUtils.printOption("3", "Clear File");
         MenuUtils.printOption("4", "Save");
-        MenuUtils.printOption("5", "Cancel Editing");
+        MenuUtils.printOption("5", "Edit line");
+        MenuUtils.printOption("6", "Cancel Editing");
         switch (MenuUtils.getScannerChoice()) {
             case 1:
                 addLine();
@@ -77,6 +79,9 @@ public class AlexEditor {
                 saveText();
                 break;
             case 5:
+                editLine();
+                selectChoice();
+            case 6:
                 AlexEditorCommand.getInstance().execute();
                 break;
             default:
@@ -105,13 +110,27 @@ public class AlexEditor {
         }
     }
 
+    private void editLine() {
+        try {
+            System.out.println("enter line number");
+            int lineNumber = MenuUtils.getScannerChoice();
+            if (lineNumber < 0 || lineNumber > lines.size()) {
+                throw new OutOfLinesAmountException();
+            }
+            System.out.println("enter text");
+            lines.set(lineNumber - 1, scanner.nextLine());
+        } catch (OutOfLinesAmountException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     private void saveText() {
         try (PrintWriter out = new PrintWriter(filePath.toString())) {
             for (String line : lines) {
                 out.println(line);
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Mistake while saving, File not found");
         }
     }
 }

@@ -9,14 +9,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class AlexEditorPaths {
+    private static final String DEFAULT_PATH = "/Users/alexperminov/IdeaProjects/java-education-base/out/";
     private static final String FILE_VALIDATOR = ".+\\.txt$";
-    private List<String> files = new ArrayList();
+    private List<Path> files = new ArrayList();
 
     private static AlexEditorPaths instance;
 
@@ -27,7 +27,7 @@ public class AlexEditorPaths {
         return instance;
     }
 
-    public void addFile(String fileName) {
+    public void addFile(Path fileName) {
         if (!files.contains(fileName)) {
             files.add(fileName);
         }
@@ -35,13 +35,19 @@ public class AlexEditorPaths {
 
     public Path newFile() {
         String fileName = "";
+        System.out.println("Enter file name");
+        Scanner scanner = new Scanner(System.in);
+        fileName = scanner.nextLine();
         while (!fileName.matches(FILE_VALIDATOR)) {
-            System.out.println("Enter file name");
-            Scanner scanner = new Scanner(System.in);
+            System.out.println("Only txt files");
+            scanner = new Scanner(System.in);
             fileName = scanner.nextLine();
         }
-        Path filePath = Paths.get(fileName);
-        addFile(fileName);
+        Path filePath = Paths.get( DEFAULT_PATH + fileName);
+        if (fileName.contains("/Users")){
+            filePath = Paths.get(fileName);
+        }
+        addFile(filePath);
         return filePath;
     }
 
@@ -52,8 +58,8 @@ public class AlexEditorPaths {
             }
             int fileNumber = 1;
             System.out.println("Choose file");
-            for (String file : files) {
-                MenuUtils.printOption(fileNumber++, file);
+            for (Path file : files) {
+                MenuUtils.printOption(fileNumber++, file.toString());
             }
             int choice = MenuUtils.getScannerChoice();
             if (choice > files.size() || choice < 0) {
@@ -62,7 +68,7 @@ public class AlexEditorPaths {
             if (files.get(choice - 1) == null) {
                 throw new FileNotFoundException();
             }
-            Path filePath = Paths.get(files.get(choice - 1));
+            Path filePath = files.get(choice - 1);
             checkPath(filePath, choice - 1);
             return filePath;
         } catch (EmptyFileArrayException e) {
