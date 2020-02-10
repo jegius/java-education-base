@@ -15,6 +15,7 @@ import java.util.Scanner;
 
 public class AlexEditorPaths {
     private static final String DEFAULT_PATH = "/Users/alexperminov/IdeaProjects/java-education-base/out/";
+    private static final String INITIAL_ROOT = "/Users";
     private static final String FILE_VALIDATOR = ".+\\.txt$";
     private List<Path> files = new ArrayList();
 
@@ -43,8 +44,8 @@ public class AlexEditorPaths {
             scanner = new Scanner(System.in);
             fileName = scanner.nextLine();
         }
-        Path filePath = Paths.get( DEFAULT_PATH + fileName);
-        if (fileName.contains("/Users")){
+        Path filePath = Paths.get(DEFAULT_PATH + fileName);
+        if (fileName.contains(INITIAL_ROOT)) {
             filePath = Paths.get(fileName);
         }
         addFile(filePath);
