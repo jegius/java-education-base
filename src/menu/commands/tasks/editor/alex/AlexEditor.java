@@ -81,6 +81,7 @@ public class AlexEditor {
             case 5:
                 editLine();
                 selectChoice();
+                break;
             case 6:
                 AlexEditorCommand.getInstance().execute();
                 break;
