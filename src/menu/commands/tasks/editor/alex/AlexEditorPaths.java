@@ -6,6 +6,7 @@ import menu.commands.tasks.editor.alex.exceptions.NoSuchOptionException;
 import menu.utils.MenuUtils;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,11 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class AlexEditorPaths {
+public class AlexEditorPaths implements Serializable {
     private static final String DEFAULT_PATH = "/Users/alexperminov/IdeaProjects/java-education-base/out/";
     private static final String INITIAL_ROOT = "/Users";
     private static final String FILE_VALIDATOR = ".+\\.txt$";
-    private List<Path> files = new ArrayList();
+    private  List<Path> files = SerializationFactory
+            .getInstance()
+            .selectSerializer(1)
+            .getSerializer()
+            .load();
 
     private static AlexEditorPaths instance;
 
@@ -32,6 +37,7 @@ public class AlexEditorPaths {
         if (!files.contains(fileName)) {
             files.add(fileName);
         }
+        SerializationFactory.getInstance().selectSerializer(1).getSerializer().save(files);
     }
 
     public Path newFile() {
