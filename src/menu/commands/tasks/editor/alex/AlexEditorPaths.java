@@ -3,6 +3,7 @@ package menu.commands.tasks.editor.alex;
 import menu.commands.tasks.editor.alex.exceptions.EmptyFileArrayException;
 import menu.commands.tasks.editor.alex.exceptions.FileNotFoundException;
 import menu.commands.tasks.editor.alex.exceptions.NoSuchOptionException;
+import menu.commands.tasks.editor.alex.exceptions.SerializerException;
 import menu.utils.MenuUtils;
 
 import java.io.IOException;
@@ -14,17 +15,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static menu.commands.tasks.editor.alex.SerializationKinds.JAVA;
+
 public class AlexEditorPaths implements Serializable {
-    private static final String DEFAULT_PATH = "/Users/alexperminov/IdeaProjects/java-education-base/out/";
+    private static final String DEFAULT_PATH = "./out/";
     private static final String INITIAL_ROOT = "/Users";
     private static final String FILE_VALIDATOR = ".+\\.txt$";
-    private  List<Path> files = SerializationFactory
-            .getInstance()
-            .selectSerializer(1)
-            .getSerializer()
-            .load();
+    private List<String> files = loadFiles();
 
     private static AlexEditorPaths instance;
+
+    private List<String> loadFiles() {
+        try {
+            return SerializationFactory
+                    .getInstance()
+                    .getSerializer(JAVA.getKind())
+                    .load();
+        } catch (SerializerException e) {
+            e.getMessage();
+            return new ArrayList<>();
+        }
+    }
+
+    private void saveFiles(List<String> providedFiles) {
+        try {
+            SerializationFactory.getInstance().getSerializer(JAVA.getKind()).save(providedFiles);
+        } catch (SerializerException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static synchronized AlexEditorPaths getInstance() {
         if (instance == null) {
@@ -33,11 +52,11 @@ public class AlexEditorPaths implements Serializable {
         return instance;
     }
 
-    public void addFile(Path fileName) {
+    public void addFile(String fileName) {
         if (!files.contains(fileName)) {
             files.add(fileName);
         }
-        SerializationFactory.getInstance().selectSerializer(1).getSerializer().save(files);
+        saveFiles(files);
     }
 
     public Path newFile() {
@@ -54,7 +73,7 @@ public class AlexEditorPaths implements Serializable {
         if (fileName.contains(INITIAL_ROOT)) {
             filePath = Paths.get(fileName);
         }
-        addFile(filePath);
+        addFile(filePath.toString());
         return filePath;
     }
 
@@ -65,17 +84,17 @@ public class AlexEditorPaths implements Serializable {
             }
             int fileNumber = 1;
             System.out.println("Choose file");
-            for (Path file : files) {
-                MenuUtils.printOption(fileNumber++, file.toString());
+            for (String file : files) {
+                MenuUtils.printOption(fileNumber++, file);
             }
             int choice = MenuUtils.getScannerChoice();
-            if (choice > files.size() || choice < 0) {
+            if (choice > files.size() || choice <= 0) {
                 throw new NoSuchOptionException();
             }
             if (files.get(choice - 1) == null) {
                 throw new FileNotFoundException();
             }
-            Path filePath = files.get(choice - 1);
+            Path filePath = Paths.get(files.get(choice - 1));
             checkPath(filePath, choice - 1);
             return filePath;
         } catch (EmptyFileArrayException e) {
