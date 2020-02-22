@@ -1,23 +1,23 @@
 package menu.commands.tasks.editor.alex;
 
+import menu.commands.tasks.editor.alex.exceptions.SerializerException;
+
 public class SerializationFactory {
     private static SerializationFactory instance;
-    private Serializer serializer;
-    public static synchronized SerializationFactory getInstance(){
-        if(instance == null){
+
+    public static synchronized SerializationFactory getInstance() {
+        if (instance == null) {
             instance = new SerializationFactory();
         }
         return instance;
     }
 
-    public SerializationFactory selectSerializer(int choice){
-        switch(choice){
-            case 1: serializer = new JavaSerializationService();
+    public Serializer getSerializer(String kind) throws SerializerException {
+        switch (kind) {
+            case "java":
+                return new JavaSerializationService();
+            default:
+                throw new SerializerException();
         }
-        return this;
-    }
-
-    public Serializer getSerializer(){
-        return serializer;
     }
 }

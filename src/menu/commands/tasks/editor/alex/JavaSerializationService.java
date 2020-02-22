@@ -1,15 +1,14 @@
 package menu.commands.tasks.editor.alex;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.util.ArrayList;
+import java.nio.file.Files;
 import java.util.List;
 
 public class JavaSerializationService implements Serializer {
-    File filesOutput = new File("/Users/alexperminov/IdeaProjects/java-education-base/out/files.data");
+    File filesOutput = new File("./out/files.data");
 
     @Override
-    public void save(List<Path> files) {
+    public void save(List<String> files) {
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filesOutput))) {
             objectOutputStream.writeObject(files);
         } catch (IOException e) {
@@ -19,18 +18,23 @@ public class JavaSerializationService implements Serializer {
     }
 
     @Override
-    public List<Path> load() {
-        List<Path> files = null;
+    public List<String> load() {
+       if(!filesOutput.exists()){
+           try {
+               Files.createFile(filesOutput.toPath());
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
+       }
+        List<String> files = null;
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filesOutput))) {
-            files = (List<Path>) objectInputStream.readObject();
+            files = (List<String>) objectInputStream.readObject();
+        } catch (EOFException e){
+            System.out.println("U use this program for the first time");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             System.out.println("Can't do serialization (read)");
         }
-        if (files != null) {
             return files;
-        } else {
-            return new ArrayList<>();
-        }
     }
 }
