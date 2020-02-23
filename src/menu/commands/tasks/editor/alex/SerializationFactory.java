@@ -12,9 +12,9 @@ public class SerializationFactory {
         return instance;
     }
 
-    public Serializer getSerializer(String kind) throws SerializerException {
+    public Serializer getSerializer(SerializationKind kind) throws SerializerException {
         switch (kind) {
-            case "java":
+            case JAVA:
                 return new JavaSerializationService();
             default:
                 throw new SerializerException();
