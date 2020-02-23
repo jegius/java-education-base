@@ -27,7 +27,7 @@ public class MenuUtils {
             int choice = scanner.nextInt();
             return choice;
         } catch (InputMismatchException e) {
-            System.out.println("Only numbers");
+            System.out.println("Type only numbers");
         }
         return getScannerChoice();
     }
