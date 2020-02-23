@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static menu.commands.tasks.editor.alex.SerializationKinds.JAVA;
+import static menu.commands.tasks.editor.alex.SerializationKind.JAVA;
 
 public class AlexEditorPaths implements Serializable {
     private static final String DEFAULT_PATH = "./out/";
@@ -27,10 +27,15 @@ public class AlexEditorPaths implements Serializable {
 
     private List<String> loadFiles() {
         try {
-            return SerializationFactory
+            List<String> files = SerializationFactory
                     .getInstance()
-                    .getSerializer(JAVA.getKind())
+                    .getSerializer(JAVA)
                     .load();
+            if (files == null) {
+                return new ArrayList<>();
+            } else {
+                return files;
+            }
         } catch (SerializerException e) {
             e.getMessage();
             return new ArrayList<>();
@@ -39,7 +44,7 @@ public class AlexEditorPaths implements Serializable {
 
     private void saveFiles(List<String> providedFiles) {
         try {
-            SerializationFactory.getInstance().getSerializer(JAVA.getKind()).save(providedFiles);
+            SerializationFactory.getInstance().getSerializer(JAVA).save(providedFiles);
         } catch (SerializerException e) {
             e.printStackTrace();
         }
@@ -53,10 +58,13 @@ public class AlexEditorPaths implements Serializable {
     }
 
     public void addFile(String fileName) {
+        if (files == null) {
+            files = loadFiles();
+        }
         if (!files.contains(fileName)) {
             files.add(fileName);
+            saveFiles(files);
         }
-        saveFiles(files);
     }
 
     public Path newFile() {

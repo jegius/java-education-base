@@ -1,10 +1,10 @@
 package menu.commands.tasks.editor.alex;
 
-public enum SerializationKinds {
+public enum SerializationKind {
     JAVA("java");
     private String kind;
 
-    SerializationKinds(String kind) {
+    SerializationKind(String kind) {
         this.kind = kind;
     }
 
