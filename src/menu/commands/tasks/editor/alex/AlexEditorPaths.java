@@ -44,7 +44,10 @@ public class AlexEditorPaths implements Serializable {
 
     private void saveFiles(List<String> providedFiles) {
         try {
-            SerializationFactory.getInstance().getSerializer(JAVA).save(providedFiles);
+            SerializationFactory
+                    .getInstance()
+                    .getSerializer(JAVA)
+                    .save(providedFiles);
         } catch (SerializerException e) {
             e.printStackTrace();
         }
