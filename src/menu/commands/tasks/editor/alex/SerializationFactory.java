@@ -16,6 +16,8 @@ public class SerializationFactory {
         switch (kind) {
             case JAVA:
                 return new JavaSerializationService();
+            case XML:
+                return new XmlSerializationService();
             default:
                 throw new SerializerException();
         }
