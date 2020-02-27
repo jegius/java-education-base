@@ -25,6 +25,16 @@ public class AlexEditorPaths implements Serializable {
 
     private static AlexEditorPaths instance;
 
+    private AlexEditorPaths() {
+    }
+
+    public static synchronized AlexEditorPaths getInstance() {
+        if (instance == null) {
+            instance = new AlexEditorPaths();
+        }
+        return instance;
+    }
+
     private List<String> loadFiles() {
         try {
             List<String> files = SerializationFactory
@@ -53,12 +63,6 @@ public class AlexEditorPaths implements Serializable {
         }
     }
 
-    public static synchronized AlexEditorPaths getInstance() {
-        if (instance == null) {
-            instance = new AlexEditorPaths();
-        }
-        return instance;
-    }
 
     public void addFile(String fileName) {
         if (files == null) {

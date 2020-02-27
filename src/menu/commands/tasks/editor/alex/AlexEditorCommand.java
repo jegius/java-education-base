@@ -8,6 +8,9 @@ public class AlexEditorCommand implements Command {
 
     private static AlexEditorCommand instance;
 
+    private AlexEditorCommand() {
+    }
+
     public static synchronized AlexEditorCommand getInstance() {
         if (instance == null) {
             instance = new AlexEditorCommand();
