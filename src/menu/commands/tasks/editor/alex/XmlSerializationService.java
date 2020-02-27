@@ -41,11 +41,7 @@ public class XmlSerializationService implements Serializer {
             DOMSource domSource = new DOMSource(document);
             StreamResult streamResult = new StreamResult(file);
             transformer.transform(domSource, streamResult);
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
+        } catch (ParserConfigurationException | TransformerException e) {
             e.printStackTrace();
         }
     }
@@ -64,11 +60,7 @@ public class XmlSerializationService implements Serializer {
             } else {
                 return null;
             }
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
         return files;
