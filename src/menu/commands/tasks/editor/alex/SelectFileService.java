@@ -5,6 +5,9 @@ import java.nio.file.Path;
 public class SelectFileService {
     private static SelectFileService instance;
 
+    private SelectFileService() {
+    }
+
     private Path filePath;
 
     public static synchronized SelectFileService getInstance() {
