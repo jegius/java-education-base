@@ -9,6 +9,7 @@ import menu.utils.MenuUtils;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import static menu.commands.tasks.editor.alex.SerializationKind.XML;
 
 public class AlexEditorPaths implements Serializable {
     private static final String DEFAULT_PATH = "./out/";
-    private static final String INITIAL_ROOT = "/Users";
+    private static final String INITIAL_ROOT = ".+/+.+\\.txt$";
     private static final String FILE_VALIDATOR = ".+\\.txt$";
     private List<String> files = loadFiles();
 
@@ -63,7 +64,6 @@ public class AlexEditorPaths implements Serializable {
         }
     }
 
-
     public void addFile(String fileName) {
         if (files == null) {
             files = loadFiles();
@@ -85,9 +85,10 @@ public class AlexEditorPaths implements Serializable {
             fileName = scanner.nextLine();
         }
         Path filePath = Paths.get(DEFAULT_PATH + fileName);
-        if (fileName.contains(INITIAL_ROOT)) {
+        if (fileName.matches(INITIAL_ROOT)) {
             filePath = Paths.get(fileName);
         }
+        createPath(filePath);
         addFile(filePath.toString());
         return filePath;
     }
@@ -128,4 +129,23 @@ public class AlexEditorPaths implements Serializable {
             files.remove(index);
         }
     }
+
+    private void createPath(Path pathName){
+        if(!Files.exists(pathName)) {
+            try {
+                System.out.println("Would you like to create it?");
+                MenuUtils.printOption(1, "yes");
+                MenuUtils.printOption("other", "no");
+                int choice = MenuUtils.getScannerChoice();
+                if (choice == 1) {
+                    Files.createFile(pathName);
+                } else {
+                    AlexEditorCommand.getInstance().execute();
+                }
+            } catch (IOException e) {
+                System.out.println("wrong path");
+            }
+        }
+    }
+
 }
