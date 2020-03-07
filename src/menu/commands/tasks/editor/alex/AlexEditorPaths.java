@@ -9,7 +9,6 @@ import menu.utils.MenuUtils;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import static menu.commands.tasks.editor.alex.SerializationKind.XML;
 
 public class AlexEditorPaths implements Serializable {
     private static final String DEFAULT_PATH = "./out/";
-    private static final String INITIAL_ROOT = ".+/+.+\\.txt$";
+    private static final String NO_ROOT = "^\\w+\\.txt$";
     private static final String FILE_VALIDATOR = ".+\\.txt$";
     private List<String> files = loadFiles();
 
@@ -84,10 +83,9 @@ public class AlexEditorPaths implements Serializable {
             scanner = new Scanner(System.in);
             fileName = scanner.nextLine();
         }
-        Path filePath = Paths.get(DEFAULT_PATH + fileName);
-        if (fileName.matches(INITIAL_ROOT)) {
-            filePath = Paths.get(fileName);
-        }
+        Path filePath = fileName.matches(NO_ROOT)?
+                Paths.get(DEFAULT_PATH + fileName) :
+                Paths.get(fileName);
         createPath(filePath);
         addFile(filePath.toString());
         return filePath;
@@ -147,5 +145,4 @@ public class AlexEditorPaths implements Serializable {
             }
         }
     }
-
 }
