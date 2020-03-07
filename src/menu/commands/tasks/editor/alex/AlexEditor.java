@@ -31,27 +31,10 @@ public class AlexEditor {
             selectChoice();
         } catch (IOException e) {
             System.out.println("File doesn't exist");
-            createFile(filePath);
         }
         return AlexEditorCommand.getInstance().execute();
     }
 
-    private void createFile(Path pathName) {
-        try {
-            System.out.println("Would you like to create it?");
-            MenuUtils.printOption(1, "yes");
-            MenuUtils.printOption("other", "no");
-            int choice = MenuUtils.getScannerChoice();
-            if (choice == 1) {
-                filePath = Files.createFile(pathName);
-                execute();
-            } else {
-                AlexEditorCommand.getInstance().execute();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private void selectChoice() {
         System.out.println("Lines in the " + filePath.toString() + ": " + lines.size());
