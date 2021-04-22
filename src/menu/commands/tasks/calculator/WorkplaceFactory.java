@@ -1,5 +1,6 @@
 package menu.commands.tasks.calculator;
 
+import menu.commands.tasks.calculator.Dimitii.WorkspaceDmitrii;
 import menu.commands.tasks.calculator.alex.AlexWorkPlace;
 import menu.commands.tasks.calculator.ivan.IvanWorkplace;
 import menu.commands.tasks.calculator.max.MaxWorkplace;
@@ -28,6 +29,9 @@ public class WorkplaceFactory {
 
             case MAX:
                 return new MaxWorkplace();
+
+            case DMITRII:
+                return new WorkspaceDmitrii();
 
             default:
                 return null;
