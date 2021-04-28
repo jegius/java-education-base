@@ -12,7 +12,8 @@ public class ObjectsTaskCommand implements Command {
 
     private static ObjectsTaskCommand instance;
 
-    private ObjectsTaskCommand() {}
+    private ObjectsTaskCommand() {
+    }
 
     public static synchronized ObjectsTaskCommand getInstance() {
         if (instance == null) {
@@ -28,6 +29,7 @@ public class ObjectsTaskCommand implements Command {
         MenuUtils.printOption("2", "Run Factory Example");
         MenuUtils.printOption("3", "Run School Example");
         MenuUtils.printOption("4", "Run Pub Example");
+        MenuUtils.printOption("5", "Run Stu Example");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -60,6 +62,12 @@ public class ObjectsTaskCommand implements Command {
                 ExerciseObjectFactory
                         .getInstance()
                         .createOrganization(Exercise.PUB)
+                        .start();
+                return this;
+            case 5:
+                ExerciseObjectFactory
+                        .getInstance()
+                        .createOrganization(Exercise.STU)
                         .start();
                 return this;
             default:

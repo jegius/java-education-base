@@ -4,6 +4,7 @@ import menu.commands.tasks.objects.exercises.dns.Dns;
 import menu.commands.tasks.objects.exercises.factory.Factory;
 import menu.commands.tasks.objects.exercises.pub.Pub;
 import menu.commands.tasks.objects.exercises.school.School;
+import menu.commands.tasks.objects.exercises.stu.Stu;
 
 public class ExerciseObjectFactory {
     private static ExerciseObjectFactory instance;
@@ -28,9 +29,11 @@ public class ExerciseObjectFactory {
                 return new School();
             case PUB:
                 return new Pub();
-                default:
-                    System.out.println("Unexpected Exercise!");
-                    return null;
+            case STU:
+                return new Stu();
+            default:
+                System.out.println("Unexpected Exercise!");
+                return null;
         }
     }
 }
