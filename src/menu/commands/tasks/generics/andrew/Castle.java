@@ -5,7 +5,7 @@ import menu.commands.tasks.generics.andrew.creatures.Minion;
 import menu.commands.tasks.generics.andrew.generator.GenerateMinions;
 import menu.commands.tasks.generics.andrew.generator.MinionStringEnum;
 
-public class Castle implements SidesActions {
+public class Castle {
     private static Castle instance;
     private static ArrayListGeneric<Minion> troopers;
 
@@ -24,6 +24,9 @@ public class Castle implements SidesActions {
     }
 
     public ArrayListGeneric<Minion> inToBattleField() {
+        if (troopers == null) {
+            return new ArrayListGeneric<>();
+        }
         return troopers;
     }
 }

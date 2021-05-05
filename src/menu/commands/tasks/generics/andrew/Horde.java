@@ -24,6 +24,9 @@ public class Horde implements SidesActions {
 
     @Override
     public ArrayListGeneric<Minion> inToBattleField() {
+        if (grunts == null) {
+            return new ArrayListGeneric<>();
+        }
         return grunts;
     }
 }

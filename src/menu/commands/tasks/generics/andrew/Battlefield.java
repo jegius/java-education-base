@@ -10,6 +10,8 @@ public class Battlefield {
     public static synchronized Battlefield getInstance() {
         if (instance == null) {
             instance = new Battlefield();
+//            lightSide = new ArrayListGeneric<>();
+//            darkSide = new ArrayListGeneric<>();
         }
         return instance;
     }
@@ -18,30 +20,22 @@ public class Battlefield {
         ArrayListGeneric<Minion> lightSide = Castle.getInstance().inToBattleField();
         ArrayListGeneric<Minion> darkSide = Horde.getInstance().inToBattleField();
 
-        if (lightSide != null && lightSide.size() == 0) {
-            lightSide = null;
-        }
-
-        if (darkSide != null && darkSide.size() == 0) {
-            darkSide = null;
-        }
-
-        if (lightSide == null && darkSide != null) {
+        if (lightSide.size() == 0 && darkSide.size() != 0) {
             System.out.println("Castle is ruins!!!");
             System.out.println("Orcs leaves:");
             MinionUtils.minionsInfo(darkSide);
             System.out.println("Dark side WON!!!");
         }
-        if (lightSide != null && darkSide == null) {
+        if (lightSide.size() != 0 && darkSide.size() == 0) {
             System.out.println("Horde, no more horde!!!");
             System.out.println("Troopers leaves:");
             MinionUtils.minionsInfo(lightSide);
             System.out.println("Light side WON!!!");
         }
-        if (lightSide == null && darkSide == null) {
+        if (lightSide.size() == 0 && darkSide.size() == 0) {
             System.out.println("Battlefield is empty");
         }
-        if (lightSide != null && darkSide != null) {
+        if (lightSide.size() != 0 && darkSide.size() != 0) {
             beginFight(lightSide, darkSide);
         }
     }
