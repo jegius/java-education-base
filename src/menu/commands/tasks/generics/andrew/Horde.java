@@ -2,6 +2,7 @@ package menu.commands.tasks.generics.andrew;
 
 import menu.commands.tasks.generics.andrew.creatures.Minion;
 import menu.commands.tasks.generics.andrew.generator.GenerateMinions;
+import menu.commands.tasks.generics.andrew.generator.MinionStringEnum;
 
 public class Horde implements SidesActions {
 
@@ -17,7 +18,7 @@ public class Horde implements SidesActions {
 
     public void showHorde() {
         GenerateMinions darkMinions = new GenerateMinions();
-        grunts = darkMinions.createMinions("Dark", 4);
+        grunts = darkMinions.createMinions(MinionStringEnum.DARK_SIDE.getLine(), 4);
         MinionUtils.minionsInfo(grunts);
     }
 
