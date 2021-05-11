@@ -2,6 +2,7 @@ package menu.commands.tasks.generics.andrew;
 
 import menu.commands.tasks.generics.andrew.creatures.Minion;
 import menu.commands.tasks.generics.andrew.generator.AttackGenerator;
+import menu.commands.tasks.generics.andrew.generator.MinionUtils;
 
 public class Battlefield {
 
@@ -10,8 +11,6 @@ public class Battlefield {
     public static synchronized Battlefield getInstance() {
         if (instance == null) {
             instance = new Battlefield();
-//            lightSide = new ArrayListGeneric<>();
-//            darkSide = new ArrayListGeneric<>();
         }
         return instance;
     }
