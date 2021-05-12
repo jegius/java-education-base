@@ -3,6 +3,8 @@ package menu.commands.tasks.generics.andrew.generator;
 import menu.commands.tasks.generics.andrew.ArrayListGeneric;
 import menu.commands.tasks.generics.andrew.creatures.Minion;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class MinionUtils {
@@ -34,5 +36,15 @@ public class MinionUtils {
     public static int generatePower() {
         return new Random().nextInt(MinionIntEnum.MAX_POWER.getValue() + 1 -
                 MinionIntEnum.MIN_POWER.getValue()) + MinionIntEnum.MIN_POWER.getValue();
+    }
+
+    public static Map<String, String> generateMinionMap(String side) {
+        Map<String, String> minionMap = new HashMap<>();
+        minionMap.put(MinionStringEnum.SIDE.getLine(), side);
+        minionMap.put(MinionStringEnum.NAME.getLine(), generateName(side));
+        minionMap.put(MinionStringEnum.AGE.getLine(), String.valueOf(generateAge()));
+        minionMap.put(MinionStringEnum.POWER.getLine(), String.valueOf(generatePower()));
+        minionMap.put(MinionStringEnum.HP.getLine(), String.valueOf(MinionIntEnum.MINION_HP.getValue()));
+        return minionMap;
     }
 }

@@ -1,5 +1,6 @@
 package menu.commands.tasks.generics.andrew.generator;
 
+import menu.commands.tasks.generics.andrew.ArrayListGeneric;
 import menu.commands.tasks.generics.andrew.creatures.Minion;
 
 import java.lang.reflect.Constructor;
@@ -7,34 +8,29 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MinionArrayBuilder {
 
-    public static void generateObject(Class<? extends Minion> classToCreate) {
-        List<String> allFields = getClassFields(classToCreate);
-//        for (String field : allFields) {
-//            System.out.println(field);
-//        }
-        try {
-            Constructor<?> providedConstructor = classToCreate.getDeclaredConstructor(
-                    String.class,
-                    String.class,
-                    int.class,
-                    int.class,
-                    int.class);
-            providedConstructor.setAccessible(true);
-            Object test = providedConstructor.newInstance("Light",
-                    MinionUtils.generateName("Light"),
-                    MinionUtils.generateAge(),
-                    MinionUtils.generatePower(),
-                    MinionIntEnum.MINION_HP.getValue());
-            System.out.println(test);
-        } catch (NoSuchMethodException |
-                InstantiationException |
-                IllegalAccessException |
-                InvocationTargetException e) {
-            e.printStackTrace();
+    public static ArrayListGeneric<Minion> generateObject(Class<? extends Minion> classToCreate, String side, int amount) {
+        ArrayListGeneric<Minion> minions = new ArrayListGeneric<>();
+//        List<String> allFields = getClassFields(classToCreate);
+        for (int i = 0; i < amount; i++) {
+            try {
+                Map<String, String> minionMap = MinionUtils.generateMinionMap(side);
+                Constructor<?> providedConstructor = classToCreate.getDeclaredConstructor(Map.class);
+                providedConstructor.setAccessible(true);
+                Object generateObject = providedConstructor.newInstance(minionMap);
+                minions.add((Minion) generateObject);
+            } catch (NoSuchMethodException |
+                    InstantiationException |
+                    IllegalAccessException |
+                    InvocationTargetException e) {
+                e.printStackTrace();
+                return null;
+            }
         }
+        return minions;
     }
 
     private static List<String> getClassFields(Class<?> providedClass) {
@@ -49,7 +45,8 @@ public class MinionArrayBuilder {
         return allFields;
     }
 
-    private static void fillClassFields(List<String> fields) {
+    private static void fillClassFields(List<String> fields, String side) {
+        Map<String, String> minionMap = MinionUtils.generateMinionMap(side);
 
     }
 }

@@ -1,8 +1,13 @@
 package menu.commands.tasks.generics.andrew.generator;
 
 public enum MinionStringEnum {
-    LIGHT_SIDE("Light"),
-    DARK_SIDE("Dark");
+    LIGHT_SIDE("light"),
+    DARK_SIDE("dark"),
+    SIDE("side"),
+    NAME("name"),
+    AGE("age"),
+    POWER("power"),
+    HP("hp");
 
     private final String line;
 

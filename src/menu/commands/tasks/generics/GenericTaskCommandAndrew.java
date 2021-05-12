@@ -7,6 +7,8 @@ import menu.commands.tasks.generics.andrew.Castle;
 import menu.commands.tasks.generics.andrew.Horde;
 import menu.commands.tasks.generics.andrew.creatures.Human;
 import menu.commands.tasks.generics.andrew.generator.MinionArrayBuilder;
+import menu.commands.tasks.generics.andrew.generator.MinionStringEnum;
+import menu.commands.tasks.generics.andrew.generator.MinionUtils;
 import menu.utils.MenuUtils;
 
 import java.util.Scanner;
@@ -47,7 +49,7 @@ public class GenericTaskCommandAndrew implements Command {
                 Battlefield.getInstance().showBattlefield();
                 return this;
             case 4:
-                MinionArrayBuilder.generateObject(Human.class);
+                MinionUtils.minionsInfo(MinionArrayBuilder.generateObject(Human.class, MinionStringEnum.LIGHT_SIDE.getLine(), 4));
                 return this;
             case 0:
                 return TaskMenuCommand.getInstance();
