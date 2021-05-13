@@ -7,6 +7,7 @@ import java.util.Map;
 public abstract class Minion {
     String side;
     String name;
+    String objectName;
     int age;
     int power;
     int hp;
@@ -26,7 +27,9 @@ public abstract class Minion {
         this.hp = Integer.parseInt(minionMap.get(MinionStringEnum.HP.getLine()));
     }
 
-    public abstract String info();
+    public String info(){
+        return objectName + " " + this.name + "(" + this.hp + ")" + ", " + this.age + " years old, prepare to attack on " + this.power;
+    }
 
 
     public String getSide() {
