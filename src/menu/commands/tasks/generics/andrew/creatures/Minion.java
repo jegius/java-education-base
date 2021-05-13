@@ -11,8 +11,7 @@ public abstract class Minion {
     int power;
     int hp;
 
-    public Minion(String side, String name, int age, int power, int hp) {
-        this.side = side;
+    public Minion(String name, int age, int power, int hp) {
         this.name = name;
         this.age = age;
         this.power = power;

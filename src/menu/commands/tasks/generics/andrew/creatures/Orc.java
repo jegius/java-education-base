@@ -1,11 +1,14 @@
 package menu.commands.tasks.generics.andrew.creatures;
 
+import menu.commands.tasks.generics.andrew.generator.MinionStringEnum;
+
 import java.util.Map;
 
 public class Orc extends Minion {
 
-    public Orc(String side, String name, int age, int power, int hp) {
-        super(side, name, age, power, hp);
+    public Orc(String name, int age, int power, int hp) {
+        super(name, age, power, hp);
+        this.side = MinionStringEnum.DARK_SIDE.getLine();
     }
 
     public Orc(Map<String, String> minionMap) {

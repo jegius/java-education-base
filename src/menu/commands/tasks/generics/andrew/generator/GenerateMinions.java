@@ -12,7 +12,7 @@ public class GenerateMinions {
         ArrayListGeneric<Minion> arrayListGeneric = new ArrayListGeneric<>();
         if (side.equals(MinionStringEnum.LIGHT_SIDE.getLine())) {
             for (int i = 0; i < quantity; i++) {
-                minions = new Human(side,
+                minions = new Human(
                         MinionUtils.generateName(side),
                         MinionUtils.generateAge(),
                         MinionUtils.generatePower(),
@@ -22,7 +22,7 @@ public class GenerateMinions {
         }
         if (side.equals(MinionStringEnum.DARK_SIDE.getLine())) {
             for (int i = 0; i < quantity; i++) {
-                minions = new Orc(side,
+                minions = new Orc(
                         MinionUtils.generateName(side),
                         MinionUtils.generateAge(),
                         MinionUtils.generatePower(),
@@ -32,6 +32,4 @@ public class GenerateMinions {
         }
         return arrayListGeneric;
     }
-
-
 }
