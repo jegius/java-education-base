@@ -40,10 +40,10 @@ public class GenericTaskCommandAndrew implements Command {
 
         switch (choice) {
             case 1:
-                Castle.getInstance().showCastle();
+                Castle.getInstance().showBattleSide();
                 return this;
             case 2:
-                Horde.getInstance().showHorde();
+                Horde.getInstance().showBattleSide();
                 return this;
             case 3:
                 Battlefield.getInstance().showBattlefield();

@@ -5,7 +5,8 @@ public enum MinionIntEnum {
     MAX_AGE(50),
     MIN_POWER(15),
     MAX_POWER(150),
-    MINION_HP(100);
+    MINION_HP(100),
+    MINION_AMOUNT(4);
     private final int value;
 
     MinionIntEnum(int value) {

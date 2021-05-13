@@ -1,34 +1,21 @@
 package menu.commands.tasks.generics.andrew;
 
-
-import menu.commands.tasks.generics.andrew.creatures.Minion;
-import menu.commands.tasks.generics.andrew.generator.GenerateMinions;
+import menu.commands.tasks.generics.andrew.generator.MinionIntEnum;
 import menu.commands.tasks.generics.andrew.generator.MinionStringEnum;
-import menu.commands.tasks.generics.andrew.generator.MinionUtils;
 
-public class Castle implements SidesActions {
+public class Castle extends BattleSide {
+
     private static Castle instance;
-    private static ArrayListGeneric<Minion> troopers;
+
+    public Castle() {
+        this.side = MinionStringEnum.LIGHT_SIDE.getLine();
+        this.amount = MinionIntEnum.MINION_AMOUNT.getValue();
+    }
 
     public static synchronized Castle getInstance() {
         if (instance == null) {
             instance = new Castle();
         }
         return instance;
-    }
-
-
-    public void showCastle() {
-        GenerateMinions lightMinions = new GenerateMinions();
-        troopers = lightMinions.createMinions(MinionStringEnum.LIGHT_SIDE.getLine(), 4);
-        MinionUtils.minionsInfo(troopers);
-    }
-
-    @Override
-    public ArrayListGeneric<Minion> inToBattleField() {
-        if (troopers == null) {
-            return new ArrayListGeneric<>();
-        }
-        return troopers;
     }
 }
