@@ -8,8 +8,6 @@ public class Calculator {
     private DmitriiCalculatorCommand calculatorCommand;
     private static Scanner scanner;
 
-    Scanner in = new Scanner(System.in);
-
     Calculator(DmitriiCalculatorCommand instance) {
         scanner = new Scanner(System.in);
         this.calculatorCommand = instance;
@@ -19,14 +17,14 @@ public class Calculator {
 
         try {
             System.out.println("Введите первое число:");
-            int one = in.nextInt();
+            int one = scanner.nextInt();
             System.out.println("Введите второе число:");
-            int two = in.nextInt();
+            int two = scanner.nextInt();
             int sum = getSum(one, two);
             System.out.println("Сумма чисел: " + sum);
         } catch (Exception exception) {
             System.out.println("Вводите только цифры");
-            in.next();
+            scanner.next();
             sum();
         }
         return calculatorCommand;
@@ -39,14 +37,14 @@ public class Calculator {
     DmitriiCalculatorCommand subtraction() {
         try {
             System.out.println("Введите перовое число");
-            int one = in.nextInt();
+            int one = scanner.nextInt();
             System.out.println("Введите второе число");
-            int two = in.nextInt();
+            int two = scanner.nextInt();
             int sub = getSub(one, two);
             System.out.println("Вычитание чисел: " + sub);
         } catch (Exception exception) {
             System.out.println("Вводите только цифры");
-            in.next();
+            scanner.next();
             subtraction();
         }
         return calculatorCommand;
@@ -59,9 +57,9 @@ public class Calculator {
     DmitriiCalculatorCommand division() {
         try {
             System.out.println("Введите перовое число");
-            double one = in.nextDouble();
+            double one = scanner.nextDouble();
             System.out.println("Введите второе число");
-            double two = in.nextDouble();
+            double two = scanner.nextDouble();
             if (two == 0) {
                 System.out.println("Деление на Ноль нельзя!");
                 division();
@@ -70,7 +68,7 @@ public class Calculator {
             System.out.println("Деление чисел: " + sub);
         } catch (Exception exception) {
             System.out.println("Вводите только цифры");
-            in.next();
+            scanner.next();
             division();
         }
 
@@ -84,14 +82,14 @@ public class Calculator {
     DmitriiCalculatorCommand multiplication() {
         try {
             System.out.println("Введите перовое число");
-            double one = in.nextDouble();
+            double one = scanner.nextDouble();
             System.out.println("Введите второе число");
-            double two = in.nextDouble();
+            double two = scanner.nextDouble();
             double multi = getMulti(one, two);
             System.out.println("Умножение чисел: " + multi);
         } catch (Exception exception) {
             System.out.println("Вводите только цифры");
-            in.next();
+            scanner.next();
             multiplication();
         }
         return calculatorCommand;
@@ -104,12 +102,12 @@ public class Calculator {
     DmitriiCalculatorCommand sqrt() {
         try {
             System.out.println("Введите число");
-            long one = in.nextLong();
+            long one = scanner.nextLong();
             double sqrt = getSqrt(one);
             System.out.println("Квадратный корень: " + sqrt);
         } catch (Exception exception) {
             System.out.println("Вводите только цифры");
-            in.next();
+            scanner.next();
             sqrt();
         }
         return calculatorCommand;
@@ -122,14 +120,14 @@ public class Calculator {
     DmitriiCalculatorCommand pow() {
         try {
             System.out.println("Введите перовое число");
-            int one = in.nextInt();
+            int one = scanner.nextInt();
             System.out.println("Введите степень");
-            int two = in.nextInt();
+            int two = scanner.nextInt();
             long pow = getPow(one, two);
             System.out.println("Степень числа: " + pow);
         } catch (Exception exception) {
             System.out.println("Вводите только цифры");
-            in.next();
+            scanner.next();
             pow();
         }
         return calculatorCommand;
@@ -142,12 +140,12 @@ public class Calculator {
     DmitriiCalculatorCommand log() {
         try {
             System.out.println("Введите число");
-            int one = in.nextInt();
+            int one = scanner.nextInt();
             double log = getLog(one);
             System.out.println("Логарифм числа: " + log);
         } catch (Exception exception) {
             System.out.println("Вводите только цифры");
-            in.next();
+            scanner.next();
             log();
         }
         return calculatorCommand;
@@ -160,12 +158,12 @@ public class Calculator {
     DmitriiCalculatorCommand sin() {
         try {
             System.out.println("Введите число");
-            int one = in.nextInt();
+            int one = scanner.nextInt();
             double sin = getSin(one);
             System.out.println("Синус угла: " + sin);
         } catch (Exception exception) {
             System.out.println("Вводите только цифры");
-            in.next();
+            scanner.next();
             sin();
         }
         return calculatorCommand;
@@ -178,12 +176,12 @@ public class Calculator {
     DmitriiCalculatorCommand cos() {
         try {
             System.out.println("Введите число");
-            int one = in.nextInt();
+            int one = scanner.nextInt();
             double cos = getCos(one);
             System.out.println("Косинус угла: " + cos);
         } catch (Exception exception) {
             System.out.println("Вводите только цифры");
-            in.next();
+            scanner.next();
             cos();
         }
         return calculatorCommand;
@@ -196,12 +194,12 @@ public class Calculator {
     DmitriiCalculatorCommand tan() {
         try {
             System.out.println("Введите число");
-            int one = in.nextInt();
+            int one = scanner.nextInt();
             double tan = getTan(one);
             System.out.println("Тангенс угла: " + tan);
         } catch (Exception exception) {
             System.out.println("Вводите только цифры");
-            in.next();
+            scanner.next();
             tan();
         }
         return calculatorCommand;
