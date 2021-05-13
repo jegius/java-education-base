@@ -3,6 +3,7 @@ package menu.commands.tasks.generics.andrew.generator;
 import menu.commands.tasks.generics.andrew.ArrayListGeneric;
 import menu.commands.tasks.generics.andrew.creatures.Minion;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -40,11 +41,35 @@ public class MinionUtils {
 
     public static Map<String, String> generateMinionMap(String side) {
         Map<String, String> minionMap = new HashMap<>();
-        minionMap.put(MinionStringEnum.SIDE.getLine(), side);
         minionMap.put(MinionStringEnum.NAME.getLine(), generateName(side));
         minionMap.put(MinionStringEnum.AGE.getLine(), String.valueOf(generateAge()));
         minionMap.put(MinionStringEnum.POWER.getLine(), String.valueOf(generatePower()));
         minionMap.put(MinionStringEnum.HP.getLine(), String.valueOf(MinionIntEnum.MINION_HP.getValue()));
         return minionMap;
+    }
+
+    private static HashMap<Field, String> getFullFields(Class<?> providedClass) {
+        Class<?> currentClass = providedClass;
+        HashMap<Field, String> allClassesFields = new HashMap<>();
+        do {
+            Field[] fields = currentClass.getDeclaredFields();
+            for (Field field : fields) {
+                allClassesFields.put(field, field.getName());
+            }
+            currentClass = currentClass.getSuperclass();
+        } while (currentClass != null);
+        return allClassesFields;
+    }
+
+    public static void juxtaposeFields(Object objectToComplete, Map<String, String> mapWithFields) {
+        HashMap<Field, String> fields = getFullFields(objectToComplete.getClass());
+        for (Field field : fields.keySet()) {
+            try {
+                //FIXME используем Map<String,String> но в классе есть int как и года преобразовывать string в int, неужто опять хардкод.
+                field.set(objectToComplete, mapWithFields.get(fields.get(field)));
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

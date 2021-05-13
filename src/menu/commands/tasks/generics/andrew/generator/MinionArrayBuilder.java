@@ -7,6 +7,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,13 +15,14 @@ public class MinionArrayBuilder {
 
     public static ArrayListGeneric<Minion> generateObject(Class<? extends Minion> classToCreate, String side, int amount) {
         ArrayListGeneric<Minion> minions = new ArrayListGeneric<>();
-//        List<String> allFields = getClassFields(classToCreate);
+        List<String> allFields = getClassFields(classToCreate);
         for (int i = 0; i < amount; i++) {
             try {
-                Map<String, String> minionMap = MinionUtils.generateMinionMap(side);
+                //TODO приходится брать строку сайд со стороны так как нет возможности получить доступ к полям без создания объекта
+                Map<String, String> fieldsToClass = fillClassFields(allFields, side);
                 Constructor<?> providedConstructor = classToCreate.getDeclaredConstructor(Map.class);
                 providedConstructor.setAccessible(true);
-                Object generateObject = providedConstructor.newInstance(minionMap);
+                Object generateObject = providedConstructor.newInstance(fieldsToClass);
                 minions.add((Minion) generateObject);
             } catch (NoSuchMethodException |
                     InstantiationException |
@@ -45,8 +47,12 @@ public class MinionArrayBuilder {
         return allFields;
     }
 
-    private static void fillClassFields(List<String> fields, String side) {
+    private static Map<String, String> fillClassFields(List<String> fields, String side) {
         Map<String, String> minionMap = MinionUtils.generateMinionMap(side);
-
+        Map<String, String> objectMap = new HashMap<>();
+        for (String field : fields) {
+            objectMap.put(field, minionMap.get(field));
+        }
+        return objectMap;
     }
 }

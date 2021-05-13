@@ -1,16 +1,17 @@
 package menu.commands.tasks.generics.andrew.creatures;
 
-import menu.commands.tasks.generics.andrew.generator.MinionStringEnum;
+import menu.commands.tasks.generics.andrew.generator.MinionUtils;
 
 import java.util.Map;
 
 public abstract class Minion {
-    String side;
-    String name;
-    String objectName;
-    int age;
-    int power;
-    int hp;
+    //FIXME выставил всем публичный доступ, так как нет возможности изменить поля у объекта
+    public String side;
+    public String name;
+    public String objectName;
+    public int age;
+    public int power;
+    public int hp;
 
     public Minion(String name, int age, int power, int hp) {
         this.name = name;
@@ -20,14 +21,10 @@ public abstract class Minion {
     }
 
     public Minion(Map<String, String> minionMap) {
-        this.side = minionMap.get(MinionStringEnum.SIDE.getLine());
-        this.name = minionMap.get(MinionStringEnum.NAME.getLine());
-        this.age = Integer.parseInt(minionMap.get(MinionStringEnum.AGE.getLine()));
-        this.power = Integer.parseInt(minionMap.get(MinionStringEnum.POWER.getLine()));
-        this.hp = Integer.parseInt(minionMap.get(MinionStringEnum.HP.getLine()));
+        MinionUtils.juxtaposeFields(this, minionMap);
     }
 
-    public String info(){
+    public String info() {
         return objectName + " " + this.name + "(" + this.hp + ")" + ", " + this.age + " years old, prepare to attack on " + this.power;
     }
 
