@@ -28,7 +28,6 @@ public class MinionArrayBuilder {
                     IllegalAccessException |
                     InvocationTargetException e) {
                 e.printStackTrace();
-                return null;
             }
         }
         return minions;

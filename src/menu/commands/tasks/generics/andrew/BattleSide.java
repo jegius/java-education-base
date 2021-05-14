@@ -21,4 +21,8 @@ abstract public class BattleSide {
         }
         return minions;
     }
+
+    public void setMinions(ArrayListGeneric<Minion> minions) {
+        this.minions = minions;
+    }
 }
