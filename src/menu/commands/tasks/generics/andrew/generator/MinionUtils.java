@@ -10,8 +10,8 @@ import java.util.Random;
 
 public class MinionUtils {
 
-    private static final String[] humanNames = {"Alex", "Alan", "Bob", "Martin", "Sebastian"};
-    private static final String[] orcNames = {"Azog", "Lurk", "Ugluk", "Narzug", "Boldog"};
+    private static final String[] humanNames = {"Alex", "Alan", "Bob", "Martin", "Sebastian", "Borris", "Donald", "Max", "Samson", "Ivan"};
+    private static final String[] orcNames = {"Azog", "Lurk", "Ugluk", "Narzug", "Boldog", "Guzruk", "Loctar", "Usgod", "Marruk", "Zughog"};
 
     public static void minionsInfo(ArrayListGeneric<Minion> minions) {
         for (int i = 0; i < minions.size(); i++) {
