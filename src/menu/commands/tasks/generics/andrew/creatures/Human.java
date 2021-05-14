@@ -14,7 +14,6 @@ public class Human extends Minion {
 
     public Human(Map<String, String> minionMap) {
         super(minionMap);
-        this.side = MinionStringEnum.LIGHT_SIDE.getLine();
         this.objectName = this.getClass().getSimpleName();
     }
 }

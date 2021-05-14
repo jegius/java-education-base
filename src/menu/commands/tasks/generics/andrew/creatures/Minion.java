@@ -5,13 +5,12 @@ import menu.commands.tasks.generics.andrew.generator.MinionUtils;
 import java.util.Map;
 
 public abstract class Minion {
-    //FIXME выставил всем публичный доступ, так как нет возможности изменить поля у объекта
-    public String side;
-    public String name;
-    public String objectName;
-    public int age;
-    public int power;
-    public int hp;
+    protected String side;
+    protected String objectName;
+    private String name;
+    private int age;
+    private int power;
+    private int hp;
 
     public Minion(String name, int age, int power, int hp) {
         this.name = name;
@@ -28,17 +27,8 @@ public abstract class Minion {
         return objectName + " " + this.name + "(" + this.hp + ")" + ", " + this.age + " years old, prepare to attack on " + this.power;
     }
 
-
-    public String getSide() {
-        return side;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public int getAge() {
-        return age;
     }
 
     public int getPower() {

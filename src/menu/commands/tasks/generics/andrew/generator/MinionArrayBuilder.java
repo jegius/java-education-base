@@ -18,7 +18,6 @@ public class MinionArrayBuilder {
         List<String> allFields = getClassFields(classToCreate);
         for (int i = 0; i < amount; i++) {
             try {
-                //TODO приходится брать строку сайд со стороны так как нет возможности получить доступ к полям без создания объекта
                 Map<String, String> fieldsToClass = fillClassFields(allFields, side);
                 Constructor<?> providedConstructor = classToCreate.getDeclaredConstructor(Map.class);
                 providedConstructor.setAccessible(true);

@@ -14,5 +14,6 @@ public class Orc extends Minion {
 
     public Orc(Map<String, String> minionMap) {
         super(minionMap);
+        this.objectName = this.getClass().getSimpleName();
     }
 }

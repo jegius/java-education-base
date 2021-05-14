@@ -61,12 +61,25 @@ public class MinionUtils {
         return allClassesFields;
     }
 
+    private static Object checkFieldOnCorrectType(Field field, String value) {
+        Object typedValue;
+        final Class<?> type = field.getType();
+        if (int.class.isAssignableFrom(type)) {
+            typedValue = Integer.parseInt(value);
+        } else {
+            typedValue = value;
+        }
+        return typedValue;
+    }
+
     public static void juxtaposeFields(Object objectToComplete, Map<String, String> mapWithFields) {
         HashMap<Field, String> fields = getFullFields(objectToComplete.getClass());
         for (Field field : fields.keySet()) {
+            field.setAccessible(true);
+            String value = mapWithFields.get(fields.get(field));
+            Object typedValue = checkFieldOnCorrectType(field, value);
             try {
-                //FIXME используем Map<String,String> но в классе есть int как и года преобразовывать string в int, неужто опять хардкод.
-                field.set(objectToComplete, mapWithFields.get(fields.get(field)));
+                field.set(objectToComplete, typedValue);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
