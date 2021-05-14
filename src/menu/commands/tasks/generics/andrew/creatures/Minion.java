@@ -5,7 +5,6 @@ import menu.commands.tasks.generics.andrew.generator.MinionUtils;
 import java.util.Map;
 
 public abstract class Minion {
-    protected String side;
     protected String objectName;
     private String name;
     private int age;

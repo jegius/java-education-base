@@ -6,6 +6,8 @@ import java.util.Map;
 
 public class Human extends Minion {
 
+    protected String side;
+
     public Human(String name, int age, int power, int hp) {
         super(name, age, power, hp);
         this.side = MinionStringEnum.LIGHT_SIDE.getLine();
