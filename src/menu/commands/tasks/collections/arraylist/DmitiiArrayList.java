@@ -5,6 +5,8 @@ import menu.commands.tasks.collections.iterator.Iterator;
 
 
 import static menu.commands.tasks.collections.arraylist.DmitriiEnum.*;
+import static menu.commands.tasks.collections.arraylist.EnumMax.INITIAL_AMOUNT;
+import static menu.commands.tasks.collections.arraylist.EnumMax.INVALID_INDEX;
 
 public class DmitiiArrayList implements List {
 
@@ -25,33 +27,67 @@ public class DmitiiArrayList implements List {
                 value,
                 START_POSITION_OF_NEW_ARRAY.getValue(),
                 arraytemp.length);
-        value[value.length-1] = data;
+        value[value.length - 1] = data;
         size++;
     }
 
     @Override
     public boolean remove(int id) throws Exception {
-        return false;
+        if (id < INITIAL_AMOUNT.getValue() || id > size - 1) {
+            throw new ExceptionsOutOfArraySize();
+        }
+        for (int index = id; index < size; index++) {
+            if (index + 1 >= size) {
+                value[index] = 0;
+            } else {
+                value[index] = value[index + 1];
+            }
+        }
+        size--;
+        return true;
     }
 
     @Override
-    public long find(long value) throws Exception {
-        return 0;
+    public long find(long val) throws Exception {
+        boolean findmarker=false;
+        long findValue = 0;
+        for (int index = 0; index < size; index++) {
+            if (value[index] == val) {
+                findmarker= true;
+                findValue = index;
+                break;
+            }
+        }
+        if (findmarker) {
+            return findValue;
+        } else {
+            return INVALID_INDEX.getValue();
+        }
     }
 
     @Override
     public long get(int index) throws Exception {
-        return 0;
+        if(index< value.length && index >=0){
+            return value[index];
+        }
+        else {
+            throw new ExceptionsOutOfArraySize();
+        }
     }
 
     @Override
     public void update(int index, long data) throws Exception {
-
+        if(index< value.length && index >=0){
+            value[index]=data;
+        }
+        else {
+            throw new ExceptionsOutOfArraySize();
+        }
     }
 
     @Override
     public int size() throws Exception {
-        return 0;
+        return size;
     }
 
     @Override
