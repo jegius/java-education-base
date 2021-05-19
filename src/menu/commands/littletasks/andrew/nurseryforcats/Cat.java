@@ -5,6 +5,12 @@ public class Cat {
     private final int age;
     private final CatBreed breed;
 
+    public Cat(String name, int age, CatBreed breed) {
+        this.name = name;
+        this.age = age;
+        this.breed = breed;
+    }
+
     @Override
     public String toString() {
         return "Cat{" +
@@ -12,12 +18,6 @@ public class Cat {
                 ", age=" + age +
                 ", breed=" + breed +
                 '}';
-    }
-
-    public Cat(String name, int age, CatBreed breed) {
-        this.name = name;
-        this.age = age;
-        this.breed = breed;
     }
 
     public String getName() {

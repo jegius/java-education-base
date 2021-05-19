@@ -3,7 +3,6 @@ package menu.commands.littletasks.andrew;
 import menu.Command;
 import menu.MainMenuCommand;
 import menu.commands.littletasks.andrew.ninetyninebottles.NinetyNineBottles;
-import menu.commands.littletasks.andrew.nurseryforcats.CatShelter;
 import menu.commands.littletasks.andrew.nurseryforcats.NurseryForCats;
 import menu.utils.MenuUtils;
 

@@ -31,23 +31,23 @@ public class GenerateCats {
     public static List<Cat> generate() {
         int countCats = 3;
         List<Cat> cats = new ArrayList<>();
-        for (int i = 0; i < countCats; i++){
-            cats.add(new Cat(getRandomName(),getRandomAge(),getRandomBreed()));
+        for (int i = 0; i < countCats; i++) {
+            cats.add(new Cat(getRandomName(), getRandomAge(), getRandomBreed()));
         }
         return cats;
     }
 
-    private static String getRandomName(){
+    private static String getRandomName() {
         return names[new Random().nextInt(names.length)];
     }
 
-    private static int getRandomAge(){
+    private static int getRandomAge() {
         int low = 1;
         int high = 18;
         return new Random().nextInt(high - low) + low;
     }
 
-    private static CatBreed getRandomBreed(){
+    private static CatBreed getRandomBreed() {
         int random = new Random().nextInt((CatBreed.class).getEnumConstants().length);
         return (CatBreed.class).getEnumConstants()[random];
     }
