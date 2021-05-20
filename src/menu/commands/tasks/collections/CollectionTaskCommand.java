@@ -8,6 +8,7 @@ import menu.commands.tasks.collections.arraylist.MaxArrayList;
 import menu.commands.tasks.collections.arraylist.StubArrayList;
 import menu.commands.tasks.collections.fillingoututil.FillingOutUtil;
 import menu.commands.tasks.collections.fillingoututil.MaxFillingOutUtil;
+import menu.commands.tasks.collections.linkedlist.DmitriiLinkedList;
 import menu.commands.tasks.collections.linkedlist.MaxLinkedList;
 import menu.commands.tasks.collections.linkedlist.StubLinkedList;
 import menu.utils.MenuUtils;
@@ -80,7 +81,7 @@ public class CollectionTaskCommand implements Command {
                         .checkTask(
                                 new List[]{
                                         new DmitiiArrayList(),
-                                        new StubLinkedList()
+                                        new DmitriiLinkedList()
                                 },
                                 new FillingOutUtil()
                         );
