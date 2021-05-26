@@ -43,6 +43,7 @@ public class LittleTaskCommand implements Command {
         MenuUtils.printOption("10", "Run regexp exercise.");
         MenuUtils.printOption("11", "Run ALEX simple enum.");
         MenuUtils.printOption("12", "Run MAX simple enum.");
+        MenuUtils.printOption("13", "Run Andrew simple enum.");
         MenuUtils.printOption("20", "Run Andrew little tasks.");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
@@ -90,6 +91,12 @@ public class LittleTaskCommand implements Command {
                 TaskStore
                         .getInstance()
                         .getTaskByExecutor(Executor.MAX)
+                        .runTask();
+                return this;
+            case 13:
+                TaskStore
+                        .getInstance()
+                        .getTaskByExecutor(Executor.ANDREW)
                         .runTask();
                 return this;
             case 20:

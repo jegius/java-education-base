@@ -4,6 +4,8 @@ import menu.Command;
 import menu.MainMenuCommand;
 import menu.commands.littletasks.andrew.ninetyninebottles.NinetyNineBottles;
 import menu.commands.littletasks.andrew.nurseryforcats.NurseryForCats;
+import menu.commands.littletasks.simpleenum.Executor;
+import menu.commands.littletasks.simpleenum.TaskStore;
 import menu.utils.MenuUtils;
 
 import java.util.Scanner;
@@ -26,6 +28,7 @@ public class AndrewLittleTasksCommand implements Command {
         MenuUtils.printSeparator();
         MenuUtils.printOption("1", "Run ninety nine bottles.");
         MenuUtils.printOption("2", "Run nursery for cats.");
+        MenuUtils.printOption("3", "Run Simple Enum");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -41,6 +44,9 @@ public class AndrewLittleTasksCommand implements Command {
                 return this;
             case 2:
                 NurseryForCats.run();
+                return this;
+            case 3:
+                TaskStore.getInstance().getTaskByExecutor(Executor.ANDREW).runTask();
                 return this;
             default:
                 System.out.println("Unexpected command!");
