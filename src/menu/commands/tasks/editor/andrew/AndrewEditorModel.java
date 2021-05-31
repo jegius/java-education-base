@@ -42,7 +42,9 @@ public class AndrewEditorModel {
         try {
             lines = Files.readAllLines(Paths.get(path), Charset.defaultCharset());
             MenuUtils.printSeparator();
+
             System.out.println("Lines:");
+
             for (int i = 0; i < lines.size(); i++) {
                 System.out.println(i + 1 + ": " + lines.get(i));
             }
@@ -55,7 +57,9 @@ public class AndrewEditorModel {
 
     public void print() {
         MenuUtils.printSeparator();
+
         System.out.println("Lines:");
+
         for (int i = 0; i < lines.size(); i++) {
             System.out.println(i + 1 + ": " + lines.get(i));
         }
@@ -81,7 +85,9 @@ public class AndrewEditorModel {
             }
             out.close();
             MenuUtils.printSeparator();
+
             System.out.println("New strings successful writes");
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

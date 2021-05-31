@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class AndrewEditorManager {
 
     private static AndrewEditorManager instance;
-    private static List<String> editedText;
 
     public static synchronized AndrewEditorManager getInstance() {
         if (instance == null) {
@@ -34,7 +33,9 @@ public class AndrewEditorManager {
     public Command addNewLine() {
         checkFilePath();
         MenuUtils.printSeparator();
+
         System.out.println("Write new text:");
+
         Scanner scanner = new Scanner(System.in);
         String newText = scanner.nextLine();
         AndrewEditorModel.getInstance().addNewLine(newText);
@@ -45,16 +46,22 @@ public class AndrewEditorManager {
         checkFilePath();
         checkEmptyFile();
         MenuUtils.printSeparator();
+
         System.out.println("Select line to edit:");
+
         int choiceLine = MenuUtils.getScannerChoice();
+
         System.out.println("Write new text:");
+
         Scanner scanner = new Scanner(System.in);
         String newText = scanner.nextLine();
 
-        editedText = AndrewEditorModel.getInstance().editFile(choiceLine - 1, newText);
+        List<String> editedText = AndrewEditorModel.getInstance().editFile(choiceLine - 1, newText);
         if (editedText == null) {
             MenuUtils.printSeparator();
+
             System.out.println("Selected line out of range:");
+
             return AndrewEditorManager.getInstance().editFile();
         }
         return AndrewEditorCommand.getInstance().execute();
@@ -69,24 +76,33 @@ public class AndrewEditorManager {
 
     public Command selectPreviousFile() {
         checkFilePath();
+
         int choice;
+
         List<String> previousPaths = AndrewEditorModel.getInstance().getPreviousPaths();
+
         MenuUtils.printSeparator();
         for (int i = 0; i < previousPaths.size(); i++) {
             System.out.println(i + 1 + " - " + previousPaths.get(i));
         }
+
         System.out.println("0 - Back");
+
         choice = MenuUtils.getScannerChoice();
         if (choice == 0) {
             return AndrewEditorCommand.getInstance().execute();
         }
         if (choice > previousPaths.size() || choice <= 0) {
+
             System.out.println("Unknown choice");
+
             return AndrewEditorManager.getInstance().selectPreviousFile();
         }
         AndrewEditorModel.getInstance().readFile(previousPaths.get(choice - 1));
         MenuUtils.printSeparator();
+
         System.out.println("Previous file opened: (" + previousPaths.get(choice - 1) + ")");
+
         return AndrewEditorCommand.getInstance().execute();
     }
 
@@ -115,6 +131,7 @@ public class AndrewEditorManager {
         }
         if (returnValue == JFileChooser.CANCEL_OPTION) {
             MenuUtils.printSeparator();
+
             System.out.println("Please select file!");
         }
         return path;
@@ -123,7 +140,9 @@ public class AndrewEditorManager {
     private Command checkFilePath() {
         if (AndrewEditorModel.getPath().equals("")) {
             MenuUtils.printSeparator();
+
             System.out.println("Please read file first!");
+
             return AndrewEditorCommand.getInstance().execute();
         }
         return null;
@@ -132,7 +151,9 @@ public class AndrewEditorManager {
     private Command checkEmptyFile() {
         if (AndrewEditorModel.getInstance().getLines().size() == 0) {
             MenuUtils.printSeparator();
+
             System.out.println("File is empty");
+
             return AndrewEditorCommand.getInstance().execute();
         }
         return null;
