@@ -82,9 +82,8 @@ public class AndrewEditorManager {
         List<String> previousPaths = AndrewEditorModel.getInstance().getPreviousPaths();
 
         MenuUtils.printSeparator();
-        for (int i = 0; i < previousPaths.size(); i++) {
-            System.out.println(i + 1 + " - " + previousPaths.get(i));
-        }
+
+        AndrewEditorModel.getInstance().printOptions("Previous path:", previousPaths);
 
         System.out.println("0 - Back");
 

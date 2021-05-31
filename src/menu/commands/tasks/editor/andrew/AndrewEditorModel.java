@@ -42,12 +42,7 @@ public class AndrewEditorModel {
         try {
             lines = Files.readAllLines(Paths.get(path), Charset.defaultCharset());
             MenuUtils.printSeparator();
-
-            System.out.println("Lines:");
-
-            for (int i = 0; i < lines.size(); i++) {
-                System.out.println(i + 1 + ": " + lines.get(i));
-            }
+            printOptions("Lines:", lines);
             AndrewEditorModel.path = path;
             addPreviousPaths();
         } catch (IOException e) {
@@ -57,12 +52,7 @@ public class AndrewEditorModel {
 
     public void print() {
         MenuUtils.printSeparator();
-
-        System.out.println("Lines:");
-
-        for (int i = 0; i < lines.size(); i++) {
-            System.out.println(i + 1 + ": " + lines.get(i));
-        }
+        printOptions("Lines:", lines);
     }
 
     public void addNewLine(String newText) {
@@ -96,5 +86,16 @@ public class AndrewEditorModel {
     private void addPreviousPaths() {
         previousPaths.add(path);
         previousPaths = previousPaths.stream().distinct().collect(Collectors.toList());
+    }
+
+    protected void printOptions(String name, List<String> options) {
+        System.out.println(name);
+
+        int indexNumber = 1;
+
+        for (String option : options) {
+            System.out.println(indexNumber + ": " + option);
+            indexNumber++;
+        }
     }
 }
