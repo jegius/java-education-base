@@ -45,8 +45,8 @@ public class AndrewEditorModel {
             printOptions("Lines:", lines);
             AndrewEditorModel.path = path;
             addPreviousPaths();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException readFileException) {
+            readFileException.printStackTrace();
         }
     }
 
@@ -78,8 +78,8 @@ public class AndrewEditorModel {
 
             System.out.println("New strings successful writes");
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException notFoundException) {
+            notFoundException.printStackTrace();
         }
     }
 
