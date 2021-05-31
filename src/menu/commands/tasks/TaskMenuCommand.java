@@ -5,6 +5,7 @@ import menu.MainMenuCommand;
 import menu.commands.tasks.calculator.CalculatorTaskCommand;
 import menu.commands.tasks.calculatormode.CalculatorModeCommand;
 import menu.commands.tasks.collections.CollectionTaskCommand;
+import menu.commands.tasks.editor.andrew.AndrewEditorCommand;
 import menu.commands.tasks.editor.max.MaxEditorCommand;
 import menu.commands.tasks.generics.GenericTaskCommandMax;
 import menu.commands.tasks.editor.alex.AlexEditorCommand;
@@ -18,7 +19,8 @@ public class TaskMenuCommand implements Command {
 
     private static TaskMenuCommand instance;
 
-    private TaskMenuCommand() {}
+    private TaskMenuCommand() {
+    }
 
     public static synchronized TaskMenuCommand getInstance() {
         if (instance == null) {
@@ -38,6 +40,7 @@ public class TaskMenuCommand implements Command {
         MenuUtils.printOption("6", "Show Alex Editor");
         MenuUtils.printOption("7", "Show Max Generics");
         MenuUtils.printOption("8", "Show Max Editor");
+        MenuUtils.printOption("9", "Show Andrew Editor");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -64,6 +67,8 @@ public class TaskMenuCommand implements Command {
                 return GenericTaskCommandMax.getInstance();
             case 8:
                 return MaxEditorCommand.getInstance().execute();
+            case 9:
+                return AndrewEditorCommand.getInstance().execute();
             default:
                 System.out.println("Unexpected command!");
                 return this;
