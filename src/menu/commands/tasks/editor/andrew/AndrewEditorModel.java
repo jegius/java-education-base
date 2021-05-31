@@ -15,9 +15,15 @@ import java.util.stream.Collectors;
 public class AndrewEditorModel {
 
     private static AndrewEditorModel instance;
-    private static String path = "";
-    private List<String> lines = null;
-    private List<String> previousPaths = new ArrayList<>();
+    private static String path;
+    private List<String> lines;
+    private List<String> previousPaths;
+
+    public AndrewEditorModel() {
+        path = "";
+        lines = null;
+        previousPaths = new ArrayList<>();
+    }
 
     public static synchronized AndrewEditorModel getInstance() {
         if (instance == null) {
