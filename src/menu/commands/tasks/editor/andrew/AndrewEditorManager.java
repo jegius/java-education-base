@@ -23,7 +23,7 @@ public class AndrewEditorManager {
 
     public Command readFile() {
         String path = filePath();
-        if (path.equals("")) {
+        if (path.equals(AndrewEditorFields.EMPTY_PATH.getField())) {
             return AndrewEditorCommand.getInstance().execute();
         }
         AndrewEditorModel.getInstance().readFile(path);
@@ -120,7 +120,9 @@ public class AndrewEditorManager {
         frame.setLocationRelativeTo(null);
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         jfc.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text file", "txt");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                AndrewEditorFields.FILE_NAME_DESCRIPTION.getField(),
+                AndrewEditorFields.FILE_NAME_EXTENSIONS.getField());
         jfc.addChoosableFileFilter(filter);
         int returnValue = jfc.showOpenDialog(frame);
         frame.dispose();
@@ -136,25 +138,25 @@ public class AndrewEditorManager {
         return path;
     }
 
-    private Command checkFilePath() {
-        if (AndrewEditorModel.getPath().equals("")) {
+    private void checkFilePath() {
+        String pathToFile = AndrewEditorModel.getPath();
+        if (pathToFile.equals(AndrewEditorFields.EMPTY_PATH.getField())) {
             MenuUtils.printSeparator();
 
             System.out.println("Please read file first!");
 
-            return AndrewEditorCommand.getInstance().execute();
+            AndrewEditorCommand.getInstance().execute();
         }
-        return null;
     }
 
-    private Command checkEmptyFile() {
-        if (AndrewEditorModel.getInstance().getLines().size() == 0) {
+    private void checkEmptyFile() {
+        List<String> fileLines = AndrewEditorModel.getInstance().getLines();
+        if (fileLines.size() == 0) {
             MenuUtils.printSeparator();
 
             System.out.println("File is empty");
 
-            return AndrewEditorCommand.getInstance().execute();
+            AndrewEditorCommand.getInstance().execute();
         }
-        return null;
     }
 }
