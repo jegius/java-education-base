@@ -113,29 +113,40 @@ public class AndrewEditorManager {
     }
 
     private String filePath() {
-        String path = "";
+        String path = AndrewEditorFields.EMPTY_PATH.getField();
+
+        File selectFile = selectFileExplorer();
+        if (selectFile == null){
+            return path;
+        }
+        path = selectFile.getAbsolutePath();
+        return path;
+    }
+
+    private File selectFileExplorer(){
+        File selectedFile;
         final JFrame frame = new JFrame();
         frame.setAlwaysOnTop(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        jfc.setAcceptAllFileFilterUsed(false);
+        JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        fileChooser.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 AndrewEditorFields.FILE_NAME_DESCRIPTION.getField(),
                 AndrewEditorFields.FILE_NAME_EXTENSIONS.getField());
-        jfc.addChoosableFileFilter(filter);
-        int returnValue = jfc.showOpenDialog(frame);
+        fileChooser.addChoosableFileFilter(filter);
+        int returnValue = fileChooser.showOpenDialog(frame);
         frame.dispose();
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = jfc.getSelectedFile();
-            path = selectedFile.getAbsolutePath();
+            selectedFile = fileChooser.getSelectedFile();
+            return selectedFile;
         }
         if (returnValue == JFileChooser.CANCEL_OPTION) {
             MenuUtils.printSeparator();
 
             System.out.println("Please select file!");
         }
-        return path;
+        return null;
     }
 
     private void checkFilePath() {
