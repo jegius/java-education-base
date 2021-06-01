@@ -10,6 +10,7 @@ public class GenerateMinions {
     public ArrayListGeneric<Minion> createMinions(String side, int quantity) {
         Minion minions;
         ArrayListGeneric<Minion> arrayListGeneric = new ArrayListGeneric<>();
+
         if (side.equals(MinionStringEnum.LIGHT_SIDE.getLine())) {
             for (int i = 0; i < quantity; i++) {
                 minions = new Human(

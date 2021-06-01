@@ -17,11 +17,14 @@ public class AttackGenerator {
         boolean breakPoint = true;
         int round = 1;
         while (breakPoint) {
+
             System.out.println("Round: " + round++);
+
             int trooperIndex = random.nextInt(calcLightSide.size());
             int gruntIndex = random.nextInt(calcDarkSide.size());
             Minion trooper = calcLightSide.get(trooperIndex);
             Minion grunt = calcDarkSide.get(gruntIndex);
+
             if (lightSideAttacking()) {
                 calcHP(trooper, grunt);
                 calcLeavesMinions(calcLightSide, calcDarkSide, trooper, grunt, trooperIndex, gruntIndex);
@@ -37,14 +40,18 @@ public class AttackGenerator {
     }
 
     private void calcHP(Minion firstMinion, Minion secondMinion) {
+
         System.out.println(firstMinion.getName() + "(" + firstMinion.getHp() + ")" +
                 " attacking " + secondMinion.getName() + "(" + secondMinion.getHp() + ")" + " on "
                 + firstMinion.getPower() + " damage.");
+
         secondMinion.setHp(secondMinion.getHp() - firstMinion.getPower());
         if (secondMinion.getHp() > 0) {
+
             System.out.println(secondMinion.getName() + "(" + secondMinion.getHp() + ")"
                     + " attacking " + firstMinion.getName() + "(" + firstMinion.getHp() + ")" + " on "
                     + secondMinion.getPower() + " damage.");
+
             firstMinion.setHp(firstMinion.getHp() - secondMinion.getPower());
         }
     }
@@ -56,12 +63,16 @@ public class AttackGenerator {
                                    int firstMinionIndex,
                                    int secondMinionIndex) {
         if (firstMinion.getHp() <= 0) {
+
             System.out.println(firstMinion.getName() + " is dead!");
+
             MenuUtils.printSeparator();
             firstSide.remove(firstMinionIndex);
         }
         if (secondMinion.getHp() <= 0) {
+
             System.out.println(secondMinion.getName() + " is dead!");
+
             MenuUtils.printSeparator();
             secondSide.remove(secondMinionIndex);
         }

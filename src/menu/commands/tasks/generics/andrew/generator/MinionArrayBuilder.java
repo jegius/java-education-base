@@ -16,12 +16,14 @@ public class MinionArrayBuilder {
     public static ArrayListGeneric<Minion> generateObject(Class<? extends Minion> classToCreate, String side, int amount) {
         ArrayListGeneric<Minion> minions = new ArrayListGeneric<>();
         List<String> allFields = getClassFields(classToCreate);
+
         for (int i = 0; i < amount; i++) {
             try {
                 Map<String, String> fieldsToClass = fillClassFields(allFields, side);
                 Constructor<?> providedConstructor = classToCreate.getDeclaredConstructor(Map.class);
                 providedConstructor.setAccessible(true);
                 Object generateObject = providedConstructor.newInstance(fieldsToClass);
+
                 minions.add((Minion) generateObject);
             } catch (NoSuchMethodException |
                     InstantiationException |
@@ -36,6 +38,7 @@ public class MinionArrayBuilder {
     private static List<String> getClassFields(Class<?> providedClass) {
         List<String> allFields = new ArrayList<>();
         Class<?> currentClass = providedClass;
+
         do {
             for (Field field : currentClass.getDeclaredFields()) {
                 allFields.add(field.getName());
@@ -48,6 +51,7 @@ public class MinionArrayBuilder {
     private static Map<String, String> fillClassFields(List<String> fields, String side) {
         Map<String, String> minionMap = MinionUtils.generateMinionMap(side);
         Map<String, String> objectMap = new HashMap<>();
+
         for (String field : fields) {
             objectMap.put(field, minionMap.get(field));
         }

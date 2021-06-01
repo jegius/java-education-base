@@ -20,18 +20,25 @@ public class Battlefield {
         ArrayListGeneric<Minion> darkSide = Horde.getInstance().inToBattleField();
 
         if (lightSide.size() == 0 && darkSide.size() != 0) {
+
             System.out.println("Castle is ruins!!!");
             System.out.println("Orcs leaves:");
+
             MinionUtils.minionsInfo(darkSide);
+
             System.out.println("Dark side WON!!!");
         }
         if (lightSide.size() != 0 && darkSide.size() == 0) {
+
             System.out.println("Horde, no more horde!!!");
             System.out.println("Troopers leaves:");
+
             MinionUtils.minionsInfo(lightSide);
+
             System.out.println("Light side WON!!!");
         }
         if (lightSide.size() == 0 && darkSide.size() == 0) {
+
             System.out.println("Battlefield is empty");
         }
         if (lightSide.size() != 0 && darkSide.size() != 0) {

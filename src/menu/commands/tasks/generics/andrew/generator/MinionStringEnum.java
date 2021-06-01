@@ -9,7 +9,8 @@ public enum MinionStringEnum {
     OBJECT_NAME("objectName"),
     AGE("age"),
     POWER("power"),
-    HP("hp");
+    HP("hp"),
+    EMPTY_STRING("");
 
     private final String line;
 

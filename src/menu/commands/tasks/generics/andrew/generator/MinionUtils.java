@@ -10,12 +10,15 @@ import java.util.Random;
 
 public class MinionUtils {
 
-    private static final String[] humanNames = {"Alex", "Alan", "Bob", "Martin", "Sebastian", "Borris", "Donald", "Max", "Samson", "Ivan"};
-    private static final String[] orcNames = {"Azog", "Lurk", "Ugluk", "Narzug", "Boldog", "Guzruk", "Loctar", "Usgod", "Marruk", "Zughog"};
+    private static final String[] humanNames =
+            {"Alex", "Alan", "Bob", "Martin", "Sebastian", "Borris", "Donald", "Max", "Samson", "Ivan"};
+    private static final String[] orcNames =
+            {"Azog", "Lurk", "Ugluk", "Narzug", "Boldog", "Guzruk", "Loctar", "Usgod", "Marruk", "Zughog"};
 
     public static void minionsInfo(ArrayListGeneric<Minion> minions) {
         for (int i = 0; i < minions.size(); i++) {
             Minion trooper = minions.get(i);
+
             System.out.println(trooper.info());
         }
     }
@@ -26,7 +29,7 @@ public class MinionUtils {
         } else if (side.equals(MinionStringEnum.DARK_SIDE.getLine())) {
             return orcNames[new Random().nextInt(orcNames.length)];
         }
-        return "";
+        return MinionStringEnum.EMPTY_STRING.getLine();
     }
 
     public static int generateAge() {
@@ -41,6 +44,7 @@ public class MinionUtils {
 
     public static Map<String, String> generateMinionMap(String side) {
         Map<String, String> minionMap = new HashMap<>();
+
         minionMap.put(MinionStringEnum.NAME.getLine(), generateName(side));
         minionMap.put(MinionStringEnum.AGE.getLine(), String.valueOf(generateAge()));
         minionMap.put(MinionStringEnum.POWER.getLine(), String.valueOf(generatePower()));
@@ -51,6 +55,7 @@ public class MinionUtils {
     private static HashMap<Field, String> getFullFields(Class<?> providedClass) {
         Class<?> currentClass = providedClass;
         HashMap<Field, String> allClassesFields = new HashMap<>();
+
         do {
             Field[] fields = currentClass.getDeclaredFields();
             for (Field field : fields) {
@@ -64,6 +69,7 @@ public class MinionUtils {
     private static Object checkFieldOnCorrectType(Field field, String value) {
         Object typedValue;
         final Class<?> type = field.getType();
+
         if (int.class.isAssignableFrom(type)) {
             typedValue = Integer.parseInt(value);
         } else {
@@ -74,6 +80,7 @@ public class MinionUtils {
 
     public static void juxtaposeFields(Object objectToComplete, Map<String, String> mapWithFields) {
         HashMap<Field, String> fields = getFullFields(objectToComplete.getClass());
+
         for (Field field : fields.keySet()) {
             field.setAccessible(true);
             String value = mapWithFields.get(fields.get(field));
