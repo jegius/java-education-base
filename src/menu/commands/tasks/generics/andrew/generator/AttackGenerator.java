@@ -8,6 +8,7 @@ import menu.utils.MenuUtils;
 import java.util.Random;
 
 public class AttackGenerator {
+
     public boolean lightSideAttacking() {
         return new Random().nextBoolean();
     }
@@ -15,7 +16,7 @@ public class AttackGenerator {
     public void calcFight(ArrayListGeneric<Minion> calcLightSide, ArrayListGeneric<Minion> calcDarkSide) {
         Random random = new Random();
         boolean breakPoint = true;
-        int round = 1;
+        int round = MinionIntEnum.ROUND_OF_FIGHT.getValue();
         while (breakPoint) {
 
             System.out.println("Round: " + round++);
@@ -40,20 +41,32 @@ public class AttackGenerator {
     }
 
     private void calcHP(Minion firstMinion, Minion secondMinion) {
-
-        System.out.println(firstMinion.getName() + "(" + firstMinion.getHp() + ")" +
-                " attacking " + secondMinion.getName() + "(" + secondMinion.getHp() + ")" + " on "
-                + firstMinion.getPower() + " damage.");
-
+        printBattle(firstMinion, secondMinion);
         secondMinion.setHp(secondMinion.getHp() - firstMinion.getPower());
+
         if (secondMinion.getHp() > 0) {
-
-            System.out.println(secondMinion.getName() + "(" + secondMinion.getHp() + ")"
-                    + " attacking " + firstMinion.getName() + "(" + firstMinion.getHp() + ")" + " on "
-                    + secondMinion.getPower() + " damage.");
-
+            printBattle(secondMinion,firstMinion);
             firstMinion.setHp(firstMinion.getHp() - secondMinion.getPower());
         }
+    }
+
+    private void printBattle(Minion firstMinion, Minion secondMinion){
+        StringBuilder minionAttackPrint = new StringBuilder();
+        minionAttackPrint
+                .append(firstMinion.getName())
+                .append("(")
+                .append(firstMinion.getHp())
+                .append(")")
+                .append(" attacking ")
+                .append(secondMinion.getName())
+                .append("(")
+                .append(secondMinion.getHp())
+                .append(")")
+                .append(" on ")
+                .append(firstMinion.getPower())
+                .append(" damage.");
+
+        System.out.println(minionAttackPrint.toString());
     }
 
     private void calcLeavesMinions(ArrayListGeneric<Minion> firstSide,
