@@ -23,11 +23,12 @@ public class MinionUtils {
         }
     }
 
-    public static String generateName(String side) {
-        if (side.equals(MinionStringEnum.LIGHT_SIDE.getLine())) {
-            return humanNames[new Random().nextInt(humanNames.length)];
-        } else if (side.equals(MinionStringEnum.DARK_SIDE.getLine())) {
-            return orcNames[new Random().nextInt(orcNames.length)];
+    public static String generateName(MinionStringEnum side) {
+        switch (side) {
+            case LIGHT_SIDE:
+                return humanNames[new Random().nextInt(humanNames.length)];
+            case DARK_SIDE:
+                return orcNames[new Random().nextInt(orcNames.length)];
         }
         return MinionStringEnum.EMPTY_STRING.getLine();
     }
@@ -44,7 +45,7 @@ public class MinionUtils {
         return new Random().nextInt(maxPower - minPower) + minPower;
     }
 
-    public static Map<String, String> generateMinionMap(String side) {
+    public static Map<String, String> generateMinionMap(MinionStringEnum side) {
         Map<String, String> minionMap = new HashMap<>();
 
         minionMap.put(MinionStringEnum.NAME.getLine(), generateName(side));

@@ -10,15 +10,13 @@ public class GenerateMinions {
     public ArrayListGeneric<Minion> createMinions(MinionStringEnum side, int quantity) {
         Minion minions;
         ArrayListGeneric<Minion> arrayListGeneric = new ArrayListGeneric<>();
-        String lightSide = MinionStringEnum.LIGHT_SIDE.getLine();
-        String darkSide = MinionStringEnum.DARK_SIDE.getLine();
         int healsPoint = MinionIntEnum.MINION_HP.getValue();
 
         switch (side) {
             case LIGHT_SIDE:
                 for (int i = 0; i < quantity; i++) {
                     minions = new Human(
-                            MinionUtils.generateName(lightSide),
+                            MinionUtils.generateName(side),
                             MinionUtils.generateAge(),
                             MinionUtils.generatePower(),
                             healsPoint);
@@ -28,7 +26,7 @@ public class GenerateMinions {
             case DARK_SIDE:
                 for (int i = 0; i < quantity; i++) {
                     minions = new Orc(
-                            MinionUtils.generateName(darkSide),
+                            MinionUtils.generateName(side),
                             MinionUtils.generateAge(),
                             MinionUtils.generatePower(),
                             healsPoint);

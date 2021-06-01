@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class MinionArrayBuilder {
 
-    public static ArrayListGeneric<Minion> generateObject(Class<? extends Minion> classToCreate, String side, int amount) {
+    public static ArrayListGeneric<Minion> generateObject(Class<? extends Minion> classToCreate, MinionStringEnum side, int amount) {
         ArrayListGeneric<Minion> minions = new ArrayListGeneric<>();
         List<String> allFields = getClassFields(classToCreate);
 
@@ -48,7 +48,7 @@ public class MinionArrayBuilder {
         return allFields;
     }
 
-    private static Map<String, String> fillClassFields(List<String> fields, String side) {
+    private static Map<String, String> fillClassFields(List<String> fields, MinionStringEnum side) {
         Map<String, String> minionMap = MinionUtils.generateMinionMap(side);
         Map<String, String> objectMap = new HashMap<>();
 

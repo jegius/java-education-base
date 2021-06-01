@@ -55,14 +55,14 @@ public class GenericTaskCommandAndrew implements Command {
                 return this;
             case 4:
                 ArrayListGeneric<Minion> troopers = MinionArrayBuilder.generateObject(Human.class,
-                        MinionStringEnum.LIGHT_SIDE.getLine(),
+                        MinionStringEnum.LIGHT_SIDE,
                         MinionIntEnum.MINION_AMOUNT.getValue());
                 MinionUtils.minionsInfo(troopers);
                 Castle.getInstance().setMinions(troopers);
                 return this;
             case 5:
                 ArrayListGeneric<Minion> grunts = MinionArrayBuilder.generateObject(Orc.class,
-                        MinionStringEnum.DARK_SIDE.getLine(),
+                        MinionStringEnum.DARK_SIDE,
                         MinionIntEnum.MINION_AMOUNT.getValue());
                 MinionUtils.minionsInfo(grunts);
                 Horde.getInstance().setMinions(grunts);
