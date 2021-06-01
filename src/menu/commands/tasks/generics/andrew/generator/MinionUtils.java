@@ -33,13 +33,15 @@ public class MinionUtils {
     }
 
     public static int generateAge() {
-        return new Random().nextInt(MinionIntEnum.MAX_AGE.getValue() + 1 -
-                MinionIntEnum.MIN_AGE.getValue()) + MinionIntEnum.MIN_AGE.getValue();
+        int maxAge = MinionIntEnum.MAX_AGE.getValue();
+        int minAge = MinionIntEnum.MIN_AGE.getValue();
+        return new Random().nextInt(maxAge - minAge) + minAge;
     }
 
     public static int generatePower() {
-        return new Random().nextInt(MinionIntEnum.MAX_POWER.getValue() + 1 -
-                MinionIntEnum.MIN_POWER.getValue()) + MinionIntEnum.MIN_POWER.getValue();
+        int maxPower = MinionIntEnum.MAX_POWER.getValue();
+        int minPower = MinionIntEnum.MIN_POWER.getValue();
+        return new Random().nextInt(maxPower - minPower) + minPower;
     }
 
     public static Map<String, String> generateMinionMap(String side) {
@@ -63,6 +65,7 @@ public class MinionUtils {
             }
             currentClass = currentClass.getSuperclass();
         } while (currentClass != null);
+
         return allClassesFields;
     }
 
