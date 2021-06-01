@@ -16,7 +16,7 @@ public class AttackGenerator {
     public void calcFight(ArrayListGeneric<Minion> calcLightSide, ArrayListGeneric<Minion> calcDarkSide) {
         Random random = new Random();
         boolean breakPoint = true;
-        int round = MinionIntEnum.ROUND_OF_FIGHT.getValue();
+        int round = MinionIntEnum.FIRST_ROUND.getValue();
         while (breakPoint) {
 
             System.out.println("Round: " + round++);

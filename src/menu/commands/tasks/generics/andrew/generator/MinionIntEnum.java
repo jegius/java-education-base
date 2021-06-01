@@ -7,7 +7,7 @@ public enum MinionIntEnum {
     MAX_POWER(150),
     MINION_HP(100),
     MINION_AMOUNT(4),
-    ROUND_OF_FIGHT(1);
+    FIRST_ROUND(1);
 
     private final int value;
 
