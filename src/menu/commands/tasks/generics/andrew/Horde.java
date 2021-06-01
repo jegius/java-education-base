@@ -8,7 +8,7 @@ public class Horde extends BattleSide {
     private static Horde instance;
 
     public Horde() {
-        this.side = MinionStringEnum.DARK_SIDE.getLine();
+        this.side = MinionStringEnum.DARK_SIDE;
         this.amount = MinionIntEnum.MINION_AMOUNT.getValue();
     }
 

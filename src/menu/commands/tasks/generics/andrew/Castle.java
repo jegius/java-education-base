@@ -8,7 +8,7 @@ public class Castle extends BattleSide {
     private static Castle instance;
 
     public Castle() {
-        this.side = MinionStringEnum.LIGHT_SIDE.getLine();
+        this.side = MinionStringEnum.LIGHT_SIDE;
         this.amount = MinionIntEnum.MINION_AMOUNT.getValue();
     }
 

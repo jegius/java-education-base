@@ -2,10 +2,11 @@ package menu.commands.tasks.generics.andrew;
 
 import menu.commands.tasks.generics.andrew.creatures.Minion;
 import menu.commands.tasks.generics.andrew.generator.GenerateMinions;
+import menu.commands.tasks.generics.andrew.generator.MinionStringEnum;
 import menu.commands.tasks.generics.andrew.generator.MinionUtils;
 
 abstract public class BattleSide {
-    protected String side;
+    protected MinionStringEnum side;
     protected int amount;
     private ArrayListGeneric<Minion> minions;
 
