@@ -91,8 +91,8 @@ public class MinionUtils {
             Object typedValue = checkFieldOnCorrectType(field, value);
             try {
                 field.set(objectToComplete, typedValue);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
+            } catch (IllegalAccessException accessException) {
+                accessException.printStackTrace();
             }
         }
     }

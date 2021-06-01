@@ -28,8 +28,8 @@ public class MinionArrayBuilder {
             } catch (NoSuchMethodException |
                     InstantiationException |
                     IllegalAccessException |
-                    InvocationTargetException e) {
-                e.printStackTrace();
+                    InvocationTargetException reflectiveOperationException) {
+                reflectiveOperationException.printStackTrace();
             }
         }
         return minions;
