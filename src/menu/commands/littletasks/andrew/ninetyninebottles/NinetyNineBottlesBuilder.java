@@ -1,6 +1,7 @@
 package menu.commands.littletasks.andrew.ninetyninebottles;
 
 public class NinetyNineBottlesBuilder implements NinetyNineBottlesInterface {
+
     NinetyNineBottles ninetyNineBottles = new NinetyNineBottles();
 
     @Override
