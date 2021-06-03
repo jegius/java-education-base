@@ -29,7 +29,7 @@ public class GenerateCats {
             "Musch"};
 
     public static List<Cat> generate() {
-        int countCats = 3;
+        int countCats = CatsConstant.COUNT_CATS_GENERATE.getValue();
         List<Cat> cats = new ArrayList<>();
         for (int i = 0; i < countCats; i++) {
             cats.add(new Cat(getRandomName(), getRandomAge(), getRandomBreed()));
@@ -42,9 +42,9 @@ public class GenerateCats {
     }
 
     private static int getRandomAge() {
-        int low = 1;
-        int high = 18;
-        return new Random().nextInt(high - low) + low;
+        int minAge = CatsConstant.CATS_AGE_MIN.getValue();
+        int maxAge = CatsConstant.CATS_AGE_MAX.getValue();
+        return new Random().nextInt(maxAge - minAge) + minAge;
     }
 
     private static CatBreed getRandomBreed() {
