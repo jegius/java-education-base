@@ -16,7 +16,7 @@ public class AttackGenerator {
     public void calcFight(ArrayListGeneric<Minion> calcLightSide, ArrayListGeneric<Minion> calcDarkSide) {
         Random random = new Random();
         boolean breakPoint = true;
-        int round = MinionIntEnum.FIRST_ROUND.getValue();
+        int round = MinionIntConstant.FIRST_ROUND.getValue();
         while (breakPoint) {
 
             System.out.println("Round: " + round++);
@@ -33,7 +33,8 @@ public class AttackGenerator {
                 calcHP(grunt, trooper);
                 calcLeavesMinions(calcDarkSide, calcLightSide, grunt, trooper, gruntIndex, trooperIndex);
             }
-            if (calcLightSide.size() == 0 || calcDarkSide.size() == 0) {
+            if (calcLightSide.size() == MinionIntConstant.DEFEAT_ARMY_LENGTH.getValue() ||
+                    calcDarkSide.size() == MinionIntConstant.DEFEAT_ARMY_LENGTH.getValue()) {
                 breakPoint = false;
             }
         }
@@ -44,7 +45,7 @@ public class AttackGenerator {
         printBattle(firstMinion, secondMinion);
         secondMinion.setHp(secondMinion.getHp() - firstMinion.getPower());
 
-        if (secondMinion.getHp() > 0) {
+        if (secondMinion.getHp() > MinionIntConstant.HP_WHEN_MINION_DEAD.getValue()) {
             printBattle(secondMinion,firstMinion);
             firstMinion.setHp(firstMinion.getHp() - secondMinion.getPower());
         }
@@ -75,21 +76,22 @@ public class AttackGenerator {
                                    Minion secondMinion,
                                    int firstMinionIndex,
                                    int secondMinionIndex) {
-        if (firstMinion.getHp() <= 0) {
+        if (firstMinion.getHp() <= MinionIntConstant.HP_WHEN_MINION_DEAD.getValue()) {
 
             System.out.println(firstMinion.getName() + " is dead!");
 
             MenuUtils.printSeparator();
             firstSide.remove(firstMinionIndex);
         }
-        if (secondMinion.getHp() <= 0) {
+        if (secondMinion.getHp() <= MinionIntConstant.HP_WHEN_MINION_DEAD.getValue()) {
 
             System.out.println(secondMinion.getName() + " is dead!");
 
             MenuUtils.printSeparator();
             secondSide.remove(secondMinionIndex);
         }
-        if (firstMinion.getHp() > 0 && secondMinion.getHp() > 0) {
+        if (firstMinion.getHp() > MinionIntConstant.HP_WHEN_MINION_DEAD.getValue() &&
+                secondMinion.getHp() > MinionIntConstant.HP_WHEN_MINION_DEAD.getValue()) {
             firstSide.set(firstMinion, firstMinionIndex);
             secondSide.set(secondMinion, secondMinionIndex);
             MenuUtils.printSeparator();

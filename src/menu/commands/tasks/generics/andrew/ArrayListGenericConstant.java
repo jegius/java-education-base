@@ -1,13 +1,13 @@
 package menu.commands.tasks.generics.andrew;
 
-public enum ArrayListGenericEnum {
+public enum ArrayListGenericConstant {
 
     INIT_SIZE(16),
     CUT_RATE(4);
 
     private final int value;
 
-    ArrayListGenericEnum(int value) {
+    ArrayListGenericConstant(int value) {
         this.value = value;
     }
 

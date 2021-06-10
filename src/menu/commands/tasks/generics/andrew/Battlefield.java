@@ -2,6 +2,7 @@ package menu.commands.tasks.generics.andrew;
 
 import menu.commands.tasks.generics.andrew.creatures.Minion;
 import menu.commands.tasks.generics.andrew.generator.AttackGenerator;
+import menu.commands.tasks.generics.andrew.generator.MinionIntConstant;
 import menu.commands.tasks.generics.andrew.generator.MinionUtils;
 
 public class Battlefield {
@@ -19,7 +20,8 @@ public class Battlefield {
         ArrayListGeneric<Minion> lightSide = Castle.getInstance().inToBattleField();
         ArrayListGeneric<Minion> darkSide = Horde.getInstance().inToBattleField();
 
-        if (lightSide.size() == 0 && darkSide.size() != 0) {
+        if (lightSide.size() == MinionIntConstant.DEFEAT_ARMY_LENGTH.getValue()
+                && darkSide.size() != MinionIntConstant.DEFEAT_ARMY_LENGTH.getValue()) {
 
             System.out.println("Castle is ruins!!!");
             System.out.println("Orcs leaves:");
@@ -28,7 +30,8 @@ public class Battlefield {
 
             System.out.println("Dark side WON!!!");
         }
-        if (lightSide.size() != 0 && darkSide.size() == 0) {
+        if (lightSide.size() != MinionIntConstant.DEFEAT_ARMY_LENGTH.getValue()
+                && darkSide.size() == MinionIntConstant.DEFEAT_ARMY_LENGTH.getValue()) {
 
             System.out.println("Horde, no more horde!!!");
             System.out.println("Troopers leaves:");
@@ -37,11 +40,13 @@ public class Battlefield {
 
             System.out.println("Light side WON!!!");
         }
-        if (lightSide.size() == 0 && darkSide.size() == 0) {
+        if (lightSide.size() == MinionIntConstant.DEFEAT_ARMY_LENGTH.getValue()
+                && darkSide.size() == MinionIntConstant.DEFEAT_ARMY_LENGTH.getValue()) {
 
             System.out.println("Battlefield is empty");
         }
-        if (lightSide.size() != 0 && darkSide.size() != 0) {
+        if (lightSide.size() != MinionIntConstant.DEFEAT_ARMY_LENGTH.getValue()
+                && darkSide.size() != MinionIntConstant.DEFEAT_ARMY_LENGTH.getValue()) {
             beginFight(lightSide, darkSide);
         }
     }

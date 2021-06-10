@@ -1,6 +1,6 @@
 package menu.commands.tasks.generics.andrew.creatures;
 
-import menu.commands.tasks.generics.andrew.generator.MinionStringEnum;
+import menu.commands.tasks.generics.andrew.generator.MinionStringConstant;
 
 import java.util.Map;
 
@@ -10,7 +10,7 @@ public class Orc extends Minion {
 
     public Orc(String name, int age, int power, int hp) {
         super(name, age, power, hp);
-        this.side = MinionStringEnum.DARK_SIDE.getLine();
+        this.side = MinionStringConstant.DARK_SIDE.getLine();
         this.objectName = this.getClass().getSimpleName();
     }
 

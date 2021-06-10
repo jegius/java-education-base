@@ -1,15 +1,15 @@
 package menu.commands.tasks.generics.andrew;
 
-import menu.commands.tasks.generics.andrew.generator.MinionIntEnum;
-import menu.commands.tasks.generics.andrew.generator.MinionStringEnum;
+import menu.commands.tasks.generics.andrew.generator.MinionIntConstant;
+import menu.commands.tasks.generics.andrew.generator.MinionStringConstant;
 
 public class Castle extends BattleSide {
 
     private static Castle instance;
 
     public Castle() {
-        this.side = MinionStringEnum.LIGHT_SIDE;
-        this.amount = MinionIntEnum.MINION_AMOUNT.getValue();
+        this.side = MinionStringConstant.LIGHT_SIDE;
+        this.amount = MinionIntConstant.MINION_AMOUNT.getValue();
     }
 
     public static synchronized Castle getInstance() {

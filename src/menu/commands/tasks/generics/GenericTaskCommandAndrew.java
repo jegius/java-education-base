@@ -10,8 +10,8 @@ import menu.commands.tasks.generics.andrew.creatures.Human;
 import menu.commands.tasks.generics.andrew.creatures.Minion;
 import menu.commands.tasks.generics.andrew.creatures.Orc;
 import menu.commands.tasks.generics.andrew.generator.MinionArrayBuilder;
-import menu.commands.tasks.generics.andrew.generator.MinionIntEnum;
-import menu.commands.tasks.generics.andrew.generator.MinionStringEnum;
+import menu.commands.tasks.generics.andrew.generator.MinionIntConstant;
+import menu.commands.tasks.generics.andrew.generator.MinionStringConstant;
 import menu.commands.tasks.generics.andrew.generator.MinionUtils;
 import menu.utils.MenuUtils;
 
@@ -55,15 +55,15 @@ public class GenericTaskCommandAndrew implements Command {
                 return this;
             case 4:
                 ArrayListGeneric<Minion> troopers = MinionArrayBuilder.generateObject(Human.class,
-                        MinionStringEnum.LIGHT_SIDE,
-                        MinionIntEnum.MINION_AMOUNT.getValue());
+                        MinionStringConstant.LIGHT_SIDE,
+                        MinionIntConstant.MINION_AMOUNT.getValue());
                 MinionUtils.minionsInfo(troopers);
                 Castle.getInstance().setMinions(troopers);
                 return this;
             case 5:
                 ArrayListGeneric<Minion> grunts = MinionArrayBuilder.generateObject(Orc.class,
-                        MinionStringEnum.DARK_SIDE,
-                        MinionIntEnum.MINION_AMOUNT.getValue());
+                        MinionStringConstant.DARK_SIDE,
+                        MinionIntConstant.MINION_AMOUNT.getValue());
                 MinionUtils.minionsInfo(grunts);
                 Horde.getInstance().setMinions(grunts);
                 return this;

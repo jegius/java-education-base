@@ -1,7 +1,7 @@
 package menu.commands.tasks.generics.andrew;
 
 public class ArrayListGeneric<T> {
-    private Object[] values = new Object[ArrayListGenericEnum.INIT_SIZE.getValue()];
+    private Object[] values = new Object[ArrayListGenericConstant.INIT_SIZE.getValue()];
     private int size = 0;
 
     public void add(T item) {
@@ -28,7 +28,7 @@ public class ArrayListGeneric<T> {
             values[i] = values[i + 1];
         values[size] = null;
         size--;
-        if (values.length > ArrayListGenericEnum.INIT_SIZE.getValue() && size < values.length / ArrayListGenericEnum.CUT_RATE.getValue())
+        if (values.length > ArrayListGenericConstant.INIT_SIZE.getValue() && size < values.length / ArrayListGenericConstant.CUT_RATE.getValue())
             resize(values.length / 2);
     }
 

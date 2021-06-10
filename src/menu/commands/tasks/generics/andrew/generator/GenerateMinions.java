@@ -7,10 +7,10 @@ import menu.commands.tasks.generics.andrew.creatures.Orc;
 
 public class GenerateMinions {
 
-    public ArrayListGeneric<Minion> createMinions(MinionStringEnum side, int quantity) {
+    public ArrayListGeneric<Minion> createMinions(MinionStringConstant side, int quantity) {
         Minion minions;
         ArrayListGeneric<Minion> arrayListGeneric = new ArrayListGeneric<>();
-        int healsPoint = MinionIntEnum.MINION_HP.getValue();
+        int healsPoint = MinionIntConstant.MINION_HP.getValue();
 
         switch (side) {
             case LIGHT_SIDE:

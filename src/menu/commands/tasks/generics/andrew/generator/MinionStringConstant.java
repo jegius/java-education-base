@@ -1,6 +1,6 @@
 package menu.commands.tasks.generics.andrew.generator;
 
-public enum MinionStringEnum {
+public enum MinionStringConstant {
     LIGHT_SIDE("light"),
     DARK_SIDE("dark"),
 
@@ -14,7 +14,7 @@ public enum MinionStringEnum {
 
     private final String line;
 
-    MinionStringEnum(String line) {
+    MinionStringConstant(String line) {
         this.line = line;
     }
 

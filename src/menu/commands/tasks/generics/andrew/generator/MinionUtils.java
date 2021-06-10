@@ -23,35 +23,35 @@ public class MinionUtils {
         }
     }
 
-    public static String generateName(MinionStringEnum side) {
+    public static String generateName(MinionStringConstant side) {
         switch (side) {
             case LIGHT_SIDE:
                 return humanNames[new Random().nextInt(humanNames.length)];
             case DARK_SIDE:
                 return orcNames[new Random().nextInt(orcNames.length)];
         }
-        return MinionStringEnum.EMPTY_STRING.getLine();
+        return MinionStringConstant.EMPTY_STRING.getLine();
     }
 
     public static int generateAge() {
-        int maxAge = MinionIntEnum.MAX_AGE.getValue();
-        int minAge = MinionIntEnum.MIN_AGE.getValue();
-        return new Random().nextInt(maxAge - minAge) + minAge;
+        return new Random()
+                .nextInt(MinionIntConstant.MAX_AGE.getValue() - MinionIntConstant.MIN_AGE.getValue())
+                + MinionIntConstant.MIN_AGE.getValue();
     }
 
     public static int generatePower() {
-        int maxPower = MinionIntEnum.MAX_POWER.getValue();
-        int minPower = MinionIntEnum.MIN_POWER.getValue();
-        return new Random().nextInt(maxPower - minPower) + minPower;
+        return new Random()
+                .nextInt(MinionIntConstant.MAX_POWER.getValue() - MinionIntConstant.MIN_POWER.getValue())
+                + MinionIntConstant.MIN_POWER.getValue();
     }
 
-    public static Map<String, String> generateMinionMap(MinionStringEnum side) {
+    public static Map<String, String> generateMinionMap(MinionStringConstant side) {
         Map<String, String> minionMap = new HashMap<>();
 
-        minionMap.put(MinionStringEnum.NAME.getLine(), generateName(side));
-        minionMap.put(MinionStringEnum.AGE.getLine(), String.valueOf(generateAge()));
-        minionMap.put(MinionStringEnum.POWER.getLine(), String.valueOf(generatePower()));
-        minionMap.put(MinionStringEnum.HP.getLine(), String.valueOf(MinionIntEnum.MINION_HP.getValue()));
+        minionMap.put(MinionStringConstant.NAME.getLine(), generateName(side));
+        minionMap.put(MinionStringConstant.AGE.getLine(), String.valueOf(generateAge()));
+        minionMap.put(MinionStringConstant.POWER.getLine(), String.valueOf(generatePower()));
+        minionMap.put(MinionStringConstant.HP.getLine(), String.valueOf(MinionIntConstant.MINION_HP.getValue()));
         return minionMap;
     }
 
