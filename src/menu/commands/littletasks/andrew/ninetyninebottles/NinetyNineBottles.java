@@ -13,23 +13,25 @@ public class NinetyNineBottles {
     }
 
     public static void run() {
-        int bottlesCount = NinetyNineBottlesConstant.BOTTLES_COUNT.getValue();
-        NinetyNineBottles ninetyNineBottles = new NinetyNineBottlesBuilder().setBottles(bottlesCount).build();
+        NinetyNineBottles ninetyNineBottles = new NinetyNineBottlesBuilder()
+                .setBottles(Constant.BOTTLES_COUNT.getValue()).build();
         StringBuilder stringBuilder = new StringBuilder();
 
         while (ninetyNineBottles.getBottlesCount() > 1) {
             stringBuilder
                     .append(ninetyNineBottles.getBottlesCount())
-                    .append(bottlesRusEnding(ninetyNineBottles.getBottlesCount()))
+                    .append(bottlesRusSuffix(ninetyNineBottles.getBottlesCount()))
                     .append(" пива на столе,\n")
                     .append("Взял одну, распили,\n")
                     .append("Теперь на столе осталось,\n");
 
-            ninetyNineBottles.setBottlesCount(ninetyNineBottles.getBottlesCount() - 1);
+            ninetyNineBottles.setBottlesCount(
+                    ninetyNineBottles.getBottlesCount() - Constant.DRINK_BOTTLE_COUNT.getValue()
+            );
 
             stringBuilder
                     .append(ninetyNineBottles.getBottlesCount())
-                    .append(bottlesRusEnding(ninetyNineBottles.getBottlesCount()))
+                    .append(bottlesRusSuffix(ninetyNineBottles.getBottlesCount()))
                     .append(" пива\n\n");
         }
         stringBuilder.append("Только 1 бутылка пива\n" +
@@ -40,16 +42,19 @@ public class NinetyNineBottles {
         System.out.println(stringBuilder.toString());
     }
 
-    private static String bottlesRusEnding(int bottlesCount) {
-        int bottlesMod = bottlesCount % 10;
+    private static String bottlesRusSuffix(int bottlesCount) {
+        int bottlesMod = bottlesCount % Constant.RUS_BOTTLES_MODULO.getValue();
 
-        if (bottlesCount >= 10 && bottlesCount < 20) {
+        if (bottlesCount >= Constant.RUS_SUFFIX_LAST_TEN_BOTTLES.getValue() &&
+                bottlesCount < Constant.RUS_SUFFIX_LAST_TWENTY_BOTTLES.getValue()) {
             return " бутылок";
         }
-        if (bottlesCount == 1 || bottlesMod == 1) {
+        if (bottlesCount == Constant.LAST_BOTTLE.getValue() ||
+                bottlesMod == Constant.LAST_BOTTLE.getValue()) {
             return " бутылка";
         }
-        if (bottlesMod < 5 && bottlesMod > 1) {
+        if (bottlesMod < Constant.RUS_SUFFIX_LAST_FIVE_BOTTLES.getValue() &&
+                bottlesMod > Constant.LAST_BOTTLE.getValue()) {
             return " бутылки";
         } else {
             return " бутылок";
