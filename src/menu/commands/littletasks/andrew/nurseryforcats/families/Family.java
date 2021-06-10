@@ -9,14 +9,14 @@ import java.util.List;
 abstract public class Family implements FamilyCat {
 
     protected List<Cat> cats;
-    protected Class<?> cClass;
+    protected Class<?> getClassObject;
 
     public Family() {
         this.cats = GenerateCats.generate();
     }
 
     @Override
-    public void sendToTheShelter(Class<?> cClass) {
-        CatShelter.printCats(cats, cClass);
+    public void sendToTheShelter(Class<?> getClassObject) {
+        CatShelter.printCats(cats, getClassObject);
     }
 }
