@@ -1,27 +1,26 @@
-package menu.commands.tasks.editor.max;
+package menu.commands.tasks.editor.Dmitrii;
 
 import menu.Command;
 import menu.commands.tasks.TaskMenuCommand;
+import menu.commands.tasks.editor.max.MaxEditor;
+import menu.commands.tasks.editor.max.MaxEditorManager;
 import menu.utils.MenuUtils;
 
 import java.io.IOException;
 
-public class MaxEditorCommand implements Command {
+public class DmitriiEditorCommand implements Command {
 
-    private static MaxEditorCommand instance;
+    private static DmitriiEditorCommand instance;
 
-    private MaxEditorCommand() {
-    }
+    public static synchronized DmitriiEditorCommand getInstance() {
 
-    public static synchronized MaxEditorCommand getInstance() {
         if (instance == null) {
-            instance = new MaxEditorCommand();
+            instance = new DmitriiEditorCommand();
         }
         return instance;
     }
-
     @Override
-    public Command execute() throws IOException {
+    public Command execute() {
         MenuUtils.printSeparator();
         MenuUtils.printOption(1, "Create New file");
         MenuUtils.printOption(2, "Open file");
@@ -34,11 +33,11 @@ public class MaxEditorCommand implements Command {
 
         switch (choice) {
             case 1:
-                MaxEditor maxEditorNew = MaxEditorManager.getInstance().newFile();
-                return maxEditorNew != null ?
-                        maxEditorNew.execute() :
+                DmitriiEditor DmitriiEditorNew = DmitriiEditor.getInstance().Newfile();
+                return DmitriiEditorNew != null ?
+                        DmitriiEditorNew.execute() :
                         this;
-            case 2:
+           /* case 2:
                 MaxEditor maxEditorOpen = MaxEditorManager.getInstance().openFile();
                 return maxEditorOpen != null ?
                         maxEditorOpen.execute() :
@@ -47,7 +46,7 @@ public class MaxEditorCommand implements Command {
                 MaxEditor maxEditorSelect = MaxEditorManager.getInstance().selectPreviousFile();
                 return maxEditorSelect != null ?
                         maxEditorSelect.execute() :
-                        this;
+                        this;*/
             case 0:
                 return TaskMenuCommand.getInstance().execute();
             default:
