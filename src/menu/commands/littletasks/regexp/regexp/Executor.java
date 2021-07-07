@@ -2,6 +2,7 @@ package menu.commands.littletasks.regexp.regexp;
 
 public enum Executor {
     IVAN("Ivan"),
+    ANDREW("Andrew"),
     ALEX("Alex"),
     MAX("Max");
 

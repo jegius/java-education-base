@@ -4,6 +4,7 @@ import menu.Command;
 import menu.MainMenuCommand;
 import menu.commands.littletasks.alexninetyninebottles.AlexNinetyNineBottles;
 import menu.commands.littletasks.alexnurseryforcats.AlexNurseryForCats;
+import menu.commands.littletasks.andrew.AndrewLittleTasksCommand;
 import menu.commands.littletasks.ninetyninebottles.NinetyNineBottles;
 import menu.commands.littletasks.ninetyninebottlesmax.NinetyNineBottlesMax;
 import menu.commands.littletasks.nurserycatsmax.NurseryForCatsMax;
@@ -19,7 +20,8 @@ public class LittleTaskCommand implements Command {
 
     private static LittleTaskCommand instance;
 
-    private LittleTaskCommand() {}
+    private LittleTaskCommand() {
+    }
 
     public static synchronized LittleTaskCommand getInstance() {
         if (instance == null) {
@@ -41,6 +43,8 @@ public class LittleTaskCommand implements Command {
         MenuUtils.printOption("10", "Run regexp exercise.");
         MenuUtils.printOption("11", "Run ALEX simple enum.");
         MenuUtils.printOption("12", "Run MAX simple enum.");
+        MenuUtils.printOption("13", "Run Andrew simple enum.");
+        MenuUtils.printOption("20", "Run Andrew little tasks.");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -89,6 +93,14 @@ public class LittleTaskCommand implements Command {
                         .getTaskByExecutor(Executor.MAX)
                         .runTask();
                 return this;
+            case 13:
+                TaskStore
+                        .getInstance()
+                        .getTaskByExecutor(Executor.ANDREW)
+                        .runTask();
+                return this;
+            case 20:
+                return AndrewLittleTasksCommand.getInstance().execute();
             default:
                 System.out.println("Unexpected command!");
                 return this;

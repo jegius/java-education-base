@@ -3,6 +3,7 @@ package menu.commands.littletasks.regexp.regexp.macher;
 import menu.Command;
 import menu.commands.littletasks.regexp.RegExpTaskCommand;
 import menu.commands.littletasks.regexp.regexp.macher.alex.AlexRegExp;
+import menu.commands.littletasks.regexp.regexp.macher.andrew.AndrewRegEx;
 import menu.commands.littletasks.regexp.regexp.macher.ivan.IvanRegExp;
 import menu.commands.littletasks.regexp.regexp.macher.max.MaxRegExp;
 import menu.utils.MenuUtils;
@@ -39,6 +40,8 @@ public class RegExpMatcherRunner implements Command {
         MenuUtils.printOption("4", "Alex matcher replace.");
         MenuUtils.printOption("5", "Max matcher find.");
         MenuUtils.printOption("6", "Max matcher replace.");
+        MenuUtils.printOption("7", "Andrew matcher find.");
+        MenuUtils.printOption("8", "Andrew matcher replace.");
         MenuUtils.printOption("0", "Back");
         MenuUtils.printSeparator();
         MenuUtils.printPrompt();
@@ -72,6 +75,16 @@ public class RegExpMatcherRunner implements Command {
             case 6: {
                 action = Action.REPLACE;
                 currentMatcher = MaxRegExp.values();
+                return chooseAndRunRegExp();
+            }
+            case 7: {
+                action = Action.FIND;
+                currentMatcher = AndrewRegEx.values();
+                return chooseAndRunRegExp();
+            }
+            case 8: {
+                action = Action.REPLACE;
+                currentMatcher = AndrewRegEx.values();
                 return chooseAndRunRegExp();
             }
             case 0: {

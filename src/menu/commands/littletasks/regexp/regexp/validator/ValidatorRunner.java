@@ -4,6 +4,7 @@ import menu.Command;
 import menu.commands.littletasks.regexp.RegExpTaskCommand;
 import menu.commands.littletasks.regexp.regexp.Executor;
 import menu.commands.littletasks.regexp.regexp.validator.alex.AlexRegExpValidator;
+import menu.commands.littletasks.regexp.regexp.validator.andrew.AndrewRegExpValidator;
 import menu.commands.littletasks.regexp.regexp.validator.ivan.IvanRegExpValidator;
 import menu.commands.littletasks.regexp.regexp.validator.max.MaxRegExpValidator;
 import menu.utils.MenuUtils;
@@ -29,6 +30,7 @@ public class ValidatorRunner implements Command {
         this.scanner = new Scanner(System.in);
         this.executors = new HashMap<>();
         this.executors.put(Executor.IVAN, new IvanRegExpValidator());
+        this.executors.put(Executor.ANDREW, new AndrewRegExpValidator());
         this.executors.put(Executor.ALEX, new AlexRegExpValidator());
         this.executors.put(Executor.MAX, new MaxRegExpValidator());
     }
