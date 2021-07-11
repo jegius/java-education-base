@@ -33,6 +33,7 @@ public class DmitriiEditorCommand implements Command {
             case 0:
                 return MainMenuCommand.getInstance().execute();
             case 1:
+                DmitriiEditor.getInstance().getFilePath();
                 return this;
             default:
                 System.out.println("Unexpected command!");
