@@ -1,12 +1,9 @@
 package menu.commands.tasks.editor.Dmitrii;
 
 import menu.Command;
+import menu.MainMenuCommand;
 import menu.commands.tasks.TaskMenuCommand;
-import menu.commands.tasks.editor.max.MaxEditor;
-import menu.commands.tasks.editor.max.MaxEditorManager;
 import menu.utils.MenuUtils;
-
-import java.io.IOException;
 
 public class DmitriiEditorCommand implements Command {
 
@@ -19,6 +16,7 @@ public class DmitriiEditorCommand implements Command {
         }
         return instance;
     }
+
     @Override
     public Command execute() {
         MenuUtils.printSeparator();
@@ -32,23 +30,10 @@ public class DmitriiEditorCommand implements Command {
         int choice = MenuUtils.getScannerChoice();
 
         switch (choice) {
-            case 1:
-                DmitriiEditor DmitriiEditorNew = DmitriiEditor.getInstance().Newfile();
-                return DmitriiEditorNew != null ?
-                        DmitriiEditorNew.execute() :
-                        this;
-           /* case 2:
-                MaxEditor maxEditorOpen = MaxEditorManager.getInstance().openFile();
-                return maxEditorOpen != null ?
-                        maxEditorOpen.execute() :
-                        this;
-            case 3:
-                MaxEditor maxEditorSelect = MaxEditorManager.getInstance().selectPreviousFile();
-                return maxEditorSelect != null ?
-                        maxEditorSelect.execute() :
-                        this;*/
             case 0:
-                return TaskMenuCommand.getInstance().execute();
+                return MainMenuCommand.getInstance().execute();
+            case 1:
+                return this;
             default:
                 System.out.println("Unexpected command!");
                 return this;

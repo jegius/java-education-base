@@ -21,7 +21,7 @@ public class MaxEditorCommand implements Command {
     }
 
     @Override
-    public Command execute() throws IOException {
+    public Command execute(){
         MenuUtils.printSeparator();
         MenuUtils.printOption(1, "Create New file");
         MenuUtils.printOption(2, "Open file");

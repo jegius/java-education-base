@@ -31,7 +31,7 @@ public class TaskMenuCommand implements Command {
     }
 
     @Override
-    public Command execute() throws IOException {
+    public Command execute() {
         MenuUtils.printSeparator();
         MenuUtils.printOption("1", "Show object theme task");
         MenuUtils.printOption("2", "Show simple calculator");
