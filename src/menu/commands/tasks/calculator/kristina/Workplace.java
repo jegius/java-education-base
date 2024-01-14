@@ -11,6 +11,5 @@ public class Workplace {
         System.out.println(result.sqrt(256));
         System.out.println(result.triangle(5));
         System.out.println(result.factorial(5));
-
     }
 }

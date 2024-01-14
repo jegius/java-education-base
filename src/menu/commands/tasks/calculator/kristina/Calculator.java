@@ -48,7 +48,7 @@ public class Calculator {
     //Нахождение факториала числа переданного в метод
     public long factorial(long number){
         for (long i = number - 1; i >= 1; i--) {
-            number *= i ;
+            number *= i;
         }
         return number;
     }
