@@ -36,7 +36,6 @@ public class Calculator {
         long numb = 1;
         while (numb * numb <= number) {
             numb++;
-
         }
         return numb - 1;
     }
