@@ -86,7 +86,7 @@ public class CollectionChecker {
                 throw new Exception();
             }
 
-            list = fillingOutUtil.fillList(list, 100000);
+            list = (List) fillingOutUtil.fillList(list, 100000);
             list.quickSort();
             assessment++;
         } catch (Exception exception) {
@@ -109,7 +109,7 @@ public class CollectionChecker {
     private void checkThirdStage(List list) throws ThirdStageException {
         try {
             int expectedLength = 200;
-            list = fillingOutUtil.fillList(list, expectedLength);
+            list = (List) fillingOutUtil.fillList(list, expectedLength);
 
             if (list.size() != expectedLength) {
                 throw new Exception();

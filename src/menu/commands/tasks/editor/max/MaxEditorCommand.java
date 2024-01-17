@@ -4,6 +4,8 @@ import menu.Command;
 import menu.commands.tasks.TaskMenuCommand;
 import menu.utils.MenuUtils;
 
+import java.io.IOException;
+
 public class MaxEditorCommand implements Command {
 
     private static MaxEditorCommand instance;
@@ -19,7 +21,7 @@ public class MaxEditorCommand implements Command {
     }
 
     @Override
-    public Command execute() {
+    public Command execute(){
         MenuUtils.printSeparator();
         MenuUtils.printOption(1, "Create New file");
         MenuUtils.printOption(2, "Open file");

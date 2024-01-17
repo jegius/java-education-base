@@ -4,5 +4,6 @@ public enum Exercise {
     DNS,
     FACTORY,
     SCHOOL,
-    PUB
+    PUB,
+    STU
 }
